@@ -1,0 +1,4523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Epower Minds - Ecossistema de Aplicação Social. Discernimos o tempo, navegamos a rota e governamos a vida do projeto até virar celeiro.">
+    <meta property="og:title" content="Epower Minds | Ecossistema de Aplicação Social">
+    <meta property="og:description" content="Transformamos complexidade em caminho e caminho em entrega territorial.">
+    <meta property="og:type" content="website">
+    <title>Epower Minds | Ecossistema de Aplicação Social</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           DESIGN SYSTEM - Epower Minds
+           ============================================ */
+        :root {
+            /* Paleta de Cores */
+            --azul-profundo: #061A2B;
+            --azul-safira: #0B2F4A;
+            --branco-diamante: #F5F7FA;
+            --cinza-chumbo: #1B2430;
+            --dourado: #C9A24A;
+            --verde-azulado: #1AA6A6;
+            --vermelho-profundo: #8B1E2D;
+            
+            /* Gradientes */
+            --gradiente-fundo: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-safira) 100%);
+            --gradiente-card: linear-gradient(145deg, rgba(11, 47, 74, 0.6) 0%, rgba(6, 26, 43, 0.8) 100%);
+            
+            /* Tipografia */
+            --fonte-titulo: 'Cinzel', serif;
+            --fonte-texto: 'Inter', sans-serif;
+            
+            /* Espaçamento */
+            --espacamento-xs: 0.5rem;
+            --espacamento-sm: 1rem;
+            --espacamento-md: 2rem;
+            --espacamento-lg: 4rem;
+            --espacamento-xl: 6rem;
+            
+            /* Animações */
+            --transicao-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transicao-lenta: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: var(--fonte-texto);
+            background: var(--gradiente-fundo);
+            color: var(--branco-diamante);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Textura de Fundo - Constelações */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(245, 247, 250, 0.15), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(245, 247, 250, 0.1), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(245, 247, 250, 0.15), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(201, 162, 74, 0.1), transparent);
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Tipografia */
+        h1, h2, h3, h4 {
+            font-family: var(--fonte-titulo);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            max-width: 65ch;
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        a {
+            color: var(--dourado);
+            text-decoration: none;
+            transition: var(--transicao-suave);
+        }
+
+        a:hover, a:focus {
+            color: var(--verde-azulado);
+            outline: 2px solid var(--dourado);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           COMPONENTES GLOBAIS
+           ============================================ */
+        
+        /* Header Fixo */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(6, 26, 43, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+            z-index: 1000;
+            padding: var(--espacamento-sm) 0;
+            transition: var(--transicao-suave);
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--espacamento-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-sm);
+            font-family: var(--fonte-titulo);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--branco-diamante);
+            text-decoration: none;
+        }
+
+        .logo-simbolo {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .logo-simbolo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Navegação */
+        .nav-desktop {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-desktop {
+                display: flex;
+                gap: var(--espacamento-sm);
+                align-items: center;
+            }
+        }
+
+        .nav-link {
+            color: var(--branco-diamante);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: var(--transicao-suave);
+            text-decoration: none;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            background: rgba(201, 162, 74, 0.1);
+            color: var(--dourado);
+        }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--branco-diamante);
+            cursor: pointer;
+            padding: var(--espacamento-xs);
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--azul-profundo);
+            border-top: 1px solid rgba(201, 162, 74, 0.2);
+            padding: var(--espacamento-md);
+            flex-direction: column;
+            gap: var(--espacamento-sm);
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-family: var(--fonte-texto);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transicao-suave);
+            text-decoration: none;
+        }
+
+        .btn-primario {
+            background: var(--dourado);
+            color: var(--azul-profundo);
+        }
+
+        .btn-primario:hover, .btn-primario:focus {
+            background: #b8943f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 162, 74, 0.3);
+        }
+
+        .btn-secundario {
+            background: transparent;
+            color: var(--branco-diamante);
+            border: 2px solid var(--dourado);
+        }
+
+        .btn-secundario:hover, .btn-secundario:focus {
+            background: rgba(201, 162, 74, 0.1);
+        }
+
+        .btn-grande {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        /* CTA Fixo Flutuante */
+        .cta-flutuante {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 74, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(201, 162, 74, 0); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--espacamento-md);
+        }
+
+        .secao {
+            padding: var(--espacamento-xl) 0;
+            position: relative;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--gradiente-card);
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            border-radius: 12px;
+            padding: var(--espacamento-md);
+            transition: var(--transicao-suave);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--dourado);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-titulo {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+            font-size: 1.25rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: var(--espacamento-md);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* ============================================
+           SEÇÕES ESPECÍFICAS
+           ============================================ */
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-conteudo {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-simbolo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--espacamento-md);
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            margin-bottom: var(--espacamento-md);
+            background: linear-gradient(135deg, var(--branco-diamante) 0%, var(--dourado) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitulo {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: rgba(245, 247, 250, 0.9);
+            margin-bottom: var(--espacamento-lg);
+            font-weight: 300;
+        }
+
+        .hero-botoes {
+            display: flex;
+            gap: var(--espacamento-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Blocos de Conteúdo */
+        .bloco-texto {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .bloco-texto h2 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .bloco-texto p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(245, 247, 250, 0.9);
+        }
+
+        /* Cards de Movimentos */
+        .movimento-card {
+            text-align: center;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+        }
+
+        .movimento-icone {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--espacamento-md);
+            color: var(--dourado);
+        }
+
+        /* Diagramas SVG */
+        .diagrama-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: var(--espacamento-lg) auto;
+            padding: var(--espacamento-md);
+            background: rgba(11, 47, 74, 0.3);
+            border-radius: 16px;
+            border: 1px solid rgba(201, 162, 74, 0.1);
+        }
+
+        .diagrama-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Citações/Impacto */
+        .banner-impacto {
+            background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 74, 0.1) 50%, transparent 100%);
+            padding: var(--espacamento-lg) var(--espacamento-md);
+            text-align: center;
+            margin: var(--espacamento-xl) 0;
+            border-left: 4px solid var(--dourado);
+            border-right: 4px solid var(--dourado);
+        }
+
+        .banner-impacto p {
+            font-family: var(--fonte-titulo);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--dourado);
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Seção de Contato Final */
+        .secao-contato {
+            background: linear-gradient(180deg, transparent 0%, rgba(6, 26, 43, 0.8) 100%);
+        }
+
+        .contato-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--espacamento-md);
+            margin-top: var(--espacamento-lg);
+        }
+
+        .contato-card {
+            background: var(--gradiente-card);
+            border: 2px solid rgba(201, 162, 74, 0.3);
+            border-radius: 12px;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicao-suave);
+        }
+
+        .contato-card:hover, .contato-card:focus {
+            border-color: var(--dourado);
+            transform: translateY(-4px);
+            background: rgba(201, 162, 74, 0.1);
+        }
+
+        .contato-card h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        .contato-card p {
+            font-size: 0.9375rem;
+            color: rgba(245, 247, 250, 0.8);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cinza-chumbo);
+            border-top: 1px solid rgba(201, 162, 74, 0.2);
+            padding: var(--espacamento-xl) 0 var(--espacamento-md);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--espacamento-lg);
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .footer-col h4 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .footer-col a {
+            color: rgba(245, 247, 250, 0.8);
+            font-size: 0.9375rem;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+
+        .footer-col a:hover {
+            color: var(--dourado);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 247, 250, 0.1);
+            padding-top: var(--espacamento-md);
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.6);
+        }
+
+        .mini-manifesto {
+            font-style: italic;
+            margin-bottom: var(--espacamento-sm);
+            color: rgba(245, 247, 250, 0.8);
+        }
+
+        /* ============================================
+           MODAIS E FORMULÁRIOS
+           ============================================ */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 26, 43, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--espacamento-md);
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            background: linear-gradient(145deg, var(--azul-safira) 0%, var(--azul-profundo) 100%);
+            border: 1px solid var(--dourado);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalEntrada 0.3s ease-out;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: var(--espacamento-md);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--dourado);
+            font-size: 1.5rem;
+        }
+
+        .modal-fechar {
+            background: none;
+            border: none;
+            color: var(--branco-diamante);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transicao-suave);
+        }
+
+        .modal-fechar:hover {
+            background: rgba(201, 162, 74, 0.1);
+            color: var(--dourado);
+        }
+
+        .modal-body {
+            padding: var(--espacamento-md);
+        }
+
+        /* Seleção de Tipo no Modal Inicial */
+        .tipo-selecao {
+            display: grid;
+            gap: var(--espacamento-md);
+        }
+
+        .tipo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(201, 162, 74, 0.2);
+            border-radius: 12px;
+            padding: var(--espacamento-md);
+            cursor: pointer;
+            transition: var(--transicao-suave);
+            text-align: center;
+        }
+
+        .tipo-card:hover, .tipo-card:focus {
+            border-color: var(--dourado);
+            background: rgba(201, 162, 74, 0.1);
+            transform: translateX(10px);
+        }
+
+        .tipo-card h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .tipo-card p {
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.8);
+        }
+
+        /* Formulários */
+        .formulario {
+            display: none;
+        }
+
+        .formulario.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-grupo {
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--espacamento-xs);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            color: var(--branco-diamante);
+        }
+
+        .form-label .obrigatorio {
+            color: var(--vermelho-profundo);
+            margin-left: 2px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 162, 74, 0.3);
+            border-radius: 6px;
+            color: var(--branco-diamante);
+            font-family: var(--fonte-texto);
+            font-size: 1rem;
+            transition: var(--transicao-suave);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--dourado);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(201, 162, 74, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23C9A24A' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-select option {
+            background: var(--azul-profundo);
+            color: var(--branco-diamante);
+        }
+
+        /* Checkboxes e Radio */
+        .checkbox-grupo,
+        .radio-grupo {
+            display: grid;
+            gap: var(--espacamento-xs);
+            margin-top: var(--espacamento-xs);
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: var(--transicao-suave);
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .checkbox-item input,
+        .radio-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--dourado);
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            cursor: pointer;
+            font-size: 0.9375rem;
+            color: rgba(245, 247, 250, 0.9);
+        }
+
+        /* LGPD Checkbox */
+        .lgpd-box {
+            background: rgba(201, 162, 74, 0.1);
+            border: 1px solid rgba(201, 162, 74, 0.3);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin: var(--espacamento-md) 0;
+        }
+
+        .lgpd-box .checkbox-item {
+            align-items: flex-start;
+        }
+
+        .lgpd-box input {
+            margin-top: 2px;
+        }
+
+        .lgpd-box label {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Mensagens de Erro */
+        .erro-mensagem {
+            color: var(--vermelho-profundo);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .erro-mensagem.visible {
+            display: block;
+        }
+
+        .form-input.erro {
+            border-color: var(--vermelho-profundo);
+        }
+
+        /* Tela de Sucesso */
+        .sucesso-container {
+            display: none;
+            text-align: center;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+        }
+
+        .sucesso-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .sucesso-icone {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--espacamento-md);
+            color: var(--verde-azulado);
+        }
+
+        .sucesso-container h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        .resumo-dados {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin: var(--espacamento-md) 0;
+            text-align: left;
+            font-size: 0.9375rem;
+        }
+
+        .resumo-dados p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .resumo-dados strong {
+            color: var(--dourado);
+        }
+
+        /* Abas para Formulários na Página de Contato */
+        .abas-container {
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .abas-nav {
+            display: flex;
+            gap: var(--espacamento-xs);
+            border-bottom: 2px solid rgba(201, 162, 74, 0.2);
+            margin-bottom: var(--espacamento-md);
+            flex-wrap: wrap;
+        }
+
+        .aba-btn {
+            background: none;
+            border: none;
+            color: rgba(245, 247, 250, 0.6);
+            font-family: var(--fonte-texto);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: var(--espacamento-sm) var(--espacamento-md);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transicao-suave);
+            margin-bottom: -2px;
+        }
+
+        .aba-btn:hover {
+            color: var(--branco-diamante);
+        }
+
+        .aba-btn.active {
+            color: var(--dourado);
+            border-bottom-color: var(--dourado);
+        }
+
+        .aba-conteudo {
+            display: none;
+        }
+
+        .aba-conteudo.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* ============================================
+           PÁGINAS ESPECÍFICAS
+           ============================================ */
+        
+        /* Página A Tese */
+        .tese-secao {
+            margin-bottom: var(--espacamento-xl);
+        }
+
+        .tese-secao h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-sm);
+        }
+
+        .tese-secao h3::before {
+            content: '◆';
+            color: var(--verde-azulado);
+            font-size: 0.75em;
+        }
+
+        /* Página Método - Etapas */
+        .etapa-item {
+            display: flex;
+            gap: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+            padding: var(--espacamento-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid var(--dourado);
+            transition: var(--transicao-suave);
+        }
+
+        .etapa-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px);
+        }
+
+        .etapa-numero {
+            font-family: var(--fonte-titulo);
+            font-size: 2rem;
+            color: var(--dourado);
+            font-weight: 700;
+            min-width: 60px;
+        }
+
+        .etapa-conteudo h4 {
+            color: var(--branco-diamante);
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .etapa-conteudo p {
+            font-size: 1rem;
+            color: rgba(245, 247, 250, 0.8);
+            margin: 0;
+        }
+
+        /* Rede de Conexão */
+        .rede-container {
+            position: relative;
+            padding: var(--espacamento-lg) 0;
+        }
+
+        .rede-central {
+            text-align: center;
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .selo-epower {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto var(--espacamento-sm);
+            background: radial-gradient(circle, var(--dourado) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--fonte-titulo);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            border: 3px solid var(--dourado);
+        }
+
+        .rede-atores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--espacamento-md);
+        }
+
+        .ator-card {
+            text-align: center;
+            padding: var(--espacamento-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            transition: var(--transicao-suave);
+        }
+
+        .ator-card:hover {
+            border-color: var(--dourado);
+            transform: translateY(-5px);
+        }
+
+        .ator-icone {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--espacamento-sm);
+            color: var(--verde-azulado);
+        }
+
+        /* Páginas Segmentadas (ONG, Gov, Incentivadores) */
+        .segmento-hero {
+            background: linear-gradient(135deg, rgba(201, 162, 74, 0.1) 0%, transparent 100%);
+            padding: var(--espacamento-xl) 0;
+            margin-bottom: var(--espacamento-xl);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+        }
+
+        .lista-beneficios {
+            list-style: none;
+            margin: var(--espacamento-md) 0;
+        }
+
+        .lista-beneficios li {
+            padding: var(--espacamento-sm) 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .lista-beneficios li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        /* Transparência */
+        .documento-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-md);
+            opacity: 0.6;
+        }
+
+        .documento-card.em-breve::after {
+            content: 'Em Breve';
+            background: var(--dourado);
+            color: var(--azul-profundo);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: auto;
+        }
+
+        /* Blog/Conteúdos */
+        .artigo-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .artigo-tag {
+            display: inline-block;
+            background: rgba(201, 162, 74, 0.2);
+            color: var(--dourado);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: var(--espacamento-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .artigo-data {
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.6);
+            margin-top: auto;
+            padding-top: var(--espacamento-sm);
+        }
+
+        /* Artigo Individual */
+        .artigo-header {
+            text-align: center;
+            margin-bottom: var(--espacamento-xl);
+            padding-bottom: var(--espacamento-lg);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+        }
+
+        .artigo-conteudo {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .artigo-conteudo p {
+            margin-bottom: var(--espacamento-md);
+            max-width: none;
+        }
+
+        /* Textos Legais */
+        .texto-legal {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .texto-legal h3 {
+            color: var(--dourado);
+            margin-top: var(--espacamento-lg);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .texto-legal ul {
+            margin-left: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .texto-legal li {
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        /* ============================================
+           UTILITÁRIOS
+           ============================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .texto-dourado {
+            color: var(--dourado);
+        }
+
+        .texto-centralizado {
+            text-align: center;
+        }
+
+        .margem-topo {
+            margin-top: var(--espacamento-xl);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            :root {
+                --espacamento-xl: 4rem;
+                --espacamento-lg: 2rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .cta-flutuante {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            .cta-flutuante .btn {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .etapa-item {
+                flex-direction: column;
+                gap: var(--espacamento-sm);
+            }
+
+            .modal-conteudo {
+                max-height: 95vh;
+                margin: var(--espacamento-sm);
+            }
+        }
+
+        /* Skip Link para Acessibilidade */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--dourado);
+            color: var(--azul-profundo);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus Visible */
+        *:focus-visible {
+            outline: 3px solid var(--dourado);
+            outline-offset: 2px;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--azul-profundo);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--dourado);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8943f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skip Link para Acessibilidade -->
+    <a href="#conteudo-principal" class="skip-link">Pular para conteúdo principal</a>
+
+    <!-- ============================================
+         HEADER FIXO
+         ============================================ -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="#inicio" class="logo" aria-label="Epower Minds - Início">
+                <div class="logo-simbolo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <!-- Sol e Lua -->
+                        <circle cx="20" cy="20" r="8" fill="#C9A24A" opacity="0.9"/>
+                        <path d="M20 4V8M20 32V36M4 20H8M32 20H36M10.3 10.3L13.1 13.1M26.9 26.9L29.7 29.7M10.3 29.7L13.1 26.9M26.9 13.1L29.7 10.3" stroke="#C9A24A" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M28 20C28 24.4183 24.4183 28 20 28C15.5817 28 12 24.4183 12 20C12 15.5817 15.5817 12 20 12" stroke="#F5F7FA" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span>Epower Minds</span>
+            </a>
+
+            <nav class="nav-desktop" role="navigation" aria-label="Navegação principal">
+                <a href="#inicio" class="nav-link">Início</a>
+                <a href="#tese" class="nav-link">A Tese</a>
+                <a href="#metodo" class="nav-link">Como Aplicamos</a>
+                <a href="#rede" class="nav-link">Rede</a>
+                <a href="#ongs" class="nav-link">Para ONGs</a>
+                <a href="#governo" class="nav-link">Para Governo</a>
+                <a href="#incentivadores" class="nav-link">Incentivadores</a>
+                <a href="#transparencia" class="nav-link">Transparência</a>
+                <a href="#conteudos" class="nav-link">Conteúdos</a>
+                <button class="btn btn-primario" onclick="abrirModalContato()" aria-label="Entrar em contato">Entrar em Contato</button>
+            </nav>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12H21M3 6H21M3 18H21"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav id="nav-mobile" class="nav-mobile" role="navigation" aria-label="Navegação mobile">
+            <a href="#inicio" class="nav-link" onclick="toggleMenu()">Início</a>
+            <a href="#tese" class="nav-link" onclick="toggleMenu()">A Tese</a>
+            <a href="#metodo" class="nav-link" onclick="toggleMenu()">Como Aplicamos</a>
+            <a href="#rede" class="nav-link" onclick="toggleMenu()">Rede de Conexão</a>
+            <a href="#ongs" class="nav-link" onclick="toggleMenu()">Para ONGs</a>
+            <a href="#governo" class="nav-link" onclick="toggleMenu()">Para Governo</a>
+            <a href="#incentivadores" class="nav-link" onclick="toggleMenu()">Para Incentivadores</a>
+            <a href="#transparencia" class="nav-link" onclick="toggleMenu()">Transparência</a>
+            <a href="#conteudos" class="nav-link" onclick="toggleMenu()">Conteúdos</a>
+            <a href="#contato" class="nav-link" onclick="toggleMenu()">Contato</a>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         CTA FIXO FLUTUANTE
+         ============================================ -->
+    <div class="cta-flutuante">
+        <button class="btn btn-primario btn-grande" onclick="abrirModalContato()" aria-label="Entrar em contato">
+            Entrar em Contato
+        </button>
+    </div>
+
+    <!-- ============================================
+         MODAL DE CONTATO GLOBAL
+         ============================================ -->
+    <div id="modal-contato" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" onclick="fecharModalOverlay(event)">
+        <div class="modal-conteudo" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Entrar em Contato</h2>
+                <button class="modal-fechar" onclick="fecharModalContato()" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Seleção de Tipo -->
+                <div id="selecao-tipo" class="tipo-selecao">
+                    <p style="margin-bottom: var(--espacamento-md); text-align: center; color: rgba(245, 247, 250, 0.8);">Selecione seu perfil para iniciar a conversa:</p>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('ong')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('ong')">
+                        <h3>Sou ONG</h3>
+                        <p>Submeter ou estruturar projetos para aplicação social</p>
+                    </div>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('governo')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('governo')">
+                        <h3>Sou Governo</h3>
+                        <p>Construir projeto conjunto com método e continuidade</p>
+                    </div>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('incentivador')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('incentivador')">
+                        <h3>Sou Incentivador</h3>
+                        <p>Encontrar e apoiar projetos com prestação de contas</p>
+                    </div>
+                </div>
+
+                <!-- Formulário ONG -->
+                <form id="form-ong" class="formulario" onsubmit="handleSubmit(event, 'ong')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">ONGs — Submeter Projeto</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo do responsável <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cargo/função <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cargo" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Organização (nome) <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="organizacao" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">CNPJ</label>
+                        <input type="text" class="form-input" name="cnpj" placeholder="00.000.000/0000-00">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cidade/Estado de atuação principal <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cidade" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Área de atuação (selecione todas que se aplicam)</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Educação" id="area-edu"><label for="area-edu">Educação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Saúde" id="area-sau"><label for="area-sau">Saúde</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Assistência" id="area-ass"><label for="area-ass">Assistência</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Cultura" id="area-cul"><label for="area-cul">Cultura</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Esporte" id="area-esp"><label for="area-esp">Esporte</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Tecnologia Social" id="area-tec"><label for="area-tec">Tecnologia Social</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Empregabilidade" id="area-emp"><label for="area-emp">Empregabilidade</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Meio Ambiente" id="area-amb"><label for="area-amb">Meio Ambiente</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Segurança Alimentar" id="area-seg"><label for="area-seg">Segurança Alimentar</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Outros" id="area-out"><label for="area-out">Outros</label></div>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Estágio do projeto <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="estagio" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Ideia">Ideia</option>
+                            <option value="Piloto">Piloto</option>
+                            <option value="Em execução">Em execução</option>
+                            <option value="Precisa reestruturar">Precisa reestruturar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Problema que resolve (resumo)</label>
+                        <textarea class="form-textarea" name="problema" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Principal dificuldade (selecione todas)</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de recurso" id="dif-rec"><label for="dif-rec">Falta de recurso</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de método" id="dif-met"><label for="dif-met">Falta de método</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de conexão com governo" id="dif-gov"><label for="dif-gov">Falta de conexão com governo</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de conexão com universidade" id="dif-uni"><label for="dif-uni">Falta de conexão com universidade</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Compliance" id="dif-com"><label for="dif-com">Compliance</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Comunicação" id="dif-cmp"><label for="dif-cmp">Comunicação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Mensuração" id="dif-men"><label for="dif-men">Mensuração</label></div>
+                        </div>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-ong" name="lgpd" required aria-required="true">
+                            <label for="lgpd-ong">Concordo com o tratamento de dados para fins de contato e conexão dentro do ecossistema. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Cadastro</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Formulário Governo -->
+                <form id="form-governo" class="formulario" onsubmit="handleSubmit(event, 'governo')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Governo — Construir Projeto Conjunto</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cargo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cargo" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Órgão/Secretaria/Gabinete <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="orgao" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Município/Estado <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="local" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail institucional <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Desafio territorial prioritário</label>
+                        <textarea class="form-textarea" name="desafio" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Urgência/prazo <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="urgencia" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="0–90 dias">0–90 dias</option>
+                            <option value="3–6 meses">3–6 meses</option>
+                            <option value="6–12 meses">6–12 meses</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Existe projeto parado por falta de estrutura?</label>
+                        <div class="radio-grupo">
+                            <div class="radio-item"><input type="radio" name="projeto_parado" value="Sim" id="parado-sim"><label for="parado-sim">Sim</label></div>
+                            <div class="radio-item"><input type="radio" name="projeto_parado" value="Não" id="parado-nao"><label for="parado-nao">Não</label></div>
+                        </div>
+                        <textarea class="form-textarea" name="projeto_parado_desc" rows="2" placeholder="Descreva (opcional)"></textarea>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-gov-lgpd" name="lgpd" required aria-required="true">
+                            <label for="lgpd-gov-lgpd">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                        </div>
+                        <div class="checkbox-item" style="margin-top: var(--espacamento-xs);">
+                            <input type="checkbox" id="lgpd-gov-inst" name="lgpd_institucional" required aria-required="true">
+                            <label for="lgpd-gov-inst">Declaro finalidade institucional e de interesse público. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Demanda</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Formulário Incentivador -->
+                <form id="form-incentivador" class="formulario" onsubmit="handleSubmit(event, 'incentivador')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Incentivadores — Encontrar Projetos</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Perfil <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="perfil" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Pessoa Física">Pessoa Física</option>
+                            <option value="Empresa">Empresa</option>
+                            <option value="Instituto">Instituto</option>
+                            <option value="Família">Família</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Empresa/Instituto (se aplicável)</label>
+                        <input type="text" class="form-input" name="empresa">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Temas de interesse</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Educação" id="tem-edu"><label for="tem-edu">Educação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Saúde" id="tem-sau"><label for="tem-sau">Saúde</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Meio Ambiente" id="tem-amb"><label for="tem-amb">Meio Ambiente</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Cultura" id="tem-cul"><label for="tem-cul">Cultura</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Tecnologia Social" id="tem-tec"><label for="tem-tec">Tecnologia Social</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Empregabilidade" id="tem-emp"><label for="tem-emp">Empregabilidade</label></div>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Horizonte de apoio <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="horizonte" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Apoio único">Apoio único</option>
+                            <option value="Apoio recorrente">Apoio recorrente</option>
+                            <option value="Portfólio contínuo">Portfólio contínuo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Forma de apoio preferida</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Financeiro" id="for-fin"><label for="for-fin">Financeiro</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Técnico" id="for-tec"><label for="for-tec">Técnico</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Rede" id="for-red"><label for="for-red">Rede</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Comunicação" id="for-com"><label for="for-com">Comunicação</label></div>
+                        </div>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-inc" name="lgpd" required aria-required="true">
+                            <label for="lgpd-inc">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Interesse</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Tela de Sucesso -->
+                <div id="sucesso-mensagem" class="sucesso-container">
+                    <div class="sucesso-icone">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3>Cadastro Recebido</h3>
+                    <p>Vamos retornar com próximos passos e conexões possíveis.</p>
+                    <div id="resumo-cadastro" class="resumo-dados"></div>
+                    <button class="btn btn-primario" onclick="fecharModalContato()" style="margin-top: var(--espacamento-md);">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL
+         ============================================ -->
+    <main id="conteudo-principal">
+        
+        <!-- ============================================
+             1. HOME (INÍCIO)
+             ============================================ -->
+        <section id="inicio" class="secao hero" aria-labelledby="titulo-principal">
+            <div class="hero-conteudo">
+                <div class="hero-simbolo" aria-hidden="true">
+                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sol completo -->
+                        <circle cx="60" cy="60" r="20" fill="#C9A24A" opacity="0.9"/>
+                        <path d="M60 20V30M60 90V100M20 60H30M90 60H100M32.7 32.7L39.8 39.8M80.2 80.2L87.3 87.3M32.7 87.3L39.8 80.2M80.2 39.8L87.3 32.7" stroke="#C9A24A" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Lua crescente -->
+                        <path d="M85 60C85 43.4315 71.5685 30 55 30C60 30 65 43.4315 65 60C65 76.5685 60 90 55 90C71.5685 90 85 76.5685 85 60Z" fill="#F5F7FA" opacity="0.9"/>
+                        <!-- Barco/Diamante -->
+                        <path d="M60 75L45 95H75L60 75Z" fill="#1AA6A6" opacity="0.8"/>
+                        <path d="M60 75L60 95" stroke="#061A2B" stroke-width="2"/>
+                    </svg>
+                </div>
+                
+                <h1 id="titulo-principal">Ecossistema de Aplicação Social</h1>
+                <p class="hero-subtitulo">Discernimos o tempo. Navegamos a rota. Governamos a vida do projeto — até virar celeiro.</p>
+                
+                <div class="hero-botoes">
+                    <button class="btn btn-primario btn-grande" onclick="abrirModalContato()">Entrar em Contato</button>
+                    <a href="#metodo" class="btn btn-secundario btn-grande">Como Aplicamos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 0;">
+            <div class="container">
+                <!-- Bloco: O fim da burocracia -->
+                <div class="bloco-texto">
+                    <h2>O fim da burocracia</h2>
+                    <p>O que o mercado chama de burocracia, nós lemos como estação. Leis são correntes — e correntes têm rota.</p>
+                </div>
+
+                <!-- Três Movimentos -->
+                <div class="grid grid-3" style="margin-bottom: var(--espacamento-xl);">
+                    <article class="card movimento-card">
+                        <div class="movimento-icone">
+                            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="40" cy="40" r="15" fill="#C9A24A" opacity="0.3"/>
+                                <path d="M40 10V20M40 60V70M10 40H20M60 40H70M20.6 20.6L27.8 27.8M52.2 52.2L59.4 59.4M20.6 59.4L27.8 52.2M52.2 27.8L59.4 20.6" stroke-linecap="round"/>
+                                <path d="M55 40C55 48.2843 48.2843 55 40 55C31.7157 55 25 48.2843 25 40C25 31.7157 31.7157 25 40 25" stroke="#C9A24A" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-titulo">Visão</h3>
+ Here is the complete, high-quality, responsive, and accessible institutional website code for **Epower Minds**.
+
+This is a **Single Page Application (SPA)**. It includes all 12 requested pages/sections, a global contact modal, three distinct forms with client-side validation and localStorage integration, interactive SVG diagrams, and full compliance with LGPD and accessibility standards.
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Epower Minds - Ecossistema de Aplicação Social. Discernimos o tempo, navegamos a rota e governamos a vida do projeto até virar celeiro.">
+    <meta property="og:title" content="Epower Minds | Ecossistema de Aplicação Social">
+    <meta property="og:description" content="Transformamos complexidade em caminho e caminho em entrega territorial.">
+    <meta property="og:type" content="website">
+    <title>Epower Minds | Ecossistema de Aplicação Social</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           DESIGN SYSTEM - Epower Minds
+           ============================================ */
+        :root {
+            /* Paleta de Cores */
+            --azul-profundo: #061A2B;
+            --azul-safira: #0B2F4A;
+            --branco-diamante: #F5F7FA;
+            --cinza-chumbo: #1B2430;
+            --dourado: #C9A24A;
+            --verde-azulado: #1AA6A6;
+            --vermelho-profundo: #8B1E2D;
+            
+            /* Gradientes */
+            --gradiente-fundo: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-safira) 100%);
+            --gradiente-card: linear-gradient(145deg, rgba(11, 47, 74, 0.6) 0%, rgba(6, 26, 43, 0.8) 100%);
+            
+            /* Tipografia */
+            --fonte-titulo: 'Cinzel', serif;
+            --fonte-texto: 'Inter', sans-serif;
+            
+            /* Espaçamento */
+            --espacamento-xs: 0.5rem;
+            --espacamento-sm: 1rem;
+            --espacamento-md: 2rem;
+            --espacamento-lg: 4rem;
+            --espacamento-xl: 6rem;
+            
+            /* Animações */
+            --transicao-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transicao-lenta: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: var(--fonte-texto);
+            background: var(--gradiente-fundo);
+            color: var(--branco-diamante);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Textura de Fundo - Constelações */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(245, 247, 250, 0.15), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(245, 247, 250, 0.1), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(245, 247, 250, 0.15), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(201, 162, 74, 0.1), transparent);
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Tipografia */
+        h1, h2, h3, h4 {
+            font-family: var(--fonte-titulo);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            max-width: 65ch;
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        a {
+            color: var(--dourado);
+            text-decoration: none;
+            transition: var(--transicao-suave);
+        }
+
+        a:hover, a:focus {
+            color: var(--verde-azulado);
+            outline: 2px solid var(--dourado);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           COMPONENTES GLOBAIS
+           ============================================ */
+        
+        /* Header Fixo */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(6, 26, 43, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+            z-index: 1000;
+            padding: var(--espacamento-sm) 0;
+            transition: var(--transicao-suave);
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--espacamento-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-sm);
+            font-family: var(--fonte-titulo);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--branco-diamante);
+            text-decoration: none;
+        }
+
+        .logo-simbolo {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .logo-simbolo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Navegação */
+        .nav-desktop {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-desktop {
+                display: flex;
+                gap: var(--espacamento-sm);
+                align-items: center;
+            }
+        }
+
+        .nav-link {
+            color: var(--branco-diamante);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: var(--transicao-suave);
+            text-decoration: none;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            background: rgba(201, 162, 74, 0.1);
+            color: var(--dourado);
+        }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--branco-diamante);
+            cursor: pointer;
+            padding: var(--espacamento-xs);
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--azul-profundo);
+            border-top: 1px solid rgba(201, 162, 74, 0.2);
+            padding: var(--espacamento-md);
+            flex-direction: column;
+            gap: var(--espacamento-sm);
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-family: var(--fonte-texto);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transicao-suave);
+            text-decoration: none;
+        }
+
+        .btn-primario {
+            background: var(--dourado);
+            color: var(--azul-profundo);
+        }
+
+        .btn-primario:hover, .btn-primario:focus {
+            background: #b8943f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 162, 74, 0.3);
+        }
+
+        .btn-secundario {
+            background: transparent;
+            color: var(--branco-diamante);
+            border: 2px solid var(--dourado);
+        }
+
+        .btn-secundario:hover, .btn-secundario:focus {
+            background: rgba(201, 162, 74, 0.1);
+        }
+
+        .btn-grande {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        /* CTA Fixo Flutuante */
+        .cta-flutuante {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 74, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(201, 162, 74, 0); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--espacamento-md);
+        }
+
+        .secao {
+            padding: var(--espacamento-xl) 0;
+            position: relative;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--gradiente-card);
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            border-radius: 12px;
+            padding: var(--espacamento-md);
+            transition: var(--transicao-suave);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--dourado);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-titulo {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+            font-size: 1.25rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: var(--espacamento-md);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* ============================================
+           SEÇÕES ESPECÍFICAS
+           ============================================ */
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-conteudo {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-simbolo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--espacamento-md);
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            margin-bottom: var(--espacamento-md);
+            background: linear-gradient(135deg, var(--branco-diamante) 0%, var(--dourado) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitulo {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: rgba(245, 247, 250, 0.9);
+            margin-bottom: var(--espacamento-lg);
+            font-weight: 300;
+        }
+
+        .hero-botoes {
+            display: flex;
+            gap: var(--espacamento-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Blocos de Conteúdo */
+        .bloco-texto {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .bloco-texto h2 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .bloco-texto p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(245, 247, 250, 0.9);
+        }
+
+        /* Cards de Movimentos */
+        .movimento-card {
+            text-align: center;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+        }
+
+        .movimento-icone {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--espacamento-md);
+            color: var(--dourado);
+        }
+
+        /* Diagramas SVG */
+        .diagrama-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: var(--espacamento-lg) auto;
+            padding: var(--espacamento-md);
+            background: rgba(11, 47, 74, 0.3);
+            border-radius: 16px;
+            border: 1px solid rgba(201, 162, 74, 0.1);
+        }
+
+        .diagrama-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Citações/Impacto */
+        .banner-impacto {
+            background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 74, 0.1) 50%, transparent 100%);
+            padding: var(--espacamento-lg) var(--espacamento-md);
+            text-align: center;
+            margin: var(--espacamento-xl) 0;
+            border-left: 4px solid var(--dourado);
+            border-right: 4px solid var(--dourado);
+        }
+
+        .banner-impacto p {
+            font-family: var(--fonte-titulo);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--dourado);
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Seção de Contato Final */
+        .secao-contato {
+            background: linear-gradient(180deg, transparent 0%, rgba(6, 26, 43, 0.8) 100%);
+        }
+
+        .contato-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--espacamento-md);
+            margin-top: var(--espacamento-lg);
+        }
+
+        .contato-card {
+            background: var(--gradiente-card);
+            border: 2px solid rgba(201, 162, 74, 0.3);
+            border-radius: 12px;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicao-suave);
+        }
+
+        .contato-card:hover, .contato-card:focus {
+            border-color: var(--dourado);
+            transform: translateY(-4px);
+            background: rgba(201, 162, 74, 0.1);
+        }
+
+        .contato-card h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        .contato-card p {
+            font-size: 0.9375rem;
+            color: rgba(245, 247, 250, 0.8);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cinza-chumbo);
+            border-top: 1px solid rgba(201, 162, 74, 0.2);
+            padding: var(--espacamento-xl) 0 var(--espacamento-md);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--espacamento-lg);
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .footer-col h4 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .footer-col a {
+            color: rgba(245, 247, 250, 0.8);
+            font-size: 0.9375rem;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+
+        .footer-col a:hover {
+            color: var(--dourado);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 247, 250, 0.1);
+            padding-top: var(--espacamento-md);
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.6);
+        }
+
+        .mini-manifesto {
+            font-style: italic;
+            margin-bottom: var(--espacamento-sm);
+            color: rgba(245, 247, 250, 0.8);
+        }
+
+        /* ============================================
+           MODAIS E FORMULÁRIOS
+           ============================================ */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 26, 43, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--espacamento-md);
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            background: linear-gradient(145deg, var(--azul-safira) 0%, var(--azul-profundo) 100%);
+            border: 1px solid var(--dourado);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalEntrada 0.3s ease-out;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: var(--espacamento-md);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--dourado);
+            font-size: 1.5rem;
+        }
+
+        .modal-fechar {
+            background: none;
+            border: none;
+            color: var(--branco-diamante);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transicao-suave);
+        }
+
+        .modal-fechar:hover {
+            background: rgba(201, 162, 74, 0.1);
+            color: var(--dourado);
+        }
+
+        .modal-body {
+            padding: var(--espacamento-md);
+        }
+
+        /* Seleção de Tipo no Modal Inicial */
+        .tipo-selecao {
+            display: grid;
+            gap: var(--espacamento-md);
+        }
+
+        .tipo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(201, 162, 74, 0.2);
+            border-radius: 12px;
+            padding: var(--espacamento-md);
+            cursor: pointer;
+            transition: var(--transicao-suave);
+            text-align: center;
+        }
+
+        .tipo-card:hover, .tipo-card:focus {
+            border-color: var(--dourado);
+            background: rgba(201, 162, 74, 0.1);
+            transform: translateX(10px);
+        }
+
+        .tipo-card h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .tipo-card p {
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.8);
+        }
+
+        /* Formulários */
+        .formulario {
+            display: none;
+        }
+
+        .formulario.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-grupo {
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--espacamento-xs);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            color: var(--branco-diamante);
+        }
+
+        .form-label .obrigatorio {
+            color: var(--vermelho-profundo);
+            margin-left: 2px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 162, 74, 0.3);
+            border-radius: 6px;
+            color: var(--branco-diamante);
+            font-family: var(--fonte-texto);
+            font-size: 1rem;
+            transition: var(--transicao-suave);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--dourado);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(201, 162, 74, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23C9A24A' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-select option {
+            background: var(--azul-profundo);
+            color: var(--branco-diamante);
+        }
+
+        /* Checkboxes e Radio */
+        .checkbox-grupo,
+        .radio-grupo {
+            display: grid;
+            gap: var(--espacamento-xs);
+            margin-top: var(--espacamento-xs);
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: var(--transicao-suave);
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .checkbox-item input,
+        .radio-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--dourado);
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            cursor: pointer;
+            font-size: 0.9375rem;
+            color: rgba(245, 247, 250, 0.9);
+        }
+
+        /* LGPD Checkbox */
+        .lgpd-box {
+            background: rgba(201, 162, 74, 0.1);
+            border: 1px solid rgba(201, 162, 74, 0.3);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin: var(--espacamento-md) 0;
+        }
+
+        .lgpd-box .checkbox-item {
+            align-items: flex-start;
+        }
+
+        .lgpd-box input {
+            margin-top: 2px;
+        }
+
+        .lgpd-box label {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Mensagens de Erro */
+        .erro-mensagem {
+            color: var(--vermelho-profundo);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .erro-mensagem.visible {
+            display: block;
+        }
+
+        .form-input.erro {
+            border-color: var(--vermelho-profundo);
+        }
+
+        /* Tela de Sucesso */
+        .sucesso-container {
+            display: none;
+            text-align: center;
+            padding: var(--espacamento-lg) var(--espacamento-md);
+        }
+
+        .sucesso-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .sucesso-icone {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--espacamento-md);
+            color: var(--verde-azulado);
+        }
+
+        .sucesso-container h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-sm);
+        }
+
+        .resumo-dados {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin: var(--espacamento-md) 0;
+            text-align: left;
+            font-size: 0.9375rem;
+        }
+
+        .resumo-dados p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .resumo-dados strong {
+            color: var(--dourado);
+        }
+
+        /* Abas para Formulários na Página de Contato */
+        .abas-container {
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .abas-nav {
+            display: flex;
+            gap: var(--espacamento-xs);
+            border-bottom: 2px solid rgba(201, 162, 74, 0.2);
+            margin-bottom: var(--espacamento-md);
+            flex-wrap: wrap;
+        }
+
+        .aba-btn {
+            background: none;
+            border: none;
+            color: rgba(245, 247, 250, 0.6);
+            font-family: var(--fonte-texto);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: var(--espacamento-sm) var(--espacamento-md);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transicao-suave);
+            margin-bottom: -2px;
+        }
+
+        .aba-btn:hover {
+            color: var(--branco-diamante);
+        }
+
+        .aba-btn.active {
+            color: var(--dourado);
+            border-bottom-color: var(--dourado);
+        }
+
+        .aba-conteudo {
+            display: none;
+        }
+
+        .aba-conteudo.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* ============================================
+           PÁGINAS ESPECÍFICAS
+           ============================================ */
+        
+        /* Página A Tese */
+        .tese-secao {
+            margin-bottom: var(--espacamento-xl);
+        }
+
+        .tese-secao h3 {
+            color: var(--dourado);
+            margin-bottom: var(--espacamento-md);
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-sm);
+        }
+
+        .tese-secao h3::before {
+            content: '◆';
+            color: var(--verde-azulado);
+            font-size: 0.75em;
+        }
+
+        /* Página Método - Etapas */
+        .etapa-item {
+            display: flex;
+            gap: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+            padding: var(--espacamento-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid var(--dourado);
+            transition: var(--transicao-suave);
+        }
+
+        .etapa-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px);
+        }
+
+        .etapa-numero {
+            font-family: var(--fonte-titulo);
+            font-size: 2rem;
+            color: var(--dourado);
+            font-weight: 700;
+            min-width: 60px;
+        }
+
+        .etapa-conteudo h4 {
+            color: var(--branco-diamante);
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        .etapa-conteudo p {
+            font-size: 1rem;
+            color: rgba(245, 247, 250, 0.8);
+            margin: 0;
+        }
+
+        /* Rede de Conexão */
+        .rede-container {
+            position: relative;
+            padding: var(--espacamento-lg) 0;
+        }
+
+        .rede-central {
+            text-align: center;
+            margin-bottom: var(--espacamento-lg);
+        }
+
+        .selo-epower {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto var(--espacamento-sm);
+            background: radial-gradient(circle, var(--dourado) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--fonte-titulo);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            border: 3px solid var(--dourado);
+        }
+
+        .rede-atores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--espacamento-md);
+        }
+
+        .ator-card {
+            text-align: center;
+            padding: var(--espacamento-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            transition: var(--transicao-suave);
+        }
+
+        .ator-card:hover {
+            border-color: var(--dourado);
+            transform: translateY(-5px);
+        }
+
+        .ator-icone {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--espacamento-sm);
+            color: var(--verde-azulado);
+        }
+
+        /* Páginas Segmentadas (ONG, Gov, Incentivadores) */
+        .segmento-hero {
+            background: linear-gradient(135deg, rgba(201, 162, 74, 0.1) 0%, transparent 100%);
+            padding: var(--espacamento-xl) 0;
+            margin-bottom: var(--espacamento-xl);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+        }
+
+        .lista-beneficios {
+            list-style: none;
+            margin: var(--espacamento-md) 0;
+        }
+
+        .lista-beneficios li {
+            padding: var(--espacamento-sm) 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .lista-beneficios li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        /* Transparência */
+        .documento-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 162, 74, 0.2);
+            border-radius: 8px;
+            padding: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+            display: flex;
+            align-items: center;
+            gap: var(--espacamento-md);
+            opacity: 0.6;
+        }
+
+        .documento-card.em-breve::after {
+            content: 'Em Breve';
+            background: var(--dourado);
+            color: var(--azul-profundo);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: auto;
+        }
+
+        /* Blog/Conteúdos */
+        .artigo-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .artigo-tag {
+            display: inline-block;
+            background: rgba(201, 162, 74, 0.2);
+            color: var(--dourado);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: var(--espacamento-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .artigo-data {
+            font-size: 0.875rem;
+            color: rgba(245, 247, 250, 0.6);
+            margin-top: auto;
+            padding-top: var(--espacamento-sm);
+        }
+
+        /* Artigo Individual */
+        .artigo-header {
+            text-align: center;
+            margin-bottom: var(--espacamento-xl);
+            padding-bottom: var(--espacamento-lg);
+            border-bottom: 1px solid rgba(201, 162, 74, 0.2);
+        }
+
+        .artigo-conteudo {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .artigo-conteudo p {
+            margin-bottom: var(--espacamento-md);
+            max-width: none;
+        }
+
+        /* Textos Legais */
+        .texto-legal {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .texto-legal h3 {
+            color: var(--dourado);
+            margin-top: var(--espacamento-lg);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .texto-legal ul {
+            margin-left: var(--espacamento-md);
+            margin-bottom: var(--espacamento-md);
+        }
+
+        .texto-legal li {
+            margin-bottom: var(--espacamento-xs);
+        }
+
+        /* ============================================
+           UTILITÁRIOS
+           ============================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .texto-dourado {
+            color: var(--dourado);
+        }
+
+        .texto-centralizado {
+            text-align: center;
+        }
+
+        .margem-topo {
+            margin-top: var(--espacamento-xl);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            :root {
+                --espacamento-xl: 4rem;
+                --espacamento-lg: 2rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .cta-flutuante {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            .cta-flutuante .btn {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .etapa-item {
+                flex-direction: column;
+                gap: var(--espacamento-sm);
+            }
+
+            .modal-conteudo {
+                max-height: 95vh;
+                margin: var(--espacamento-sm);
+            }
+        }
+
+        /* Skip Link para Acessibilidade */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--dourado);
+            color: var(--azul-profundo);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus Visible */
+        *:focus-visible {
+            outline: 3px solid var(--dourado);
+            outline-offset: 2px;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--azul-profundo);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--dourado);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8943f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skip Link para Acessibilidade -->
+    <a href="#conteudo-principal" class="skip-link">Pular para conteúdo principal</a>
+
+    <!-- ============================================
+         HEADER FIXO
+         ============================================ -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="#inicio" class="logo" aria-label="Epower Minds - Início">
+                <div class="logo-simbolo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <!-- Sol e Lua -->
+                        <circle cx="20" cy="20" r="8" fill="#C9A24A" opacity="0.9"/>
+                        <path d="M20 4V8M20 32V36M4 20H8M32 20H36M10.3 10.3L13.1 13.1M26.9 26.9L29.7 29.7M10.3 29.7L13.1 26.9M26.9 13.1L29.7 10.3" stroke="#C9A24A" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M28 20C28 24.4183 24.4183 28 20 28C15.5817 28 12 24.4183 12 20C12 15.5817 15.5817 12 20 12" stroke="#F5F7FA" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span>Epower Minds</span>
+            </a>
+
+            <nav class="nav-desktop" role="navigation" aria-label="Navegação principal">
+                <a href="#inicio" class="nav-link">Início</a>
+                <a href="#tese" class="nav-link">A Tese</a>
+                <a href="#metodo" class="nav-link">Como Aplicamos</a>
+                <a href="#rede" class="nav-link">Rede</a>
+                <a href="#ongs" class="nav-link">Para ONGs</a>
+                <a href="#governo" class="nav-link">Para Governo</a>
+                <a href="#incentivadores" class="nav-link">Incentivadores</a>
+                <a href="#transparencia" class="nav-link">Transparência</a>
+                <a href="#conteudos" class="nav-link">Conteúdos</a>
+                <button class="btn btn-primario" onclick="abrirModalContato()" aria-label="Entrar em contato">Entrar em Contato</button>
+            </nav>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12H21M3 6H21M3 18H21"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav id="nav-mobile" class="nav-mobile" role="navigation" aria-label="Navegação mobile">
+            <a href="#inicio" class="nav-link" onclick="toggleMenu()">Início</a>
+            <a href="#tese" class="nav-link" onclick="toggleMenu()">A Tese</a>
+            <a href="#metodo" class="nav-link" onclick="toggleMenu()">Como Aplicamos</a>
+            <a href="#rede" class="nav-link" onclick="toggleMenu()">Rede de Conexão</a>
+            <a href="#ongs" class="nav-link" onclick="toggleMenu()">Para ONGs</a>
+            <a href="#governo" class="nav-link" onclick="toggleMenu()">Para Governo</a>
+            <a href="#incentivadores" class="nav-link" onclick="toggleMenu()">Para Incentivadores</a>
+            <a href="#transparencia" class="nav-link" onclick="toggleMenu()">Transparência</a>
+            <a href="#conteudos" class="nav-link" onclick="toggleMenu()">Conteúdos</a>
+            <a href="#contato" class="nav-link" onclick="toggleMenu()">Contato</a>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         CTA FIXO FLUTUANTE
+         ============================================ -->
+    <div class="cta-flutuante">
+        <button class="btn btn-primario btn-grande" onclick="abrirModalContato()" aria-label="Entrar em contato">
+            Entrar em Contato
+        </button>
+    </div>
+
+    <!-- ============================================
+         MODAL DE CONTATO GLOBAL
+         ============================================ -->
+    <div id="modal-contato" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" onclick="fecharModalOverlay(event)">
+        <div class="modal-conteudo" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Entrar em Contato</h2>
+                <button class="modal-fechar" onclick="fecharModalContato()" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Seleção de Tipo -->
+                <div id="selecao-tipo" class="tipo-selecao">
+                    <p style="margin-bottom: var(--espacamento-md); text-align: center; color: rgba(245, 247, 250, 0.8);">Selecione seu perfil para iniciar a conversa:</p>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('ong')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('ong')">
+                        <h3>Sou ONG</h3>
+                        <p>Submeter ou estruturar projetos para aplicação social</p>
+                    </div>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('governo')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('governo')">
+                        <h3>Sou Governo</h3>
+                        <p>Construir projeto conjunto com método e continuidade</p>
+                    </div>
+                    
+                    <div class="tipo-card" onclick="abrirFormulario('incentivador')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('incentivador')">
+                        <h3>Sou Incentivador</h3>
+                        <p>Encontrar e apoiar projetos com prestação de contas</p>
+                    </div>
+                </div>
+
+                <!-- Formulário ONG -->
+                <form id="form-ong" class="formulario" onsubmit="handleSubmit(event, 'ong')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">ONGs — Submeter Projeto</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo do responsável <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cargo/função <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cargo" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Organização (nome) <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="organizacao" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">CNPJ</label>
+                        <input type="text" class="form-input" name="cnpj" placeholder="00.000.000/0000-00">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cidade/Estado de atuação principal <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cidade" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Área de atuação (selecione todas que se aplicam)</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Educação" id="area-edu"><label for="area-edu">Educação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Saúde" id="area-sau"><label for="area-sau">Saúde</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Assistência" id="area-ass"><label for="area-ass">Assistência</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Cultura" id="area-cul"><label for="area-cul">Cultura</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Esporte" id="area-esp"><label for="area-esp">Esporte</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Tecnologia Social" id="area-tec"><label for="area-tec">Tecnologia Social</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Empregabilidade" id="area-emp"><label for="area-emp">Empregabilidade</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Meio Ambiente" id="area-amb"><label for="area-amb">Meio Ambiente</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Segurança Alimentar" id="area-seg"><label for="area-seg">Segurança Alimentar</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="area" value="Outros" id="area-out"><label for="area-out">Outros</label></div>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Estágio do projeto <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="estagio" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Ideia">Ideia</option>
+                            <option value="Piloto">Piloto</option>
+                            <option value="Em execução">Em execução</option>
+                            <option value="Precisa reestruturar">Precisa reestruturar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Problema que resolve (resumo)</label>
+                        <textarea class="form-textarea" name="problema" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Principal dificuldade (selecione todas)</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de recurso" id="dif-rec"><label for="dif-rec">Falta de recurso</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de método" id="dif-met"><label for="dif-met">Falta de método</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de conexão com governo" id="dif-gov"><label for="dif-gov">Falta de conexão com governo</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Falta de conexão com universidade" id="dif-uni"><label for="dif-uni">Falta de conexão com universidade</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Compliance" id="dif-com"><label for="dif-com">Compliance</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Comunicação" id="dif-cmp"><label for="dif-cmp">Comunicação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="dificuldade" value="Mensuração" id="dif-men"><label for="dif-men">Mensuração</label></div>
+                        </div>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-ong" name="lgpd" required aria-required="true">
+                            <label for="lgpd-ong">Concordo com o tratamento de dados para fins de contato e conexão dentro do ecossistema. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Cadastro</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Formulário Governo -->
+                <form id="form-governo" class="formulario" onsubmit="handleSubmit(event, 'governo')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Governo — Construir Projeto Conjunto</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Cargo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="cargo" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Órgão/Secretaria/Gabinete <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="orgao" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Município/Estado <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="local" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail institucional <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Desafio territorial prioritário</label>
+                        <textarea class="form-textarea" name="desafio" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Urgência/prazo <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="urgencia" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="0–90 dias">0–90 dias</option>
+                            <option value="3–6 meses">3–6 meses</option>
+                            <option value="6–12 meses">6–12 meses</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Existe projeto parado por falta de estrutura?</label>
+                        <div class="radio-grupo">
+                            <div class="radio-item"><input type="radio" name="projeto_parado" value="Sim" id="parado-sim"><label for="parado-sim">Sim</label></div>
+                            <div class="radio-item"><input type="radio" name="projeto_parado" value="Não" id="parado-nao"><label for="parado-nao">Não</label></div>
+                        </div>
+                        <textarea class="form-textarea" name="projeto_parado_desc" rows="2" placeholder="Descreva (opcional)"></textarea>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-gov-lgpd" name="lgpd" required aria-required="true">
+                            <label for="lgpd-gov-lgpd">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                        </div>
+                        <div class="checkbox-item" style="margin-top: var(--espacamento-xs);">
+                            <input type="checkbox" id="lgpd-gov-inst" name="lgpd_institucional" required aria-required="true">
+                            <label for="lgpd-gov-inst">Declaro finalidade institucional e de interesse público. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Demanda</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Formulário Incentivador -->
+                <form id="form-incentivador" class="formulario" onsubmit="handleSubmit(event, 'incentivador')">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Incentivadores — Encontrar Projetos</h3>
+                    
+                    <div class="form-grupo">
+                        <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                        <input type="text" class="form-input" name="nome" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Perfil <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="perfil" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Pessoa Física">Pessoa Física</option>
+                            <option value="Empresa">Empresa</option>
+                            <option value="Instituto">Instituto</option>
+                            <option value="Família">Família</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                        <input type="email" class="form-input" name="email" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                        <input type="tel" class="form-input" name="whatsapp" required aria-required="true">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Empresa/Instituto (se aplicável)</label>
+                        <input type="text" class="form-input" name="empresa">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Temas de interesse</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Educação" id="tem-edu"><label for="tem-edu">Educação</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Saúde" id="tem-sau"><label for="tem-sau">Saúde</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Meio Ambiente" id="tem-amb"><label for="tem-amb">Meio Ambiente</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Cultura" id="tem-cul"><label for="tem-cul">Cultura</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Tecnologia Social" id="tem-tec"><label for="tem-tec">Tecnologia Social</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="temas" value="Empregabilidade" id="tem-emp"><label for="tem-emp">Empregabilidade</label></div>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Horizonte de apoio <span class="obrigatorio">*</span></label>
+                        <select class="form-select" name="horizonte" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="Apoio único">Apoio único</option>
+                            <option value="Apoio recorrente">Apoio recorrente</option>
+                            <option value="Portfólio contínuo">Portfólio contínuo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="form-label">Forma de apoio preferida</label>
+                        <div class="checkbox-grupo">
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Financeiro" id="for-fin"><label for="for-fin">Financeiro</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Técnico" id="for-tec"><label for="for-tec">Técnico</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Rede" id="for-red"><label for="for-red">Rede</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="forma" value="Comunicação" id="for-com"><label for="for-com">Comunicação</label></div>
+                        </div>
+                    </div>
+
+                    <div class="lgpd-box">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lgpd-inc" name="lgpd" required aria-required="true">
+                            <label for="lgpd-inc">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primario btn-grande" style="width: 100%;">Enviar Interesse</button>
+                    <button type="button" class="btn btn-secundario" style="width: 100%; margin-top: var(--espacamento-sm);" onclick="voltarSelecao()">Voltar</button>
+                </form>
+
+                <!-- Tela de Sucesso -->
+                <div id="sucesso-mensagem" class="sucesso-container">
+                    <div class="sucesso-icone">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3>Cadastro Recebido</h3>
+                    <p>Vamos retornar com próximos passos e conexões possíveis.</p>
+                    <div id="resumo-cadastro" class="resumo-dados"></div>
+                    <button class="btn btn-primario" onclick="fecharModalContato()" style="margin-top: var(--espacamento-md);">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL
+         ============================================ -->
+    <main id="conteudo-principal">
+        
+        <!-- ============================================
+             1. HOME (INÍCIO)
+             ============================================ -->
+        <section id="inicio" class="secao hero" aria-labelledby="titulo-principal">
+            <div class="hero-conteudo">
+                <div class="hero-simbolo" aria-hidden="true">
+                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sol completo -->
+                        <circle cx="60" cy="60" r="20" fill="#C9A24A" opacity="0.9"/>
+                        <path d="M60 20V30M60 90V100M20 60H30M90 60H100M32.7 32.7L39.8 39.8M80.2 80.2L87.3 87.3M32.7 87.3L39.8 80.2M80.2 39.8L87.3 32.7" stroke="#C9A24A" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Lua crescente -->
+                        <path d="M85 60C85 43.4315 71.5685 30 55 30C60 30 65 43.4315 65 60C65 76.5685 60 90 55 90C71.5685 90 85 76.5685 85 60Z" fill="#F5F7FA" opacity="0.9"/>
+                        <!-- Barco/Diamante -->
+                        <path d="M60 75L45 95H75L60 75Z" fill="#1AA6A6" opacity="0.8"/>
+                        <path d="M60 75L60 95" stroke="#061A2B" stroke-width="2"/>
+                    </svg>
+                </div>
+                
+                <h1 id="titulo-principal">Ecossistema de Aplicação Social</h1>
+                <p class="hero-subtitulo">Discernimos o tempo. Navegamos a rota. Governamos a vida do projeto — até virar celeiro.</p>
+                
+                <div class="hero-botoes">
+                    <button class="btn btn-primario btn-grande" onclick="abrirModalContato()">Entrar em Contato</button>
+                    <a href="#metodo" class="btn btn-secundario btn-grande">Como Aplicamos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 0;">
+            <div class="container">
+                <!-- Bloco: O fim da burocracia -->
+                <div class="bloco-texto">
+                    <h2>O fim da burocracia</h2>
+                    <p>O que o mercado chama de burocracia, nós lemos como estação. Leis são correntes — e correntes têm rota.</p>
+                </div>
+
+                <!-- Três Movimentos -->
+                <div class="grid grid-3" style="margin-bottom: var(--espacamento-xl);">
+                    <article class="card movimento-card">
+                        <div class="movimento-icone">
+                            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="40" cy="40" r="15" fill="#C9A24A" opacity="0.3"/>
+                                <path d="M40 10V20M40 60V70M10 40H20M60 40H70M20.6 20.6L27.8 27.8M52.2 52.2L59.4 59.4M20.6 59.4L27.8 52.2M52.2 27.8L59.4 20.6" stroke-linecap="round"/>
+                                <path d="M55 40C55 48.2843 48.2843 55 40 55C31.7157 55 25 48.2843 25 40C25 31.7157 31.7157 25 40 25" stroke="#C9A24A" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-titulo">Visão</h3>
+                        <p>Discernir tempos e estações. Ler o momento certo de agir.</p>
+                    </article>
+
+                    <article class="card movimento-card">
+                        <div class="movimento-icone">
+                            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M40 65L25 50H35V20H45V50H55L40 65Z" fill="#1AA6A6" opacity="0.3"/>
+                                <path d="M20 70H60" stroke="#C9A24A" stroke-width="2"/>
+                                <circle cx="40" cy="35" r="3" fill="#C9A24A"/>
+                                <path d="M15 55Q40 45 65 55" stroke="#C9A24A" stroke-width="1.5" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-titulo">Navegação</h3>
+                        <p>Traçar rota com segurança. Navegar as correntes das leis e regulamentos.</p>
+                    </article>
+
+                    <article class="card movimento-card">
+                        <div class="movimento-icone">
+                            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 60L40 40L60 60" stroke="#C9A24A" stroke-width="3" fill="none"/>
+                                <circle cx="40" cy="35" r="5" fill="#C9A24A"/>
+                                <path d="M25 65H55V75H25V65Z" fill="#1AA6A6" opacity="0.5"/>
+                                <rect x="30" y="55" width="20" height="10" fill="#C9A24A" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-titulo">Aplicação</h3>
+                        <p>Arco firme, flecha certa. Implantar e sustentar no território até virar celeiro.</p>
+                    </article>
+                </div>
+
+                <!-- Diagrama Fluxo -->
+                <div class="diagrama-container" aria-label="Diagrama do Fluxo de Aplicação Social">
+                    <svg class="diagrama-svg" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Definições de setas -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#C9A24A" />
+                            </marker>
+                        </defs>
+                        
+                        <!-- Nós -->
+                        <g transform="translate(50, 100)">
+                            <circle r="30" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="12" font-family="Cinzel">Estação</text>
+                        </g>
+                        
+                        <line x1="80" y1="100" x2="140" y2="100" stroke="#C9A24A" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <g transform="translate(170, 100)">
+                            <circle r="30" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="12" font-family="Cinzel">Rota</text>
+                        </g>
+                        
+                        <line x1="200" y1="100" x2="260" y2="100" stroke="#C9A24A" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <g transform="translate(290, 100)">
+                            <circle r="30" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="12" font-family="Cinzel">Tesouro</text>
+                        </g>
+                        
+                        <line x1="320" y1="100" x2="380" y2="100" stroke="#C9A24A" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <g transform="translate(410, 100)">
+                            <circle r="30" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10" font-family="Cinzel">Gestação</text>
+                        </g>
+                        
+                        <line x1="440" y1="100" x2="500" y2="100" stroke="#C9A24A" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <g transform="translate(530, 100)">
+                            <circle r="30" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="12" font-family="Cinzel">Nutrição</text>
+                        </g>
+                        
+                        <line x1="560" y1="100" x2="620" y2="100" stroke="#C9A24A" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <g transform="translate(680, 100)">
+                            <rect x="-40" y="-25" width="80" height="50" rx="5" fill="#C9A24A" opacity="0.2" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="12" font-family="Cinzel" font-weight="bold">Celeiro</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Bloco Rede -->
+                <div class="bloco-texto" style="margin-top: var(--espacamento-xl);">
+                    <h2>Rede de Conexão</h2>
+                    <p>Conectamos Governo, ONGs, Academia e parceiros técnicos para execução com método e continuidade.</p>
+                </div>
+
+                <!-- Para Quem É -->
+                <div class="grid grid-3" style="margin-bottom: var(--espacamento-xl);">
+                    <div class="card" style="cursor: pointer;" onclick="window.location.href='#ongs'" role="link" tabindex="0" onkeypress="if(event.key==='Enter')window.location.href='#ongs'">
+                        <h3 class="card-titulo">Para ONGs</h3>
+                        <p>Submeter e estruturar projetos com governança e rota clara.</p>
+                        <span class="texto-dourado" style="font-size: 0.875rem; font-weight: 600;">Ver mais →</span>
+                    </div>
+                    <div class="card" style="cursor: pointer;" onclick="window.location.href='#governo'" role="link" tabindex="0" onkeypress="if(event.key==='Enter')window.location.href='#governo'">
+                        <h3 class="card-titulo">Para Governo</h3>
+                        <p>Construir projetos conjuntos com método e evidência.</p>
+                        <span class="texto-dourado" style="font-size: 0.875rem; font-weight: 600;">Ver mais →</span>
+                    </div>
+                    <div class="card" style="cursor: pointer;" onclick="window.location.href='#incentivadores'" role="link" tabindex="0" onkeypress="if(event.key==='Enter')window.location.href='#incentivadores'">
+                        <h3 class="card-titulo">Para Incentivadores</h3>
+                        <p>Encontrar projetos certos com prestação de contas.</p>
+                        <span class="texto-dourado" style="font-size: 0.875rem; font-weight: 600;">Ver mais →</span>
+                    </div>
+                </div>
+
+                <!-- Transparência -->
+                <div class="bloco-texto">
+                    <h2>Transparência & Governança</h2>
+                    <p>Aplicação social exige seriedade: critérios, integridade, evidência e prestação de contas.</p>
+                    <a href="#transparencia" class="btn btn-secundario" style="margin-top: var(--espacamento-sm);">Ver Governança</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Final de Contato (Home) -->
+        <section class="secao secao-contato">
+            <div class="container">
+                <h2 class="texto-centralizado" style="margin-bottom: var(--espacamento-md);">Entre em Contato</h2>
+                <p class="texto-centralizado" style="margin: 0 auto var(--espacamento-lg); max-width: 600px;">Selecione seu perfil para iniciarmos a conversa e construirmos juntos.</p>
+                
+                <div class="contato-cards">
+                    <div class="contato-card" onclick="abrirFormulario('ong')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('ong')">
+                        <h3>Sou ONG</h3>
+                        <p>Quero submeter ou estruturar meu projeto</p>
+                        <button class="btn btn-primario">Iniciar Cadastro</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('governo')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('governo')">
+                        <h3>Sou Governo</h3>
+                        <p>Quero construir projeto conjunto</p>
+                        <button class="btn btn-primario">Cadastrar Demanda</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('incentivador')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')abrirFormulario('incentivador')">
+                        <h3>Sou Incentivador</h3>
+                        <p>Quero encontrar projetos para apoiar</p>
+                        <button class="btn btn-primario">Encontrar Projetos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             2. A TESE (Fim da Burocracia)
+             ============================================ -->
+        <section id="tese" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>A Ciência da Navegação: o fim da burocracia</h2>
+                </div>
+
+                <div class="banner-impacto" style="margin: var(--espacamento-lg) 0;">
+                    <p>"O que o mercado chama de burocracia, nós lemos como estação. Leis e regulamentações não são muros: são correntes."</p>
+                </div>
+
+                <article class="tese-secao">
+                    <h3>Burocracia é estação</h3>
+                    <p>Elas têm direção, sazonalidade e janela. Quem tenta lutar contra a maré se esgota; quem discerne o tempo e traça a rota avança.</p>
+                </article>
+
+                <article class="tese-secao">
+                    <h3>Leis são correntes</h3>
+                    <p>Lei não é muro. Lei é corrente — e corrente é rota. O Ecossistema de Aplicação Social Epower Minds existe para transformar intenção em entrega territorial.</p>
+                </article>
+
+                <div class="banner-impacto">
+                    <p>"Não paramos na complexidade do sistema. Nós aplicamos no território."</p>
+                </div>
+
+                <article class="tese-secao">
+                    <h3>Navegar é método</h3>
+                    <p>Nós discernimos o tempo, navegamos a rota e governamos a vida do projeto — do que estava esquecido nas profundezas até o resultado que permanece.</p>
+                </article>
+
+                <article class="tese-secao">
+                    <h3>Areia e deserto: valor oculto</h3>
+                    <p>Onde outros veem deserto, nós estabelecemos processo. Onde outros veem areia vazia, nós identificamos valor oculto. Areia e deserto não são ausência de valor. São ausência de visão, rota e nutrição.</p>
+                </article>
+
+                <article class="tese-secao">
+                    <h3>Arco e celeiro: aplicação sustentada</h3>
+                    <p>O disparo não é aleatório: é a convergência entre estação, rota e nutrição — até virar celeiro. Projeto não é promessa: é vida sustentada.</p>
+                </article>
+
+                <div class="banner-impacto">
+                    <p>"Aplicação com precisão: arco firme, flecha certa, celeiro real."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             3. COMO APLICAMOS (Método)
+             ============================================ -->
+        <section id="metodo" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Como Aplicamos no Território</h2>
+                    <p>Nosso método segue 10 etapas fundamentais que garantem a transformação da intenção em entrega territorial sustentada.</p>
+                </div>
+
+                <!-- Diagrama Completo -->
+                <div class="diagrama-container" style="margin-bottom: var(--espacamento-xl);">
+                    <svg class="diagrama-svg" viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Linha principal -->
+                        <path d="M50 200 Q200 100 350 200 T650 200 T850 200" stroke="#C9A24A" stroke-width="2" fill="none" stroke-dasharray="5,5" opacity="0.5"/>
+                        
+                        <!-- Etapas -->
+                        <g transform="translate(50, 200)">
+                            <circle r="25" fill="#061A2B" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10">Entrada</text>
+                        </g>
+                        
+                        <g transform="translate(150, 150)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10">Estação</text>
+                        </g>
+                        
+                        <g transform="translate(250, 200)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10">Rota</text>
+                        </g>
+                        
+                        <g transform="translate(350, 250)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="9">Areia</text>
+                        </g>
+                        
+                        <g transform="translate(450, 200)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="8">Profundezas</text>
+                        </g>
+                        
+                        <g transform="translate(550, 150)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10">Madre</text>
+                        </g>
+                        
+                        <g transform="translate(650, 200)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10">Seios</text>
+                        </g>
+                        
+                        <g transform="translate(750, 150)">
+                            <circle r="25" fill="#0B2F4A" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="9">Arco</text>
+                        </g>
+                        
+                        <g transform="translate(850, 200)">
+                            <rect x="-30" y="-20" width="60" height="40" rx="5" fill="#C9A24A" opacity="0.3" stroke="#C9A24A" stroke-width="2"/>
+                            <text y="5" text-anchor="middle" fill="#F5F7FA" font-size="10" font-weight="bold">Celeiro</text>
+                        </g>
+                        
+                        <!-- Seta de retorno -->
+                        <path d="M850 250 Q700 350 500 300 T100 250" stroke="#1AA6A6" stroke-width="1.5" fill="none" stroke-dasharray="3,3" opacity="0.6" marker-end="url(#arrowhead)"/>
+                        <text x="450" y="330" fill="#1AA6A6" font-size="10" text-anchor="middle">Retroalimentação</text>
+                    </svg>
+                </div>
+
+                <!-- Detalhamento das Etapas -->
+                <div class="grid" style="gap: var(--espacamento-sm);">
+                    <div class="etapa-item">
+                        <div class="etapa-numero">01</div>
+                        <div class="etapa-conteudo">
+                            <h4>Entrada</h4>
+                            <p>Recebimento e acolhimento da intenção. Mapeamento inicial do território e do potencial.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">02</div>
+                        <div class="etapa-conteudo">
+                            <h4>Estação</h4>
+                            <p>Discernimento do tempo. Análise de sazonalidade legislativa e oportunidades de janela.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">03</div>
+                        <div class="etapa-conteudo">
+                            <h4>Rota</h4>
+                            <p>Traçado do caminho. Identificação dos instrumentos legais e fluxos necessários.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">04</div>
+                        <div class="etapa-conteudo">
+                            <h4>Areia/Deserto</h4>
+                            <p>Valor oculto e urgência territorial. Mapeamento de recursos não identificados.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">05</div>
+                        <div class="etapa-conteudo">
+                            <h4>Profundezas</h4>
+                            <p>Resgate de projetos esquecidos. Análise de iniciativas paradas e seu potencial de retomada.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">06</div>
+                        <div class="etapa-conteudo">
+                            <h4>Madre</h4>
+                            <p>Estruturação e governança. Constituição da arquitetura institucional do projeto.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">07</div>
+                        <div class="etapa-conteudo">
+                            <h4>Seios</h4>
+                            <p>Viabilização contínua. Garantia de fluxo de recursos e sustentabilidade financeira.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">08</div>
+                        <div class="etapa-conteudo">
+                            <h4>Arco/Flecha</h4>
+                            <p>Aplicação com precisão. Execução técnica rigorosa no território.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">09</div>
+                        <div class="etapa-conteudo">
+                            <h4>Celeiro</h4>
+                            <p>Resultado sustentado e legado. Entrega mensurável e permanente.</p>
+                        </div>
+                    </div>
+                    <div class="etapa-item">
+                        <div class="etapa-numero">10</div>
+                        <div class="etapa-conteudo">
+                            <h4>Retroalimentação</h4>
+                            <p>Aprendizado contínuo. Ajustes e evolução do ecossistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             4. REDE DE CONEXÃO
+             ============================================ -->
+        <section id="rede" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Rede de Conexão para Aplicação Social</h2>
+                </div>
+
+                <div class="rede-container">
+                    <div class="rede-central">
+                        <div class="selo-epower">EM</div>
+                        <h3 style="color: var(--dourado);">Epower Minds</h3>
+                        <p>Engaste e Coordenação</p>
+                    </div>
+
+                    <div class="rede-atores">
+                        <div class="ator-card">
+                            <div class="ator-icone">
+                                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="10" y="20" width="40" height="30" rx="2"/>
+                                    <path d="M20 20V15C20 12.2386 22.2386 10 25 10H35C37.7614 10 40 12.2386 40 15V20"/>
+                                    <path d="M15 35H25M15 42H30"/>
+                                </svg>
+                            </div>
+                            <h4>Governo</h4>
+                            <p style="font-size: 0.875rem;">Políticas públicas, regulamentação e escala institucional.</p>
+                        </div>
+
+                        <div class="ator-card">
+                            <div class="ator-icone">
+                                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M30 10L40 25H20L30 10Z"/>
+                                    <rect x="15" y="25" width="30" height="25" rx="2"/>
+                                    <path d="M22 35H28M22 42H28"/>
+                                </svg>
+                            </div>
+                            <h4>ONGs</h4>
+                            <p style="font-size: 0.875rem;">Presença territorial, execução e proximidade comunitária.</p>
+                        </div>
+
+                        <div class="ator-card">
+                            <div class="ator-icone">
+                                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 50V20C10 15 15 10 20 10H40C45 10 50 15 50 20V50"/>
+                                    <path d="M20 25H25M20 35H25M35 25H40M35 35H40"/>
+                                    <circle cx="30" cy="18" r="3"/>
+                                </svg>
+                            </div>
+                            <h4>Academia</h4>
+                            <p style="font-size: 0.875rem;">Pesquisa, evidência e inovação metodológica.</p>
+                        </div>
+
+                        <div class="ator-card">
+                            <div class="ator-icone">
+                                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="30" cy="30" r="20"/>
+                                    <path d="M30 15V30L40 40"/>
+                                </svg>
+                            </div>
+                            <h4>Parceiros Técnicos</h4>
+                            <p style="font-size: 0.875rem;">Especialidades complementares e expertise setorial.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="margin-top: var(--espacamento-xl);">
+                    <div class="card">
+                        <h3 class="card-titulo">O que cada ator traz</h3>
+                        <ul style="margin-left: var(--espacamento-md); color: rgba(245, 247, 250, 0.9);">
+                            <li style="margin-bottom: var(--espacamento-xs);"><strong>Governo:</strong> Legitimidade, escala e recursos públicos.</li>
+                            <li style="margin-bottom: var(--espacamento-xs);"><strong>ONGs:</strong> Agilidade, conhecimento local e entrega.</li>
+                            <li style="margin-bottom: var(--espacamento-xs);"><strong>Academia:</strong> Rigor metodológico e mensuração.</li>
+                            <li><strong>Parceiros:</strong> Competências técnicas especializadas.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-titulo">Como uma conexão vira projeto</h3>
+                        <p style="color: rgba(245, 247, 250, 0.9);">O ecossistema atua como engaste: identifica complementaridades, estabelece pontes de confiança, estrutura a governança compartilhada e garante a continuidade através da nutrição institucional.</p>
+                    </div>
+                </div>
+
+                <!-- CTA Final -->
+                <div class="contato-cards" style="margin-top: var(--espacamento-xl);">
+                    <div class="contato-card" onclick="abrirFormulario('ong')">
+                        <h3>Sou ONG</h3>
+                        <p>Quero me conectar à rede</p>
+                        <button class="btn btn-primario">Conectar</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('governo')">
+                        <h3>Sou Governo</h3>
+                        <p>Quero articular parcerias</p>
+                        <button class="btn btn-primario">Articular</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('incentivador')">
+                        <h3>Sou Incentivador</h3>
+                        <p>Quo conhecer a rede</p>
+                        <button class="btn btn-primario">Conhecer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             5. PARA ONGs
+             ============================================ -->
+        <section id="ongs" class="secao segmento-hero">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Para ONGs: do valor local ao projeto estruturado</h2>
+                    <p style="font-size: 1.5rem; color: var(--dourado);">"Você já está no território — nós conectamos a rota e a governança"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 0;">
+            <div class="container">
+                <div class="grid grid-2">
+                    <div>
+                        <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">O que apoiamos</h3>
+                        <ul class="lista-beneficios">
+                            <li>Estruturação jurídica e compliance</li>
+                            <li>Conexão com instrumentos de financiamento</li>
+                            <li>Mensuração de impacto e indicadores</li>
+                            <li>Governança institucional</li>
+                            <li>Articulação com governo e universidades</li>
+                            <li>Viabilização de recursos contínuos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">O que pedimos</h3>
+                        <ul class="lista-beneficios">
+                            <li>Clareza sobre o problema e a solução</li>
+                            <li>Capacidade mínima de execução</li>
+                            <li>Disposição para mensurar resultados</li>
+                            <li>Abertura para governança compartilhada</li>
+                            <li>Compromisso com o território</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="texto-centralizado margem-topo">
+                    <button class="btn btn-primario btn-grande" onclick="abrirFormulario('ong')">Submeter Projeto</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             6. PARA GOVERNO
+             ============================================ -->
+        <section id="governo" class="secao segmento-hero">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Para Governo: projetos conjuntos com método e continuidade</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 0;">
+            <div class="container">
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3 class="card-titulo">Diagnóstico territorial</h3>
+                        <p>Leitura da estação: mapeamento de demandas, potenciais e janelas de oportunidade legislativa.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-titulo">Conexão com ONGs e Academia</h3>
+                        <p>Articulação com executores qualificados e centros de pesquisa para evidência e inovação.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-titulo">Aplicação com governança</h3>
+                        <p>Execução rigorosa com prestação de contas, indicadores claros e sustentabilidade institucional.</p>
+                    </div>
+                </div>
+
+                <div class="texto-centralizado margem-topo">
+                    <button class="btn btn-primario btn-grande" onclick="abrirFormulario('governo')">Cadastrar Demanda Territorial</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             7. PARA INCENTIVADORES
+             ============================================ -->
+        <section id="incentivadores" class="secao segmento-hero">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Para Incentivadores: apoiar projetos certos, com prestação de contas</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 0;">
+            <div class="container">
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3 class="card-titulo">Matching por tema e território</h3>
+                        <p>Conectamos seu perfil de interesse a projetos validados e estruturados conforme sua estratégia.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-titulo">Evidência e relatório</h3>
+                        <p>Acompanhamento contínuo com indicadores de impacto, relatórios técnicos e prestação de contas rigorosa.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-titulo">Aplicação sustentada</h3>
+                        <p>Garantia de continuidade através de governança institucionalizada, não dependente de indivíduos.</p>
+                    </div>
+                </div>
+
+                <div class="texto-centralizado margem-topo">
+                    <button class="btn btn-primario btn-grande" onclick="abrirFormulario('incentivador')">Encontrar Projetos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             8. TRANSPARÊNCIA & GOVERNANÇA
+             ============================================ -->
+        <section id="transparencia" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Governança, Integridade e Evidência</h2>
+                </div>
+
+                <div class="grid grid-2">
+                    <div>
+                        <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Princípios</h3>
+                        <ul style="margin-left: var(--espacamento-md); color: rgba(245, 247, 250, 0.9); line-height: 2;">
+                            <li>Transparência em todas as etapas</li>
+                            <li>Integridade institucional</li>
+                            <li>Evicência baseada em dados</li>
+                            <li>Responsabilidade territorial</li>
+                            <li>Sustentabilidade de longo prazo</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Critérios de Priorização</h3>
+                        <p style="color: rgba(245, 247, 250, 0.9); margin-bottom: var(--espacamento-md);">Projetos são avaliados considerando:</p>
+                        <ul style="margin-left: var(--espacamento-md); color: rgba(245, 247, 250, 0.9); line-height: 2;">
+                            <li>Potencial de impacto mensurável</li>
+                            <li>Viabilidade técnica e institucional</li>
+                            <li>Capacidade de governança</li>
+                            <li>Adequação à estação legislativa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--espacamento-xl);">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md); text-align: center;">Relatórios e Documentos</h3>
+                    
+                    <div class="documento-card em-breve">
+                        <div style="font-size: 2rem; margin-right: var(--espacamento-sm);">📊</div>
+                        <div>
+                            <h4 style="color: var(--branco-diamante); margin-bottom: 0.25rem;">Relatório Anual de Impacto 2024</h4>
+                            <p style="font-size: 0.875rem; color: rgba(245, 247, 250, 0.6); margin: 0;">Consolidado de projetos e resultados alcançados.</p>
+                        </div>
+                    </div>
+
+                    <div class="documento-card em-breve">
+                        <div style="font-size: 2rem; margin-right: var(--espacamento-sm);">📋</div>
+                        <div>
+                            <h4 style="color: var(--branco-diamante); margin-bottom: 0.25rem;">Política de Integridade</h4>
+                            <p style="font-size: 0.875rem; color: rgba(245, 247, 250, 0.6); margin: 0;">Diretrizes de conduta e prevenção de conflitos.</p>
+                        </div>
+                    </div>
+
+                    <div class="documento-card em-breve">
+                        <div style="font-size: 2rem; margin-right: var(--espacamento-sm);">🔒</div>
+                        <div>
+                            <h4 style="color: var(--branco-diamante); margin-bottom: 0.25rem;">Política de Privacidade e LGPD</h4>
+                            <p style="font-size: 0.875rem; color: rgba(245, 247, 250, 0.6); margin: 0;">Tratamento de dados e direitos dos titulares.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="texto-centralizado margem-topo">
+                    <a href="#privacidade" class="btn btn-secundario">Ver Política de Privacidade Completa</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             9. CONTEÚDOS (Blog)
+             ============================================ -->
+        <section id="conteudos" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Conteúdos</h2>
+                    <p>Artigos e reflexões sobre aplicação social, navegação institucional e transformação territorial.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <article class="card artigo-card">
+                        <span class="artigo-tag">Visão</span>
+                        <h3 class="card-titulo" style="font-size: 1.125rem;">Discernindo as Estações do Sistema</h3>
+                        <p style="flex-grow: 1;">Como ler os ciclos legislativos para identificar janelas de oportunidade na aplicação social.</p>
+                        <div class="artigo-data">15 Jan 2026</div>
+                    </article>
+
+                    <article class="card artigo-card">
+                        <span class="artigo-tag">Navegação</span>
+                        <h3 class="card-titulo" style="font-size: 1.125rem;">A Rota do Diamante: Precisão na Execução</h3>
+                        <p style="flex-grow: 1;">A importância da clareza metodológica para atravessar desertos institucionais.</p>
+                        <div class="artigo-data">08 Jan 2026</div>
+                    </article>
+
+                    <article class="card artigo-card">
+                        <span class="artigo-tag">Aplicação</span>
+                        <h3 class="card-titulo" style="font-size: 1.125rem;">Do Arco ao Celeiro: Sustentando Resultados</h3>
+                        <p style="flex-grow: 1;">Estratégias para garantir que projetos não terminem em promessas, mas em legado.</p>
+                        <div class="artigo-data">20 Dez 2025</div>
+                    </article>
+                </div>
+
+                <!-- Template de Artigo (Exemplo) -->
+                <article id="artigo-exemplo" class="margem-topo" style="display: none; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="artigo-header">
+                        <span class="artigo-tag">Visão</span>
+                        <h1 style="margin: var(--espacamento-md) 0;">Discernindo as Estações do Sistema</h1>
+                        <p style="color: rgba(245, 247, 250, 0.6);">Por Epower Minds • 15 de Janeiro de 2026</p>
+                    </div>
+                    <div class="artigo-conteudo">
+                        <p>O sistema de incentivos e políticas públicas tem sua própria sazonalidade. Como um agricultor que sabe quando plantar e quando colher, o gestor social precisa discernir os tempos.</p>
+                        <p>Navegar contra a maré é exaustão garantida. Navegar a favor exige paciência, observação e precisão.</p>
+                        <p>No Ecossistema Epower Minds, desenvolvemos metodologias específicas para mapear estas estações...</p>
+                    </div>
+                    <div class="texto-centralizado" style="margin-top: var(--espacamento-xl);">
+                        <button class="btn btn-primario" onclick="abrirModalContato()">Entrar em Contato</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================
+             10. CONTATO (Central de Formulários)
+             ============================================ -->
+        <section id="contato" class="secao">
+            <div class="container">
+                <div class="bloco-texto">
+                    <h2>Entre em Contato</h2>
+                    <p>Escolha seu perfil e inicie a conversa. Retornaremos em até 48 horas úteis.</p>
+                </div>
+
+                <div class="abas-container">
+                    <div class="abas-nav" role="tablist">
+                        <button class="aba-btn active" onclick="mudarAba('tab-ong')" role="tab" aria-selected="true" id="tab-btn-ong">ONGs</button>
+                        <button class="aba-btn" onclick="mudarAba('tab-governo')" role="tab" aria-selected="false" id="tab-btn-gov">Governo</button>
+                        <button class="aba-btn" onclick="mudarAba('tab-incentivador')" role="tab" aria-selected="false" id="tab-btn-inc">Incentivadores</button>
+                    </div>
+
+                    <!-- Aba ONG -->
+                    <div id="tab-ong" class="aba-conteudo active" role="tabpanel">
+                        <form onsubmit="handleSubmit(event, 'ong')">
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">Organização <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                                    <input type="email" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                                    <input type="tel" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-grupo">
+                                <label class="form-label">Mensagem</label>
+                                <textarea class="form-textarea" rows="4"></textarea>
+                            </div>
+                            <div class="lgpd-box">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" required id="lgpd-ong-page">
+                                    <label for="lgpd-ong-page">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primario btn-grande">Enviar</button>
+                        </form>
+                    </div>
+
+                    <!-- Aba Governo -->
+                    <div id="tab-governo" class="aba-conteudo" role="tabpanel">
+                        <form onsubmit="handleSubmit(event, 'governo')">
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">Órgão/Secretaria <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">E-mail institucional <span class="obrigatorio">*</span></label>
+                                    <input type="email" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">Município/Estado <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-grupo">
+                                <label class="form-label">Demanda/Diagnóstico</label>
+                                <textarea class="form-textarea" rows="4"></textarea>
+                            </div>
+                            <div class="lgpd-box">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" required id="lgpd-gov-page">
+                                    <label for="lgpd-gov-page">Declaro finalidade institucional e de interesse público. <span class="obrigatorio">*</span></label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primario btn-grande">Enviar</button>
+                        </form>
+                    </div>
+
+                    <!-- Aba Incentivador -->
+                    <div id="tab-incentivador" class="aba-conteudo" role="tabpanel">
+                        <form onsubmit="handleSubmit(event, 'incentivador')">
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">Nome completo <span class="obrigatorio">*</span></label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">Perfil <span class="obrigatorio">*</span></label>
+                                    <select class="form-select" required>
+                                        <option value="">Selecione...</option>
+                                        <option>Pessoa Física</option>
+                                        <option>Empresa</option>
+                                        <option>Instituto</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-2">
+                                <div class="form-grupo">
+                                    <label class="form-label">E-mail <span class="obrigatorio">*</span></label>
+                                    <input type="email" class="form-input" required>
+                                </div>
+                                <div class="form-grupo">
+                                    <label class="form-label">WhatsApp <span class="obrigatorio">*</span></label>
+                                    <input type="tel" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-grupo">
+                                <label class="form-label">Interesses/Temas</label>
+                                <textarea class="form-textarea" rows="4"></textarea>
+                            </div>
+                            <div class="lgpd-box">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" required id="lgpd-inc-page">
+                                    <label for="lgpd-inc-page">Concordo com o tratamento de dados conforme LGPD. <span class="obrigatorio">*</span></label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primario btn-grande">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="texto-centralizado" style="margin-top: var(--espacamento-xl);">
+                    <h3 style="color: var(--dourado); margin-bottom: var(--espacamento-md);">Contato Institucional</h3>
+                    <p>E-mail: contato@epowerminds.org</p>
+                    <p>Telefone: (00) 0000-0000</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             11. PRIVACIDADE/LGPD
+             ============================================ -->
+        <section id="privacidade" class="secao">
+            <div class="container">
+                <div class="texto-legal">
+                    <h2>Política de Privacidade e LGPD</h2>
+                    
+                    <h3>1. Dados que Coletamos</h3>
+                    <p>Coletamos dados pessoais fornecidos voluntariamente através dos formulários de contato, incluindo: nome, e-mail, telefone, cargo, instituição e informações sobre projetos.</p>
+
+                    <h3>2. Finalidade do Tratamento</h3>
+                    <p>Os dados são utilizados exclusivamente para:</p>
+                    <ul>
+                        <li>Estabelecer contato e comunicação</li>
+                        <li>Avaliar potenciais parcerias e projetos</li>
+                        <li>Conectar atores dentro do ecossistema</li>
+                        <li>Enviar informações relevantes sobre nosso trabalho</li>
+                    </ul>
+
+                    <h3>3. Base Legal</h3>
+                    <p>O tratamento baseia-se no consentimento livre, específico e informado, ou no legítimo interesse quando aplicável (art. 7º, incisos I e IX da LGPD).</p>
+
+                    <h3>4. Retenção de Dados</h3>
+                    <p>Mantemos os dados pelo tempo necessário para cumprimento das finalidades descritas, ou até solicitação de exclusão pelo titular.</p>
+
+                    <h3>5. Direitos do Titular</h3>
+                    <p>Você tem direito a:</p>
+                    <ul>
+                        <li>Confirmar a existência de tratamento</li>
+                        <li>Acessar seus dados</li>
+                        <li>Corrigir dados incompletos ou desatualizados</li>
+                        <li>Solicitar anonimização, bloqueio ou eliminação</li>
+                        <li>Revogar consentimento</li>
+                    </ul>
+
+                    <h3>6. Canal de Solicitação</h3>
+                    <p>Para exercer seus direitos ou esclarecer dúvidas, entre em contato pelo e-mail: privacidade@epowerminds.org</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             12. ACESSIBILIDADE
+             ============================================ -->
+        <section id="acessibilidade" class="secao">
+            <div class="container">
+                <div class="texto-legal">
+                    <h2>Declaração de Acessibilidade</h2>
+                    
+                    <h3>Compromisso</h3>
+                    <p>O Epower Minds compromete-se a garantir a acessibilidade digital de seu site, seguindo as diretrizes WCAG 2.1 nível AA e as normas brasileiras de acessibilidade.</p>
+
+                    <h3>Medidas Implementadas</h3>
+                    <ul>
+                        <li><strong>Contraste:</strong> Taxa de contraste mínima de 4.5:1 entre texto e fundo</li>
+                        <li><strong>Navegação por Teclado:</strong> Todo o conteúdo acessível via teclado (Tab, Enter, Setas)</li>
+                        <li><strong>Textos Alternativos:</strong> Imagens e ícones possuem descrições alternativas</li>
+                        <li><strong>Sem Animações Invasivas:</strong> Respeitamos a preferência por redução de movimento</li>
+                        <li><strong>Skip Links:</strong> Links para pular diretamente ao conteúdo principal</li>
+                        <li><strong>Foco Visível:</strong> Indicadores claros de foco em elementos interativos</li>
+                    </ul>
+
+                    <h3>Reportar Problemas</h3>
+                    <p>Se encontrar dificuldades de acesso ou uso, por favor, reporte para: acessibilidade@epowerminds.org</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Final de Contato (Repetida em todas as páginas) -->
+        <section class="secao secao-contato">
+            <div class="container">
+                <h2 class="texto-centralizado" style="margin-bottom: var(--espacamento-md);">Entre em Contato</h2>
+                <div class="contato-cards">
+                    <div class="contato-card" onclick="abrirFormulario('ong')">
+                        <h3>Sou ONG</h3>
+                        <p>Submeter ou estruturar projeto</p>
+                        <button class="btn btn-primario">Iniciar</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('governo')">
+                        <h3>Sou Governo</h3>
+                        <p>Construir projeto conjunto</p>
+                        <button class="btn btn-primario">Cadastrar</button>
+                    </div>
+                    <div class="contato-card" onclick="abrirFormulario('incentivador')">
+                        <h3>Sou Incentivador</h3>
+                        <p>Encontrar projetos</p>
+                        <button class="btn btn-primario">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="mini-manifesto">
+                        "Discernimos o tempo. Navegamos a rota. Governamos a vida do projeto — até virar celeiro."
+                    </div>
+                    <p style="font-size: 0.875rem; color: rgba(245, 247, 250, 0.6);">Epower Minds<br>Ecossistema de Aplicação Social</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#tese">A Tese</a></li>
+                        <li><a href="#metodo">Como Aplicamos</a></li>
+                        <li><a href="#rede">Rede de Conexão</a></li>
+                        <li><a href="#transparencia">Transparência</a></li>
+                        <li><a href="#conteudos">Conteúdos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Públicos</h4>
+                    <ul>
+                        <li><a href="#ongs">Para ONGs</a></li>
+                        <li><a href="#governo">Para Governo</a></li>
+                        <li><a href="#incentivadores">Para Incentivadores</a></li>
+                        <li><a href="#contato">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#privacidade">Privacidade/LGPD</a></li>
+                        <li><a href="#acessibilidade">Acessibilidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Epower Minds — Ecossistema de Aplicação Social. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ==========================================
+        // NAVEGAÇÃO E MENU MOBILE
+        // ==========================================
+        function toggleMenu() {
+            const navMobile = document.getElementById('nav-mobile');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const isExpanded = navMobile.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        }
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const navMobile = document.getElementById('nav-mobile');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!navMobile.contains(event.target) && !menuToggle.contains(event.target)) {
+                navMobile.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // ==========================================
+        // MODAL DE CONTATO GLOBAL
+        // ==========================================
+        function abrirModalContato() {
+            const modal = document.getElementById('modal-contato');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Resetar estado do modal
+            document.getElementById('selecao-tipo').style.display = 'grid';
+            document.querySelectorAll('.formulario').forEach(f => f.classList.remove('active'));
+            document.getElementById('sucesso-mensagem').classList.remove('active');
+            
+            // Focar no título para acessibilidade
+            setTimeout(() => {
+                document.getElementById('modal-titulo').focus();
+            }, 100);
+        }
+
+        function fecharModalContato() {
+            const modal = document.getElementById('modal-contato');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            voltarSelecao();
+        }
+
+        function fecharModalOverlay(event) {
+            if (event.target === event.currentTarget) {
+                fecharModalContato();
+            }
+        }
+
+        // Fechar com ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                fecharModalContato();
+            }
+        });
+
+        // ==========================================
+        // FORMULÁRIOS E NAVEGAÇÃO DO MODAL
+        // ==========================================
+        function abrirFormulario(tipo) {
+            document.getElementById('selecao-tipo').style.display = 'none';
+            document.querySelectorAll('.formulario').forEach(f => f.classList.remove('active'));
+            document.getElementById(`form-${tipo}`).classList.add('active');
+            
+            // Atualizar título do modal
+            const titulos = {
+                'ong': 'ONGs — Submeter Projeto',
+                'governo': 'Governo — Construir Projeto Conjunto',
+                'incentivador': 'Incentivadores — Encontrar Projetos'
+            };
+            document.getElementById('modal-titulo').textContent = titulos[tipo];
+        }
+
+        function voltarSelecao() {
+            document.getElementById('selecao-tipo').style.display = 'grid';
+            document.querySelectorAll('.formulario').forEach(f => {
+                f.classList.remove('active');
+                f.reset();
+            });
+            document.getElementById('sucesso-mensagem').classList.remove('active');
+            document.getElementById('modal-titulo').textContent = 'Entrar em Contato';
+        }
+
+        // ==========================================
+        // VALIDAÇÃO E ENVIO DE FORMULÁRIOS
+        // ==========================================
+        function handleSubmit(event, tipo) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const dados = {};
+            
+            // Coletar dados
+            formData.forEach((value, key) => {
+                if (dados[key]) {
+                    if (Array.isArray(dados[key])) {
+                        dados[key].push(value);
+                    } else {
+                        dados[key] = [dados[key], value];
+                    }
+                } else {
+                    dados[key] = value;
+                }
+            });
+
+            // Validação adicional
+            if (!validarFormulario(form, tipo)) {
+                return false;
+            }
+
+            // Simular envio (aqui você integraria com seu backend)
+            console.log(`Enviando formulário ${tipo}:`, dados);
+            
+            // Armazenar no localStorage como backup/registro
+            const registros = JSON.parse(localStorage.getItem('epower_registros') || '[]');
+            registros.push({
+                tipo: tipo,
+                dados: dados,
+                data: new Date().toISOString()
+            });
+            localStorage.setItem('epower_registros', JSON.stringify(registros));
+
+            // Mostrar tela de sucesso
+            mostrarSucesso(tipo, dados);
+            
+            return false;
+        }
+
+        function validarFormulario(form, tipo) {
+            let valido = true;
+            
+            // Validação de campos obrigatórios
+            const obrigatorios = form.querySelectorAll('[required]');
+            obrigatorios.forEach(campo => {
+                if (!campo.value.trim()) {
+                    campo.classList.add('erro');
+                    valido = false;
+                } else {
+                    campo.classList.remove('erro');
+                }
+            });
+
+            // Validação específica por tipo
+            if (tipo === 'ong') {
+                const lgpd = form.querySelector('#lgpd-ong');
+                if (!lgpd.checked) {
+                    alert('É necessário concordar com o tratamento de dados.');
+                    return false;
+                }
+            }
+
+            return valido;
+        }
+
+        function mostrarSucesso(tipo, dados) {
+            // Esconder formulário
+            document.querySelectorAll('.formulario').forEach(f => f.classList.remove('active'));
+            
+            // Mostrar mensagem de sucesso
+            const sucessoDiv = document.getElementById('sucesso-mensagem');
+            sucessoDiv.classList.add('active');
+            
+            // Atualizar título
+            document.getElementById('modal-titulo').textContent = 'Cadastro Recebido';
+            
+            // Gerar resumo
+            const resumoDiv = document.getElementById('resumo-cadastro');
+            let resumoHTML = '<strong>Resumo do envio:</strong><br><br>';
+            
+            // Campos principais para resumo
+            const camposPrincipais = ['nome', 'organizacao', 'orgao', 'email', 'perfil'];
+            camposPrincipais.forEach(campo => {
+                if (dados[campo]) {
+                    const label = campo.charAt(0).toUpperCase() + campo.slice(1);
+                    resumoHTML += `<p><strong>${label}:</strong> ${dados[campo]}</p>`;
+                }
+            });
+            
+            resumoDiv.innerHTML = resumoHTML;
+        }
+
+        // ==========================================
+        // ABAS DA PÁGINA DE CONTATO
+        // ==========================================
+        function mudarAba(abaId) {
+            // Remover active de todas as abas
+            document.querySelectorAll('.aba-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.aba-conteudo').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adicionar active na aba selecionada
+            event.target.classList.add('active');
+            event.target.setAttribute('aria-selected', 'true');
+            document.getElementById(abaId).classList.add('active');
+        }
+
+        // ==========================================
+        // ANIMAÇÕES DE SCROLL
+        // ==========================================
+        // Intersection Observer para animações suaves
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animar
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementosAnimar = document.querySelectorAll('.card, .etapa-item, .banner-impacto');
+            elementosAnimar.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // ==========================================
+        // MÁSCARAS DE INPUT
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Máscara simples para telefone
+            const telefones = document.querySelectorAll('input[type="tel"]');
+            telefones.forEach(tel => {
+                tel.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 11) {
+                        value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                        value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                    }
+                    e.target.value = value;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
