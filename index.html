@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epower Minds × BDO - Apresentação</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Empower Minds | VoxMotion AI - Ecossistema de Aplicação Social</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        /* ============================================
-           CONFIGURAÇÃO DE SLIDES
-           ============================================ */
-        @page {
-            size: 1920px 1080px;
-            margin: 0;
+        :root {
+            --deep-blue: #061A2B;
+            --gold: #C9A24A;
+            --teal: #1AA6A6;
+            --primary: #1AA6A6;
+            --primary-light: #2DD4D4;
+            --secondary: #C9A24A;
+            --accent: #C9A24A;
+            --dark: #061A2B;
+            --darker: #040F1A;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(201, 162, 74, 0.15);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --warning: #C9A24A;
+            --warning-bg: rgba(201, 162, 74, 0.1);
         }
 
         * {
@@ -20,1277 +32,1881 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #1a1a1a;
-            color: #F5F7FA;
+            background: var(--darker);
+            color: var(--text);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Cada slide é uma "página" na impressão */
-        .slide {
-            width: 1920px;
-            height: 1080px;
-            margin: 0 auto 20px;
-            position: relative;
-            overflow: hidden;
-            page-break-after: always;
-            page-break-inside: avoid;
-            background: linear-gradient(135deg, #061A2B 0%, #0B2F4A 100%);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        .slide:last-child {
-            page-break-after: auto;
-            margin-bottom: 0;
+        /* Development Banner */
+        .dev-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, var(--warning-bg), rgba(201, 162, 74, 0.15), var(--warning-bg));
+            border-bottom: 1px solid var(--gold);
+            padding: 0.75rem;
+            text-align: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            animation: bannerPulse 4s ease-in-out infinite;
         }
 
-        /* ============================================
-           ELEMENTOS COMUNS
-           ============================================ */
-        .slide-header {
+        @keyframes bannerPulse {
+            0%, 100% { background: linear-gradient(90deg, var(--warning-bg), rgba(201, 162, 74, 0.15), var(--warning-bg)); }
+            50% { background: linear-gradient(90deg, rgba(201, 162, 74, 0.15), var(--warning-bg), rgba(201, 162, 74, 0.15)); }
+        }
+
+        .dev-banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dev-badge {
+            background: var(--gold);
+            color: var(--deep-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: blink 3s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .dev-text {
+            color: var(--gold);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .dev-contact {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .dev-contact:hover {
+            color: var(--gold);
+            border-bottom-style: solid;
+        }
+
+        /* Background Animation - Constelações */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(26, 166, 166, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(201, 162, 74, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(6, 26, 43, 0.8) 0%, transparent 70%),
+                var(--darker);
+        }
+
+        .bg-animation::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            background: rgba(6, 26, 43, 0.9);
-            border-bottom: 2px solid #C9A24A;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 60px;
-            z-index: 100;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(201, 162, 74, 0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(26, 166, 166, 0.3), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(201, 162, 74, 0.2), transparent),
+                radial-gradient(1px 1px at 230px 80px, rgba(26, 166, 166, 0.3), transparent);
+            background-size: 250px 250px;
+            animation: stars 100s linear infinite;
         }
 
-        .logo-epower {
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #F5F7FA;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-epower svg {
-            width: 40px;
-            height: 40px;
-        }
-
-        .logo-bdo {
-            font-family: 'Inter', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #C9A24A;
-            letter-spacing: 2px;
-        }
-
-        .slide-number {
+        .bg-animation::after {
+            content: '';
             position: absolute;
-            bottom: 30px;
-            right: 60px;
-            font-size: 14px;
-            color: rgba(245, 247, 250, 0.5);
-            font-weight: 500;
-            z-index: 10;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 95%, rgba(201, 162, 74, 0.03) 100%),
+                linear-gradient(0deg, transparent 95%, rgba(26, 166, 166, 0.03) 100%);
+            background-size: 100px 100px;
         }
 
-        .slide-content {
-            padding: 120px 80px 80px;
-            height: 100%;
+        @keyframes stars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-250px, -250px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            backdrop-filter: blur(20px);
+            background: rgba(6, 26, 43, 0.85);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(6, 26, 43, 0.95);
+            top: 50px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-        }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            color: #F5F7FA;
-        }
-
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 48px;
-            font-weight: 600;
-            color: #C9A24A;
-            margin-bottom: 40px;
-            line-height: 1.2;
-        }
-
-        h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            color: #1AA6A6;
-            margin-bottom: 20px;
-        }
-
-        h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: #F5F7FA;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 24px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            max-width: 90%;
-        }
-
-        .texto-medio {
-            font-size: 28px;
-            line-height: 1.5;
-        }
-
-        .destaque {
-            background: linear-gradient(90deg, rgba(201, 162, 74, 0.2) 0%, transparent 100%);
-            border-left: 6px solid #C9A24A;
-            padding: 30px 40px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 28px;
-            color: #F5F7FA;
-        }
-
-        /* ============================================
-           SLIDE 1: CAPA
-           ============================================ */
-        .slide-capa {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            background: radial-gradient(ellipse at center, #0B2F4A 0%, #061A2B 70%);
         }
 
-        .slide-capa .simbolo-principal {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 50px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
         }
 
-        .slide-capa h1 {
-            font-size: 80px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #F5F7FA 0%, #C9A24A 100%);
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(201, 162, 74, 0.3);
+        }
+
+        .logo-icon::before {
+            content: '◆';
+            font-size: 1.5rem;
+            color: white;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .company-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: -5px;
+        }
+
+        .product-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text), var(--teal));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .slide-capa .subtitulo {
-            font-family: 'Cinzel', serif;
-            font-size: 36px;
-            color: #C9A24A;
-            margin-bottom: 60px;
-            font-weight: 400;
-        }
-
-        .slide-capa .descricao {
-            font-size: 24px;
-            max-width: 1000px;
-            color: rgba(245, 247, 250, 0.9);
-            line-height: 1.8;
-            margin-bottom: 80px;
-        }
-
-        .slide-capa .meta {
-            border-top: 1px solid rgba(201, 162, 74, 0.3);
-            padding-top: 40px;
-            font-size: 16px;
-            color: rgba(245, 247, 250, 0.6);
-        }
-
-        .slide-capa .meta p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        /* ============================================
-           SLIDE 2: SUMÁRIO
-           ============================================ */
-        .sumario-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .sumario-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(201, 162, 74, 0.3);
-            border-radius: 12px;
-            padding: 30px;
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .sumario-numero {
-            font-family: 'Cinzel', serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: #C9A24A;
-            min-width: 80px;
-        }
-
-        .sumario-texto {
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        /* ============================================
-           SLIDES DE CONTEÚDO
-           ============================================ */
-        .conteudo-duas-colunas {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            flex: 1;
-        }
-
-        .coluna-texto {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .coluna-visual {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-info {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #C9A24A;
-            padding: 25px 30px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .card-info h4 {
-            color: #C9A24A;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .card-info p {
-            font-size: 18px;
-            margin: 0;
-            color: rgba(245, 247, 250, 0.9);
-        }
-
-        .lista-destaque {
+            gap: 2.5rem;
             list-style: none;
-            margin: 20px 0;
-            padding: 0;
         }
 
-        .lista-destaque li {
-            font-size: 22px;
-            padding: 15px 0 15px 40px;
-            position: relative;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .lista-destaque li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #C9A24A;
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        /* ============================================
-           TABELAS
-           ============================================ */
-        .tabela-slide {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-
-        .tabela-slide th {
-            background: #061A2B;
-            color: #C9A24A;
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            border-bottom: 3px solid #C9A24A;
-        }
-
-        .tabela-slide td {
-            padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            vertical-align: top;
-        }
-
-        .tabela-slide tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* ============================================
-           FLUXO VISUAL
-           ============================================ */
-        .fluxo-visual {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 40px 0;
-        }
-
-        .fluxo-etapa {
-            text-align: center;
-            flex: 1;
-        }
-
-        .fluxo-etapa .icone {
-            width: 100px;
-            height: 100px;
-            background: rgba(201, 162, 74, 0.2);
-            border: 3px solid #C9A24A;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-family: 'Cinzel', serif;
-            font-size: 36px;
-            color: #C9A24A;
-        }
-
-        .fluxo-etapa h4 {
-            font-size: 20px;
-            color: #F5F7FA;
-            margin-bottom: 10px;
-        }
-
-        .fluxo-etapa p {
-            font-size: 16px;
-            color: rgba(245, 247, 250, 0.7);
-            margin: 0 auto;
-        }
-
-        .fluxo-seta {
-            color: #C9A24A;
-            font-size: 40px;
-            margin: 0 20px;
-        }
-
-        /* ============================================
-           INDICADORES
-           ============================================ */
-        .indicadores-row {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
-            gap: 30px;
-        }
-
-        .indicador-card {
-            background: linear-gradient(135deg, #0B2F4A 0%, #061A2B 100%);
-            border: 2px solid #C9A24A;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            flex: 1;
-        }
-
-        .indicador-numero {
-            font-family: 'Cinzel', serif;
-            font-size: 72px;
-            font-weight: 700;
-            color: #C9A24A;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .indicador-label {
-            font-size: 20px;
-            color: #F5F7FA;
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-weight: 500;
-        }
-
-        .indicador-sublabel {
-            font-size: 14px;
-            color: rgba(245, 247, 250, 0.6);
-            margin-top: 5px;
-        }
-
-        /* ============================================
-           TIMELINE
-           ============================================ */
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
             position: relative;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
         }
 
-        .timeline:before {
+        .nav-links a::after {
             content: '';
             position: absolute;
-            top: 50px;
-            left: 10%;
-            right: 10%;
-            height: 4px;
-            background: linear-gradient(90deg, #C9A24A 0%, #1AA6A6 100%);
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--teal));
+            transition: width 0.3s ease;
         }
 
-        .timeline-fase {
-            text-align: center;
-            flex: 1;
-            position: relative;
+        .nav-links a:hover {
+            color: var(--gold);
         }
 
-        .timeline-dot {
-            width: 30px;
-            height: 30px;
-            background: #C9A24A;
-            border-radius: 50%;
-            margin: 35px auto 20px;
-            position: relative;
-            z-index: 2;
-            border: 4px solid #061A2B;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        .timeline-fase h4 {
-            font-size: 24px;
-            color: #C9A24A;
-            margin-bottom: 10px;
-        }
-
-        .timeline-fase .periodo {
-            font-size: 16px;
-            color: #1AA6A6;
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
             font-weight: 600;
-            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .timeline-fase p {
-            font-size: 16px;
-            color: rgba(245, 247, 250, 0.8);
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 74, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: rgba(201, 162, 74, 0.1);
+            box-shadow: 0 0 20px rgba(201, 162, 74, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 170px 5% 80px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge::before {
+            content: '◆';
+            color: var(--teal);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--teal) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-quote {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--teal), rgba(26, 166, 166, 0.8));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(26, 166, 166, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(26, 166, 166, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(26, 166, 166, 0.2);
+            border: 1px solid var(--glass-border);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        .skeleton-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(201, 162, 74, 0.15) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(26, 166, 166, 0.15) 50%, transparent 52%);
+            background-size: 30px 30px;
+            animation: skeletonMove 3s linear infinite;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .skeleton-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(201, 162, 74, 0.4) 2px, transparent 2px),
+                radial-gradient(circle at 50% 50%, rgba(26, 166, 166, 0.4) 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(201, 162, 74, 0.3) 2px, transparent 2px),
+                radial-gradient(circle at 30% 80%, rgba(26, 166, 166, 0.3) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, rgba(201, 162, 74, 0.3) 2px, transparent 2px);
+            animation: jointPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes skeletonMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        @keyframes jointPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 10%;
+            right: -20px;
+            animation-delay: -2s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 20%;
+            left: -30px;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .card-text strong {
+            color: var(--text);
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
-            max-width: 300px;
         }
 
-        /* ============================================
-           SLIDE FINAL
-           ============================================ */
-        .slide-final {
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Ecosystem Section - New */
+        .ecosystem-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.8), rgba(4, 15, 26, 0.9));
+        }
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ecosystem-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecosystem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .ecosystem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(201, 162, 74, 0.15);
+        }
+
+        .ecosystem-symbol {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .ecosystem-card h3 {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .ecosystem-card .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--teal);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .ecosystem-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Method Section - New */
+        .method-section {
+            position: relative;
+        }
+
+        .method-timeline {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(ellipse at center, #0B2F4A 0%, #061A2B 70%);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .slide-final h2 {
-            font-size: 56px;
-            margin-bottom: 40px;
-        }
-
-        .frase-final {
-            font-family: 'Cinzel', serif;
-            font-size: 36px;
-            color: #C9A24A;
-            font-style: italic;
-            max-width: 1200px;
-            line-height: 1.5;
-            margin-bottom: 80px;
-        }
-
-        .contatos-final {
+        .method-step {
             display: flex;
-            gap: 100px;
-            margin-top: 60px;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .contato-box {
+        .method-step:hover {
+            border-color: var(--gold);
+            transform: translateX(10px);
+        }
+
+        .method-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .method-content h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .method-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Technology Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 166, 166, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--teal);
+            box-shadow: 0 20px 60px rgba(26, 166, 166, 0.15);
+        }
+
+        .tech-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            font-family: 'Cinzel', serif;
+        }
+
+        .tech-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* UNICAMP Section */
+        .unicamp-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.6), rgba(201, 162, 74, 0.05));
+        }
+
+        .unicamp-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .unicamp-visual {
+            position: relative;
+        }
+
+        .unicamp-image {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            border: 1px solid var(--glass-border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            font-family: 'Cinzel', serif;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .feature-list li::before {
+            content: '◆';
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* Applications Section */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .app-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(26, 166, 166, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .app-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .app-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(201, 162, 74, 0.15);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-top: 1rem;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Quote Section - New */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(201, 162, 74, 0.05), rgba(26, 166, 166, 0.05));
+            text-align: center;
+            padding: 80px 5%;
+        }
+
+        .quote-large {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--gold);
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .quote-large::before,
+        .quote-large::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--teal);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-large::before {
+            top: -20px;
+            left: -40px;
+        }
+
+        .quote-large::after {
+            bottom: -40px;
+            right: -40px;
+        }
+
+        .quote-author {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Brazil Section */
+        .brazil-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brazil-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .brazil-map {
+            position: relative;
+            height: 500px;
+            background: var(--glass);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brazil-map::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(26, 166, 166, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 30%, rgba(201, 162, 74, 0.1) 0%, transparent 40%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .brazil-text h3 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Google Partnership */
+        .google-section {
+            background: linear-gradient(135deg, rgba(26, 166, 166, 0.03), rgba(201, 162, 74, 0.03));
             text-align: center;
         }
 
-        .contato-box h4 {
-            font-size: 24px;
-            color: #C9A24A;
-            margin-bottom: 15px;
+        .google-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .contato-box p {
-            font-size: 18px;
-            color: rgba(245, 247, 250, 0.8);
-            margin: 5px 0;
+        .google-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
         }
 
-        /* ============================================
-           RESPONSIVIDADE PARA VISUALIZAÇÃO
-           ============================================ */
-        @media screen and (max-width: 1920px) {
-            .slide {
-                transform: scale(0.5);
-                transform-origin: top center;
-                margin-bottom: -540px;
-            }
+        .google-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(26, 166, 166, 0.15);
+            border-color: var(--teal);
         }
 
-        @media screen and (max-width: 960px) {
-            .slide {
-                transform: scale(0.25);
-                margin-bottom: -810px;
-            }
+        .google-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* ============================================
-           PRINT OPTIMIZATION
-           ============================================ */
-        @media print {
-            body {
-                background: white;
-                margin: 0;
-                padding: 0;
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-cta {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.8), rgba(201, 162, 74, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(26, 166, 166, 0.08) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .email-highlight {
+            display: inline-block;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-blue);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .dev-banner {
+                padding: 0.5rem;
             }
             
-            .slide {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-                width: 1920px;
-                height: 1080px;
+            .dev-text {
+                font-size: 0.8rem;
             }
+
+            nav {
+                top: 60px;
+            }
+
+            nav.scrolled {
+                top: 60px;
+            }
+
+            .hero {
+                padding: 180px 5% 80px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+                order: -1;
+            }
+
+            .ecosystem-grid,
+            .google-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .unicamp-content,
+            .brazil-content {
+                grid-template-columns: 1fr;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .quote-large::before,
+            .quote-large::after {
+                display: none;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--teal), var(--gold));
+            border-radius: 5px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--gold);
+            color: var(--deep-blue);
         }
     </style>
 </head>
 <body>
-
-<!-- ============================================
-     SLIDE 1: CAPA
-     ============================================ -->
-<div class="slide slide-capa">
-    <svg class="simbolo-principal" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="20" fill="#C9A24A" opacity="0.9"/>
-        <path d="M60 20V30M60 90V100M20 60H30M90 60H100M32.7 32.7L39.8 39.8M80.2 80.2L87.3 87.3M32.7 87.3L39.8 80.2M80.2 39.8L87.3 32.7" stroke="#C9A24A" stroke-width="3" stroke-linecap="round"/>
-        <path d="M85 60C85 43.4315 71.5685 30 55 30C60 30 65 43.4315 65 60C65 76.5685 60 90 55 90C71.5685 90 85 76.5685 85 60Z" fill="#F5F7FA" opacity="0.9"/>
-        <path d="M60 75L45 95H75L60 75Z" fill="#1AA6A6" opacity="0.8"/>
-    </svg>
-    
-    <h1>Epower Minds × BDO</h1>
-    <div class="subtitulo">Ecossistema Conector para o Fundo de Sabedoria Prática ESG</div>
-    
-    <div class="descricao">
-        Arquitetura de parceria estratégica para transformar estratégia ESG<br>
-        em aplicação territorial mensurável, conectando precisão técnica<br>
-        à execução social de alta performance
-    </div>
-    
-    <div class="meta">
-        <p>Documento Estratégico Confidencial | Fevereiro 2026</p>
-    </div>
-</div>
-
-<!-- ============================================
-     SLIDE 2: SUMÁRIO EXECUTIVO
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-                <path d="M20 4V8M20 32V36M4 20H8M32 20H36" stroke="#C9A24A" stroke-width="2"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Sumário Executivo</h2>
-        
-        <div class="sumario-grid">
-            <div class="sumario-item">
-                <div class="sumario-numero">01</div>
-                <div class="sumario-texto">Contexto e Oportunidade</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">02</div>
-                <div class="sumario-texto">Proposta: O Ecossistema Conector</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">03</div>
-                <div class="sumario-texto">Arquitetura da Parceria</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">04</div>
-                <div class="sumario-texto">Fundo de Sabedoria Prática ESG</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">05</div>
-                <div class="sumario-texto">Modelo de Governança</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">06</div>
-                <div class="sumario-texto">Plano de Implementação</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">07</div>
-                <div class="sumario-texto">Indicadores e Metas</div>
-            </div>
-            <div class="sumario-item">
-                <div class="sumario-numero">08</div>
-                <div class="sumario-texto">Próximos Passos</div>
-            </div>
+    <!-- Development Banner -->
+    <div class="dev-banner">
+        <div class="dev-banner-content">
+            <span class="dev-badge">🚧 Em Desenvolvimento</span>
+            <span class="dev-text">Ecossistema Empower Minds em fase de aplicação territorial.</span>
+            <a href="mailto:carvalhojaderson@gmail.com" class="dev-contact">carvalhojaderson@gmail.com</a>
         </div>
     </div>
-    
-    <div class="slide-number">02</div>
-</div>
 
-<!-- ============================================
-     SLIDE 3: O DESAFIO
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div style="display: flex; flex-direction: column;">
+                    <span class="company-name">Empower Minds</span>
+                    <span class="product-name">VoxMotion AI</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#ecosystem">Ecossistema</a></li>
+                <li><a href="#method">Método</a></li>
+                <li><a href="#tech">Tecnologia</a></li>
+                <li><a href="#apps">Aplicações</a></li>
+                <li><a href="#contact">Rota</a></li>
+            </ul>
+            <button class="cta-button" onclick="scrollToContact()">Iniciar Rota</button>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>O Desafio: Do Relatório à Rua</h2>
-        
-        <div class="conteudo-duas-colunas">
-            <div class="coluna-texto">
-                <h3>O Mercado ESG Avançou em:</h3>
-                <ul class="lista-destaque">
-                    <li>Governança corporativa estruturada</li>
-                    <li>Reporting e disclosure padronizado</li>
-                    <li>Metas baseadas em ciência (SBTi)</li>
-                    <li>Auditoria e assurance especializada</li>
-                </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">Ecossistema de Aplicação Social</div>
+                <h1>Transformamos Intenção em Entrega Territorial</h1>
+                <p class="hero-quote">
+                    "O que o mercado chama de burocracia, nós lemos como estação. Leis não são muros: são correntes. E correntes têm direção."
+                </p>
+                <p class="hero-subtitle">
+                    A <strong>Empower Minds</strong> é um ecossistema que não para na complexidade do sistema — 
+                    aplica no território. O <strong>VoxMotion AI</strong> é nossa tecnologia de ponta 
+                    que une Google Gemini, UNICAMP e visão computacional para capturar, analisar e 
+                    potencializar o movimento humano.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn-primary" onclick="document.getElementById('ecosystem').scrollIntoView({behavior: 'smooth'})">
+                        Conhecer o Ecossistema →
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToContact()">
+                        Traçar sua Rota
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=600&fit=crop" 
+                         alt="Bailarino com análise biomecânica em tempo real" 
+                         class="hero-image">
+                    <div class="skeleton-overlay"></div>
+                    <div class="skeleton-lines"></div>
+                </div>
+                <div class="floating-card">
+                    <div class="card-icon">☀️</div>
+                    <div class="card-text">
+                        <strong>Visão</strong>
+                        Discernir tempos e estações
+                    </div>
+                </div>
+                <div class="floating-card">
+                    <div class="card-icon">⛵</div>
+                    <div class="card-text">
+                        <strong>Navegação</strong>
+                        Traçar rota com precisão
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section - Três Movimentos -->
+    <section id="ecosystem" class="ecosystem-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Os Três Movimentos</span>
+                <h2 class="section-title">Arquitetura do Ecossistema</h2>
+                <p class="section-subtitle">
+                    Cada movimento representa uma capacidade essencial para transformar 
+                    intenção em resultado sustentado no território.
+                </p>
+            </div>
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card">
+                    <span class="ecosystem-symbol">☀️🌙</span>
+                    <h3>Visão</h3>
+                    <p class="subtitle">Sol e Lua</p>
+                    <p>Discernir tempos e estações. Ler o momento certo de agir, 
+                       compreender ciclos e sazonalidades do sistema e do território.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <span class="ecosystem-symbol">⛵💎</span>
+                    <h3>Navegação</h3>
+                    <p class="subtitle">Barco e Diamante</p>
+                    <p>Traçar rota com segurança e precisão. Navegar a complexidade 
+                       regulatória com técnica, transformando burocracia em corrente de avanço.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <span class="ecosystem-symbol">🏹🌾</span>
+                    <h3>Aplicação</h3>
+                    <p class="subtitle">Arco e Celeiro</p>
+                    <p>Implantar e sustentar resultados no território. Projetos que geram 
+                       vida, não apenas promessas. Resultados mensuráveis e duradouros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section - 10 Etapas -->
+    <section id="method" class="method-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">O Método</span>
+                <h2 class="section-title">Das Profundezas ao Celeiro</h2>
+                <p class="section-subtitle">
+                    10 etapas que conduzem da intenção inicial à sustentação territorial. 
+                    Cada fase é uma estação necessária na rota do projeto.
+                </p>
+            </div>
+            <div class="method-timeline">
+                <div class="method-step">
+                    <div class="method-number">1</div>
+                    <div class="method-content">
+                        <h4>Entrada</h4>
+                        <p>O ponto de partida — reconhecer a intenção e o território de atuação.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">2</div>
+                    <div class="method-content">
+                        <h4>Estação</h4>
+                        <p>Identificar o tempo certo, a sazonalidade do projeto e do ambiente.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">3</div>
+                    <div class="method-content">
+                        <h4>Rota</h4>
+                        <p>Traçar o caminho viável, mapeando recursos e regulamentações.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">4</div>
+                    <div class="method-content">
+                        <h4>Areia / Deserto</h4>
+                        <p>Areia e deserto não são ausência de valor. São ausência de visão, rota e nutrição.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">5</div>
+                    <div class="method-content">
+                        <h4>Profundezas</h4>
+                        <p>Mergulhar na complexidade, compreender raízes e estruturas ocultas.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">6</div>
+                    <div class="method-content">
+                        <h4>Madre</h4>
+                        <p>A matriz geradora — onde recursos e intenção se combinam.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">7</div>
+                    <div class="method-content">
+                        <h4>Seios</h4>
+                        <p>Nutrição e sustento — garantir os recursos para o desenvolvimento.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">8</div>
+                    <div class="method-content">
+                        <h4>Arco / Flecha</h4>
+                        <p>Direcionamento preciso — lançar o projeto com técnica e força.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">9</div>
+                    <div class="method-content">
+                        <h4>Celeiro</h4>
+                        <p>Colheita e armazenamento — resultados sustentados e multiplicáveis.</p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <div class="method-number">10</div>
+                    <div class="method-content">
+                        <h4>Retroalimentação</h4>
+                        <p>O ciclo se renova — aprendizados que alimentam novas intenções.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <p class="quote-large">
+                Projeto não é promessa: é vida sustentada.
+            </p>
+            <p class="quote-author">— Princípio Empower Minds</p>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="tech">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Tecnologia de Ponta</span>
+                <h2 class="section-title">VoxMotion AI</h2>
+                <p class="section-subtitle">
+                    O braço tecnológico do ecossistema Empower Minds. 
+                    IA multimodal que captura, analisa e dialoga com o movimento humano.
+                </p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">👁️</div>
+                    <h3>Visão Computacional</h3>
+                    <p>Captura markerless de alta precisão utilizando apenas a câmera do smartphone. 
+                       Nenhum sensor adicional necessário.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🎙️</div>
+                    <h3>Interação por Voz</h3>
+                    <p>Feedback conversacional instantâneo via Gemini Live. Diálogos naturais 
+                       sobre performance e técnica em tempo real.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">⚡</div>
+                    <h3>Edge AI</h3>
+                    <p>Processamento local no smartphone para latência zero e privacidade máxima. 
+                       Seus dados nunca saem do dispositivo.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📊</div>
+                    <h3>Análise Biomecânica</h3>
+                    <p>Transformação de pixels em métricas cinemáticas validadas cientificamente 
+                       pela UNICAMP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNICAMP Section -->
+    <section id="science" class="unicamp-section">
+        <div class="container">
+            <div class="unicamp-content">
+                <div class="unicamp-visual">
+                    <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&h=600&fit=crop" 
+                         alt="Estúdio de captura de movimento com bailarino" 
+                         class="unicamp-image">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">15+</span>
+                            <div class="stat-label">Anos de Pesquisa</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">50+</span>
+                            <div class="stat-label">Publicações</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <div class="stat-label">Patentes</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <div class="stat-label">Validação Ética</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="unicamp-text">
+                    <span class="section-tag">Parceria Estratégica</span>
+                    <h2 class="section-title">Ciência de Elite para o Território</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        A VoxMotion AI integra o ecossistema Empower Minds através da parceria 
+                        com a UNICAMP, conectando décadas de pesquisa de ponta à aplicação real 
+                        em comunidades.
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Grupo de Pesquisa em Biomecânica</strong><br>
+                            Liderado pela Profa. Dra. Karine Sarro, garantindo precisão métrica 
+                            e segurança técnica nas aplicações territoriais.
+                        </li>
+                        <li>
+                            <strong>Validação Humana e Ética</strong><br>
+                            Sob supervisão da Dra. Paula, assegurando que a interação IA-Humano 
+                            seja ética, inclusiva e otimizada para o estado de Flow.
+                        </li>
+                        <li>
+                            <strong>Google Gemini Partnership</strong><br>
+                            Caso de uso avançado para tecnologias de fronteira, integrando 
+                            visão computacional e diálogo natural.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Aplicações Territoriais</span>
+                <h2 class="section-title">Onde o Ecossistema Atua</h2>
+                <p class="section-subtitle">
+                    O VoxMotion AI aplica o método Empower Minds em diferentes vertentes 
+                    do movimento humano.
+                </p>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">🏆</div>
+                        <h3>SportTech & Performance</h3>
+                        <p>Análise técnica de alto rendimento, prevenção de lesões e otimização 
+                           biomecânica. Democratizando acesso a tecnologia de elite.</p>
+                    </div>
+                    <span class="app-tag">Alto Rendimento</span>
+                </div>
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">🎭</div>
+                        <h3>CreativeTech & Cultura</h3>
+                        <p>IA como co-criadora em processos coreográficos e documentação artística. 
+                           Transformando a subjetividade da dança em dados acionáveis.</p>
+                    </div>
+                    <span class="app-tag">Arte & Tecnologia</span>
+                </div>
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">📚</div>
+                        <h3>Educação & Inclusão</h3>
+                        <p>Democratização do acesso à saúde e cultura. Ferramentas de acessibilidade 
+                           para deficientes visuais e suporte pedagógico.</p>
+                    </div>
+                    <span class="app-tag">Impacto Social</span>
+                </div>
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">🎬</div>
+                        <h3>Produção de Espetáculos</h3>
+                        <p>Gestão técnica de elencos, análise de sincronia e integração de movimento 
+                           com cenografia digital.</p>
+                    </div>
+                    <span class="app-tag">Entretenimento</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brazil Section -->
+    <section id="about" class="brazil-section">
+        <div class="container">
+            <div class="brazil-content">
+                <div class="brazil-text">
+                    <span class="section-tag">Base Territorial</span>
+                    <h2 class="section-title">Por que o Brasil?</h2>
+                    <h3>O Maior Laboratório de Movimento do Mundo</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        A Empower Minds escolheu o Brasil como base estratégica — um território 
+                        de diversidade incomparável, onde cada comunidade é uma estação de aprendizado.
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Leis de Incentivo como Correntes</strong><br>
+                            Utilizamos mecanismos de fomento à cultura e esporte como rotas de 
+                            navegação, não como muros burocráticos.
+                        </li>
+                        <li>
+                            <strong>Diversidade de Dados</strong><br>
+                            Treinamos nossa IA com a riqueza do movimento brasileiro, criando 
+                            modelos universais a partir da especificidade local.
+                        </li>
+                        <li>
+                            <strong>Aplicação Real</strong><br>
+                            Projetos que nascem no território, vivem no território e retornam 
+                            ao território multiplicados.
+                        </li>
+                    </ul>
+                </div>
+                <div class="brazil-map">
+                    <div style="font-size: 8rem; opacity: 0.3;">🇧🇷</div>
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; right: 2rem; text-align: center;">
+                        <p style="color: var(--gold); font-weight: 600; font-family: 'Cinzel', serif;">
+                            Empower Minds<br>
+                            <small style="color: var(--teal);">Made in Brazil, For the World</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Partnership -->
+    <section class="google-section">
+        <div class="container">
+            <span class="section-tag">Tecnologia de Fronteira</span>
+            <h2 class="section-title">Powered by Google</h2>
+            <p class="section-subtitle">
+                O ecossistema Empower Minds é caso de uso avançado para as tecnologias 
+                mais sofisticadas do Google.
+            </p>
+            <div class="google-grid">
+                <div class="google-card">
+                    <div class="google-logo">Gemini Live</div>
+                    <h3>Diálogos Naturais</h3>
+                    <p>Feedback em tempo real durante prática esportiva e artística, 
+                       com compreensão contextual avançada.</p>
+                </div>
+                <div class="google-card">
+                    <div class="google-logo">Vertex AI</div>
+                    <h3>Modelos Multimodais</h3>
+                    <p>Fine-tuning especializado em biomecânica humana, integrando 
+                       visão, linguagem e análise preditiva.</p>
+                </div>
+                <div class="google-card">
+                    <div class="google-logo">Android</div>
+                    <h3>Ecosystem Mobile</h3>
+                    <p>Biomecânica de laboratório em bilhões de dispositivos, 
+                       democratizando acesso à análise de movimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-cta">
+                <span class="section-tag">Inicie sua Rota</span>
+                <h2 class="section-title" style="margin: 1.5rem 0;">Pronto para Aplicar no Território?</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">
+                    Entre em contato com o ecossistema Empower Minds. Da intenção ao celeiro, 
+                    percorremos juntos as 10 estações do método.
+                </p>
+                <button class="btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;" onclick="showContactForm()">
+                    Traçar Minha Rota →
+                </button>
                 
-                <div class="destaque" style="margin-top: 40px;">
-                    "Mas enfrenta desafio crítico em aplicação territorial efetiva"
+                <div class="email-highlight">
+                    📧 carvalhojaderson@gmail.com
                 </div>
-            </div>
-            
-            <div class="coluna-texto">
-                <h3>A Lacuna Identificada:</h3>
-                <div class="card-info">
-                    <h4>Abundância</h4>
-                    <p>Estratégias escritas, indicadores projetados, compromissos assumidos</p>
-                </div>
-                <div class="card-info">
-                    <h4>Escassez</h4>
-                    <p>Projetos estruturados para execução, conexão efetiva entre atores, mensuração de impacto real, continuidade além do ciclo de reporte</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">03</div>
-</div>
-
-<!-- ============================================
-     SLIDE 4: CONTEXTO BDO
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Contexto: Liderança BDO em ESG</h2>
-        
-        <div class="indicadores-row" style="margin-top: 60px;">
-            <div class="indicador-card">
-                <span class="indicador-numero">2x</span>
-                <span class="indicador-label">Selo Ouro GHG Protocol</span>
-                <span class="indicador-sublabel">Anos consecutivos</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">SBTi</span>
-                <span class="indicador-label">Metas Aprovadas</span>
-                <span class="indicador-sublabel">Setembro 2025</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">42%</span>
-                <span class="indicador-label">Redução de Emissões</span>
-                <span class="indicador-sublabel">Meta até 2030</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">100%</span>
-                <span class="indicador-label">Energia Renovável</span>
-                <span class="indicador-sublabel">Operações BDO</span>
-            </div>
-        </div>
-        
-        <div class="destaque" style="margin-top: 60px; text-align: center;">
-            8º Estudo de Sustentabilidade BDO: 61% das empresas enxergam ESG como estratégia,<br>
-            mas apenas 39% possuem departamento estruturado → Oportunidade de diferenciação
-        </div>
-    </div>
-    
-    <div class="slide-number">04</div>
-</div>
-
-<!-- ============================================
-     SLIDE 5: PROPOSTA DE VALOR
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Proposta: O Ecossistema Conector</h2>
-        
-        <div class="fluxo-visual" style="margin-top: 40px;">
-            <div class="fluxo-etapa">
-                <div class="icone">BDO</div>
-                <h4>Estratégia & Compliance</h4>
-                <p>Diagnóstico ESG<br>Metas SBTi<br>Reporting</p>
-            </div>
-            <div class="fluxo-seta">→</div>
-            <div class="fluxo-etapa">
-                <div class="icone" style="background: rgba(26, 166, 166, 0.2); border-color: #1AA6A6; color: #1AA6A6;">EM</div>
-                <h4>Conexão & Aplicação</h4>
-                <p>Engenharia de conexão<br>Governança de campo<br>Mensuração territorial</p>
-            </div>
-            <div class="fluxo-seta">→</div>
-            <div class="fluxo-etapa">
-                <div class="icone" style="background: rgba(245, 247, 250, 0.1); border-color: #F5F7FA; color: #F5F7FA;">★</div>
-                <h4>Impacto Real</h4>
-                <p>Projetos executados<br>Resultados mensuráveis<br>Legado sustentado</p>
-            </div>
-        </div>
-        
-        <div class="destaque" style="margin-top: 60px;">
-            O Epower Minds não compete com a BDO em auditoria ou consultoria estratégica.<br>
-            Atuamos como camada de aplicação que converte estratégia em execução territorial.
-        </div>
-    </div>
-    
-    <div class="slide-number">05</div>
-</div>
-
-<!-- ============================================
-     SLIDE 6: OS TRÊS MOVIMENTOS
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Metodologia: Os Três Movimentos</h2>
-        
-        <div class="indicadores-row" style="margin-top: 40px;">
-            <div class="indicador-card" style="border-color: #C9A24A;">
-                <div style="font-size: 60px; margin-bottom: 20px;">☉</div>
-                <h3 style="color: #C9A24A; margin-bottom: 15px; font-size: 28px;">VISÃO</h3>
-                <p style="font-size: 18px; color: rgba(245, 247, 250, 0.9); margin: 0;">Sol e Lua</p>
-                <p style="font-size: 16px; color: rgba(245, 247, 250, 0.7); margin-top: 10px;">Discernir tempos e estações.<br>Ler o momento certo de agir.</p>
-            </div>
-            <div class="indicador-card" style="border-color: #1AA6A6;">
-                <div style="font-size: 60px; margin-bottom: 20px;">⛵</div>
-                <h3 style="color: #1AA6A6; margin-bottom: 15px; font-size: 28px;">NAVEGAÇÃO</h3>
-                <p style="font-size: 18px; color: rgba(245, 247, 250, 0.9); margin: 0;">Barco e Diamante</p>
-                <p style="font-size: 16px; color: rgba(245, 247, 250, 0.7); margin-top: 10px;">Traçar rota com segurança.<br>Navegar as correntes das leis.</p>
-            </div>
-            <div class="indicador-card" style="border-color: #F5F7FA;">
-                <div style="font-size: 60px; margin-bottom: 20px;">🏹</div>
-                <h3 style="color: #F5F7FA; margin-bottom: 15px; font-size: 28px;">APLICAÇÃO</h3>
-                <p style="font-size: 18px; color: rgba(245, 247, 250, 0.9); margin: 0;">Arco e Celeiro</p>
-                <p style="font-size: 16px; color: rgba(245, 247, 250, 0.7); margin-top: 10px;">Arco firme, flecha certa.<br>Implantar e sustentar.</p>
-            </div>
-        </div>
-        
-        <div class="destaque" style="margin-top: 50px; text-align: center; font-size: 32px;">
-            "Não paramos na complexidade do sistema. Nós aplicamos no território."
-        </div>
-    </div>
-    
-    <div class="slide-number">06</div>
-</div>
-
-<!-- ============================================
-     SLIDE 7: ARQUITETURA DA PARCERIA
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Arquitetura da Parceria</h2>
-        
-        <table class="tabela-slide" style="margin-top: 30px;">
-            <thead>
-                <tr>
-                    <th style="width: 15%;">Etapa</th>
-                    <th style="width: 30%;">BDO</th>
-                    <th style="width: 30%;">Epower Minds</th>
-                    <th style="width: 25%;">Resultado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>1. Diagnóstico</strong></td>
-                    <td>Assessment ESG, materialidade, gaps regulatórios</td>
-                    <td>Mapeamento territorial de oportunidades</td>
-                    <td>Projetos viáveis identificados</td>
-                </tr>
-                <tr>
-                    <td><strong>2. Estratégia</strong></td>
-                    <td>Metas, KPIs, roadmap ESG</td>
-                    <td>Discernimento de estações e janelas</td>
-                    <td>Plano com timing preciso</td>
-                </tr>
-                <tr>
-                    <td><strong>3. Estruturação</strong></td>
-                    <td>Governança corporativa, compliance</td>
-                    <td>Engenharia de conexão, viabilização legal</td>
-                    <td>Projeto pronto para implementação</td>
-                </tr>
-                <tr>
-                    <td><strong>4. Execução</strong></td>
-                    <td>Oversight, assurance, monitoramento</td>
-                    <td>Coordenação de rede, gestão de campo</td>
-                    <td>Entrega territorial mensurável</td>
-                </tr>
-                <tr>
-                    <td><strong>5. Reporte</strong></td>
-                    <td>Assurance ESG, relatórios integrados</td>
-                    <td>Mensuração de impacto, histórias de caso</td>
-                    <td>Evidência auditável</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="slide-number">07</div>
-</div>
-
-<!-- ============================================
-     SLIDE 8: O FUNDO
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Fundo de Sabedoria Prática ESG</h2>
-        
-        <div class="conteudo-duas-colunas" style="margin-top: 20px;">
-            <div class="coluna-texto">
-                <h3>Conceito</h3>
-                <p class="texto-medio">Mecanismo de investimento social que prioriza aplicação sobre promessa, mensuração sobre narrativa, continuidade sobre evento isolado.</p>
                 
-                <div class="destaque" style="margin-top: 30px;">
-                    "Sabedoria Prática": conhecimento gerado a partir da execução real, distinto da teoria ou planejamento abstrato.
+                <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">
+                    "Não paramos na complexidade do sistema. Nós aplicamos no território."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="font-size: 1.2rem;">
+                <div class="logo-icon" style="width: 35px; height: 35px;"></div>
+                <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <span class="company-name" style="font-size: 0.6rem;">Empower Minds</span>
+                    <span style="font-size: 1rem; color: var(--text);">Ecossistema de Aplicação Social</span>
                 </div>
             </div>
+            <p style="font-family: 'Cinzel', serif; letter-spacing: 1px;">
+                &copy; 2024 Empower Minds. Todos os direitos reservados.
+            </p>
+            <div class="social-links">
+                <a href="mailto:carvalhojaderson@gmail.com" title="Email">✉️</a>
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="Instagram">ig</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.from('.hero-text > *', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-visual', {
+            opacity: 0,
+            x: 50,
+            duration: 1.2,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
+
+        // Ecosystem cards animation
+        gsap.from('.ecosystem-card', {
+            scrollTrigger: {
+                trigger: '#ecosystem',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
+        // Method steps animation
+        gsap.from('.method-step', {
+            scrollTrigger: {
+                trigger: '#method',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: -30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out'
+        });
+
+        // Tech cards animation
+        gsap.from('.tech-card', {
+            scrollTrigger: {
+                trigger: '#tech',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        });
+
+        // App cards animation
+        gsap.from('.app-card', {
+            scrollTrigger: {
+                trigger: '#apps',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'back.out(1.7)'
+        });
+
+        // Google cards animation
+        gsap.from('.google-card', {
+            scrollTrigger: {
+                trigger: '.google-section',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
+        // Stats counter animation
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.innerText);
+            gsap.to(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 85%',
+                },
+                innerText: target,
+                duration: 2,
+                snap: { innerText: 1 },
+                ease: 'power2.out'
+            });
+        });
+
+        // Smooth scroll functions
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showContactForm() {
+            alert('Obrigado pelo interesse no Ecossistema Empower Minds! Entre em contato: carvalhojaderson@gmail.com');
+        }
+
+        function toggleMenu() {
+            alert('Menu mobile - implementação completa disponível');
+        }
+
+        // Parallax effect for floating cards
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.floating-card');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
             
-            <div class="coluna-texto">
-                <h3>Papel do Epower Minds</h3>
-                <div class="card-info">
-                    <h4>Originação</h4>
-                    <p>Identificar projetos alinhados a critérios ESG</p>
-                </div>
-                <div class="card-info">
-                    <h4>Due Diligence Social</h4>
-                    <p>Avaliar capacidade de execução territorial</p>
-                </div>
-                <div class="card-info">
-                    <h4>Engenharia de Conexão</h4>
-                    <p>Articular governo, ONGs, academia</p>
-                </div>
-                <div class="card-info">
-                    <h4>Governança de Campo</h4>
-                    <p>Estabelecer gestão compartilhada</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">08</div>
-</div>
-
-<!-- ============================================
-     SLIDE 9: GOVERNANÇA
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Modelo de Governança Conjunta</h2>
-        
-        <h3>Comitê de Sabedoria Prática</h3>
-        
-        <table class="tabela-slide" style="margin-top: 30px;">
-            <thead>
-                <tr>
-                    <th style="width: 20%;">Papel</th>
-                    <th style="width: 40%;">BDO</th>
-                    <th style="width: 40%;">Epower Minds</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Direção Estratégica</strong></td>
-                    <td>Critérios ESG, frameworks globais (SBTi, TCFD, ISSB)</td>
-                    <td>Tradução para realidade brasileira, adaptação territorial</td>
-                </tr>
-                <tr>
-                    <td><strong>Seleção</strong></td>
-                    <td>Risco, viabilidade financeira, compliance</td>
-                    <td>Viabilidade territorial, capacidade de execução, timing</td>
-                </tr>
-                <tr>
-                    <td><strong>Oversight</strong></td>
-                    <td>Assurance, auditoria, reporte</td>
-                    <td>Gestão de campo, coordenação, resolução de impedimentos</td>
-                </tr>
-                <tr>
-                    <td><strong>Mensuração</strong></td>
-                    <td>Verificação externa, validação de dados</td>
-                    <td>Coleta de dados primários, indicadores de campo</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <div style="margin-top: 40px; background: rgba(201, 162, 74, 0.1); padding: 20px; border-radius: 8px; border: 1px solid #C9A24A;">
-            <h4 style="color: #C9A24A; margin-bottom: 10px;">Critérios de Priorização</h4>
-            <p style="font-size: 16px; margin: 0;">Alinhamento ESG • Viabilidade Territorial • Estação • Escalabilidade • Mensurabilidade</p>
-        </div>
-    </div>
-    
-    <div class="slide-number">09</div>
-</div>
-
-<!-- ============================================
-     SLIDE 10: IMPLEMENTAÇÃO
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Plano de Implementação</h2>
-        
-        <div class="timeline" style="margin-top: 60px;">
-            <div class="timeline-fase">
-                <h4>Fase 1</h4>
-                <div class="periodo">0-3 meses</div>
-                <div class="timeline-dot"></div>
-                <p>Formalização de parceria, definição de critérios, constituição do Fundo</p>
-            </div>
-            <div class="timeline-fase">
-                <h4>Fase 2</h4>
-                <div class="periodo">3-12 meses</div>
-                <div class="timeline-dot"></div>
-                <p>3-5 projetos-piloto, validação de metodologia, primeiros resultados</p>
-            </div>
-            <div class="timeline-fase">
-                <h4>Fase 3</h4>
-                <div class="periodo">12-24 meses</div>
-                <div class="timeline-dot"></div>
-                <p>Escala para carteira BDO, produto comercial integrado, fundo de investimento</p>
-            </div>
-        </div>
-        
-        <div class="indicadores-row" style="margin-top: 80px;">
-            <div class="indicador-card" style="background: rgba(201, 162, 74, 0.1);">
-                <span class="indicador-numero" style="font-size: 48px;">MVP</span>
-                <span class="indicador-label">Projetos Piloto</span>
-                <span class="indicador-sublabel">Validação rápida</span>
-            </div>
-            <div class="indicador-card" style="background: rgba(26, 166, 166, 0.1);">
-                <span class="indicador-numero" style="font-size: 48px;">Scale</span>
-                <span class="indicador-label">Expansão</span>
-                <span class="indicador-sublabel">Carteira completa</span>
-            </div>
-            <div class="indicador-card" style="background: rgba(245, 247, 250, 0.1);">
-                <span class="indicador-numero" style="font-size: 48px;">Inst.</span>
-                <span class="indicador-label">Institucionalização</span>
-                <span class="indicador-sublabel">Fundo dedicado</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">10</div>
-</div>
-
-<!-- ============================================
-     SLIDE 11: METAS
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Indicadores e Metas - Ano 1</h2>
-        
-        <div class="indicadores-row" style="margin-top: 40px;">
-            <div class="indicador-card">
-                <span class="indicador-numero">10</span>
-                <span class="indicador-label">Projetos Estruturados</span>
-                <span class="indicador-sublabel">Contratos firmados</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">R$5M</span>
-                <span class="indicador-label">Recursos Mobilizados</span>
-                <span class="indicador-sublabel">Fluxo auditado</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">15</span>
-                <span class="indicador-label">Municípios Atendidos</span>
-                <span class="indicador-sublabel">Geolocalizado</span>
-            </div>
-            <div class="indicador-card">
-                <span class="indicador-numero">30</span>
-                <span class="indicador-label">ONGs Integradas</span>
-                <span class="indicador-sublabel">Rede validada</span>
-            </div>
-        </div>
-        
-        <div style="margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-            <div class="card-info" style="margin: 0;">
-                <h4>Governança</h4>
-                <p style="font-size: 20px; margin: 0;">100% dos projetos com relatório de impacto auditado (assurance BDO)</p>
-            </div>
-            <div class="card-info" style="margin: 0;">
-                <h4>Conhecimento</h4>
-                <p style="font-size: 20px; margin: 0;">4 publicações sobre metodologia em veículos relevantes</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">11</div>
-</div>
-
-<!-- ============================================
-     SLIDE 12: DIFERENCIAIS
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Diferenciais da Parceria</h2>
-        
-        <div class="conteudo-duas-colunas" style="margin-top: 20px;">
-            <div class="coluna-texto">
-                <h3>Para o Mercado ESG</h3>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>Fechamento do Ciclo</h4>
-                    <p>Da estratégia à rua, do relatório ao resultado real</p>
-                </div>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>Governança sem Burocracia</h4>
-                    <p>Estrutura leve, ágil, mas rigorosa</p>
-                </div>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>Mensuração Integrada</h4>
-                    <p>Indicadores ESG conectados a transformação territorial</p>
-                </div>
-            </div>
-            
-            <div class="coluna-texto">
-                <h3>Alinhamento Estratégico</h3>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>BDO + Epower Minds</h4>
-                    <p>Science Based Targets → Metas baseadas em realidade local</p>
-                </div>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>Responsible Sourcing</h4>
-                    <p>Aquisição responsável de projetos sociais, não apenas bens</p>
-                </div>
-                <div class="card-info" style="margin-bottom: 25px;">
-                    <h4>Stakeholder Engagement</h4>
-                    <p>Comunidades como stakeholders centrais, não apenas consulta</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">12</div>
-</div>
-
-<!-- ============================================
-     SLIDE 13: PRÓXIMOS PASSOS
-     ============================================ -->
-<div class="slide">
-    <div class="slide-header">
-        <div class="logo-epower">
-            <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="8" fill="#C9A24A"/>
-            </svg>
-            Epower Minds
-        </div>
-        <div class="logo-bdo">BDO</div>
-    </div>
-    
-    <div class="slide-content">
-        <h2>Próximos Passos</h2>
-        
-        <div style="margin-top: 40px;">
-            <div style="display: flex; align-items: center; margin-bottom: 30px; padding: 25px; background: rgba(201, 162, 74, 0.1); border-radius: 12px; border-left: 4px solid #C9A24A;">
-                <div style="font-family: 'Cinzel', serif; font-size: 36px; color: #C9A24A; margin-right: 30px; min-width: 60px;">01</div>
-                <div>
-                    <h4 style="font-size: 24px; color: #F5F7FA; margin-bottom: 5px;">Apresentação Institucional</h4>
-                    <p style="font-size: 18px; color: rgba(245, 247, 250, 0.8); margin: 0;">Diretoria de ESG da BDO Brasil</p>
-                </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; margin-bottom: 30px; padding: 25px; background: rgba(201, 162, 74, 0.1); border-radius: 12px; border-left: 4px solid #C9A24A;">
-                <div style="font-family: 'Cinzel', serif; font-size: 36px; color: #C9A24A; margin-right: 30px; min-width: 60px;">02</div>
-                <div>
-                    <h4 style="font-size: 24px; color: #F5F7FA; margin-bottom: 5px;">Workshop de Alinhamento</h4>
-                    <p style="font-size: 18px; color: rgba(245, 247, 250, 0.8); margin: 0;">Metodologia e integração de processos</p>
-                </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; margin-bottom: 30px; padding: 25px; background: rgba(201, 162, 74, 0.1); border-radius: 12px; border-left: 4px solid #C9A24A;">
-                <div style="font-family: 'Cinzel', serif; font-size: 36px; color: #C9A24A; margin-right: 30px; min-width: 60px;">03</div>
-                <div>
-                    <h4 style="font-size: 24px; color: #F5F7FA; margin-bottom: 5px;">Mapeamento de Oportunidades</h4>
-                    <p style="font-size: 18px; color: rgba(245, 247, 250, 0.8); margin: 0;">3 oportunidades imediatas na carteira BDO</p>
-                </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; padding: 25px; background: rgba(26, 166, 166, 0.1); border-radius: 12px; border-left: 4px solid #1AA6A6;">
-                <div style="font-family: 'Cinzel', serif; font-size: 36px; color: #1AA6A6; margin-right: 30px; min-width: 60px;">04</div>
-                <div>
-                    <h4 style="font-size: 24px; color: #F5F7FA; margin-bottom: 5px;">Formalização da Parceria</h4>
-                    <p style="font-size: 18px; color: rgba(245, 247, 250, 0.8); margin: 0;">Proposta comercial e início da Fase 1</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">13</div>
-</div>
-
-<!-- ============================================
-     SLIDE 14: FINAL
-     ============================================ -->
-<div class="slide slide-final">
-    <h2>Obrigado</h2>
-    
-    <div class="frase-final">
-        "A BDO traz a precisão do diamante.<br>
-        O Epower Minds traz a rota do barco.<br>
-        Juntos, chegamos ao celeiro."
-    </div>
-    
-    <div class="contatos-final">
-        <div class="contato-box">
-            <h4>Epower Minds</h4>
-            <p>Ecossistema de Aplicação Social</p>
-            <p>contato@epowerminds.org</p>
-            <p>www.epowerminds.org</p>
-        </div>
-        
-        <div style="width: 2px; height: 150px; background: rgba(201, 162, 74, 0.3);"></div>
-        
-        <div class="contato-box">
-            <h4>BDO Brasil</h4>
-            <p>Advisory e Assurance</p>
-            <p>www.bdo.com.br</p>
-            <p>São Paulo, SP</p>
-        </div>
-    </div>
-    
-    <div style="margin-top: 80px; font-size: 14px; color: rgba(245, 247, 250, 0.5);">
-        Documento Confidencial | Fevereiro 2026
-    </div>
-</div>
-
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 0.5;
+                card.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
