@@ -104,7 +104,7 @@
             border-bottom-style: solid;
         }
 
-        /* Product Development Banner - Separado */
+        /* Product Development Banner */
         .product-dev-banner {
             background: linear-gradient(90deg, var(--warning-bg), rgba(245, 158, 11, 0.15), var(--warning-bg));
             border: 1px solid var(--gold);
@@ -248,16 +248,6 @@
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 3px;
-        }
-
-        .product-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--text), var(--teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .nav-links {
@@ -634,7 +624,7 @@
             margin: 0 auto;
         }
 
-        /* Services Section - NOVO */
+        /* Services Section */
         .services-section {
             background: linear-gradient(135deg, rgba(6, 26, 43, 0.9), rgba(4, 15, 26, 0.95));
         }
@@ -886,7 +876,83 @@
             text-transform: uppercase;
         }
 
-        /* Product Section - EM DESENVOLVIMENTO */
+        /* Partners Section */
+        .partners-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.6), rgba(201, 162, 74, 0.05));
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal);
+        }
+
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .partner-logo.unicamp {
+            color: var(--teal);
+        }
+
+        .partner-logo.google {
+            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .partner-card h3 {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .partner-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .partner-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .partner-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .partner-features li::before {
+            content: '◆';
+            color: var(--teal);
+            font-size: 0.6rem;
+        }
+
+        /* Product Section - APLICATIVO EM DESENVOLVIMENTO */
         .product-section {
             background: linear-gradient(135deg, rgba(6, 26, 43, 0.95), rgba(4, 15, 26, 0.98));
             position: relative;
@@ -1019,6 +1085,105 @@
             letter-spacing: 0.5px;
         }
 
+        /* App Preview Mockup */
+        .app-mockup {
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .app-screen {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(180deg, var(--deep-blue), var(--darker));
+            border: 3px solid var(--gold);
+            border-radius: 32px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .app-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: var(--dark);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .app-content {
+            padding: 3rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .app-icon-large {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .app-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .app-coming-soon {
+            margin-top: auto;
+            padding: 0.75rem 1.5rem;
+            background: rgba(201, 162, 74, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .app-features-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+        }
+
+        .app-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .app-feature-item::before {
+            content: '◆';
+            color: var(--teal);
+            font-size: 0.6rem;
+        }
+
         /* Repository Structure */
         .repo-structure {
             background: var(--code-bg);
@@ -1140,82 +1305,6 @@
         .copy-btn:hover {
             background: rgba(201, 162, 74, 0.1);
             border-color: var(--gold);
-        }
-
-        /* Partners Section */
-        .partners-section {
-            background: linear-gradient(135deg, rgba(6, 26, 43, 0.6), rgba(201, 162, 74, 0.05));
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .partner-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-        }
-
-        .partner-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--teal);
-        }
-
-        .partner-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .partner-logo.unicamp {
-            color: var(--teal);
-        }
-
-        .partner-logo.google {
-            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .partner-card h3 {
-            font-size: 1.2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-family: 'Cinzel', serif;
-        }
-
-        .partner-card p {
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .partner-features {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .partner-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .partner-features li::before {
-            content: '◆';
-            color: var(--teal);
-            font-size: 0.6rem;
         }
 
         /* Contact Section */
@@ -1373,6 +1462,11 @@
                 gap: 0.5rem;
             }
 
+            .app-screen {
+                width: 240px;
+                height: 480px;
+            }
+
             .clone-command {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1429,7 +1523,7 @@
                 <li><a href="#ecosystem">Ecossistema</a></li>
                 <li><a href="#method">Método</a></li>
                 <li><a href="#partners">Parcerias</a></li>
-                <li><a href="#product">Produto</a></li>
+                <li><a href="#product">Aplicativo</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
             <button class="cta-button" onclick="scrollToContact()">Iniciar Rota</button>
@@ -1490,7 +1584,7 @@
         </div>
     </section>
 
-    <!-- Services Section - NOVO -->
+    <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="container">
             <div class="section-header">
@@ -1681,7 +1775,7 @@
         </div>
     </section>
 
-    <!-- Partners Section - NOVO -->
+    <!-- Partners Section -->
     <section id="partners" class="partners-section">
         <div class="container">
             <div class="section-header">
@@ -1727,24 +1821,24 @@
         </div>
     </section>
 
-    <!-- Product Section - EM DESENVOLVIMENTO -->
+    <!-- Product Section - APLICATIVO EM DESENVOLVIMENTO -->
     <section id="product" class="product-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Tecnologia em Desenvolvimento</span>
+                <span class="section-tag">Aplicativo em Desenvolvimento</span>
                 <h2 class="section-title">VoxMotion AI</h2>
                 <p class="section-subtitle">
-                    O braço tecnológico do ecossistema Empower Minds. Em fase de 
-                    desenvolvimento ativo, com previsão de lançamento em breve.
+                    O braço tecnológico do ecossistema Empower Minds. Um aplicativo mobile 
+                    em fase de desenvolvimento, com previsão de lançamento para 2026.
                 </p>
             </div>
 
-            <!-- Banner de Desenvolvimento do Produto -->
+            <!-- Banner de Desenvolvimento do Aplicativo -->
             <div class="product-dev-banner">
                 <span class="product-dev-badge">🚧 Em Desenvolvimento</span>
                 <span class="product-dev-text">
-                    Esta tecnologia está sendo construída. Acompanhe o progresso no repositório 
-                    ou entre em contato para mais informações.
+                    Este aplicativo está sendo construído. Acompanhe o progresso no repositório 
+                    ou entre em contato para mais informações. Lançamento previsto: 2026.
                 </span>
             </div>
             
@@ -1755,24 +1849,25 @@
                         <div class="product-logo">◆</div>
                         <div class="product-title-group">
                             <h3>VoxMotion AI</h3>
-                            <span>Produto Empower Minds</span>
+                            <span>Aplicativo Mobile</span>
                         </div>
                     </div>
                     
                     <p class="product-description">
-                        Plataforma multimodal de inteligência do movimento humano que integra 
+                        Aplicativo de inteligência do movimento humano que integra 
                         visão computacional, processamento Edge AI e análise biomecânica 
-                        validada pela UNICAMP. Desenvolvida para democratizar o acesso à 
-                        análise de movimento em educação, saúde, cultura e esporte.
+                        validada pela UNICAMP. Desenvolvido para democratizar o acesso à 
+                        análise de movimento em educação, saúde, cultura e esporte — 
+                        diretamente pelo smartphone.
                     </p>
                     
                     <ul class="product-features">
-                        <li>Captura markerless via smartphone</li>
+                        <li>Captura markerless via câmera do celular</li>
                         <li>Integração Google Gemini Live</li>
-                        <li>Processamento local (Edge AI)</li>
-                        <li>Métricas biomecânicas validadas</li>
-                        <li>API para integração com sistemas</li>
-                        <li>Documentação técnica completa</li>
+                        <li>Processamento local (Edge AI) — sem enviar dados para nuvem</li>
+                        <li>Feedback em tempo real sobre técnica e performance</li>
+                        <li>Métricas biomecânicas validadas cientificamente</li>
+                        <li>Disponível para Android e iOS (previsto)</li>
                     </ul>
                     
                     <div class="product-stats">
@@ -1781,8 +1876,8 @@
                             <div class="product-stat-label">Versão Alpha</div>
                         </div>
                         <div class="product-stat">
-                            <div class="product-stat-number">2024</div>
-                            <div class="product-stat-label">Lançamento Previsto</div>
+                            <div class="product-stat-number">2026</div>
+                            <div class="product-stat-label">Lançamento</div>
                         </div>
                         <div class="product-stat">
                             <div class="product-stat-number">Beta</div>
@@ -1791,79 +1886,36 @@
                     </div>
                 </div>
 
-                <!-- Repository Structure -->
-                <div class="repo-structure">
-                    <div class="repo-header">
-                        <div class="repo-icon">📁</div>
-                        <span class="repo-title">voxmotion-ai-website</span>
-                        <span class="repo-url">github.com/seu-usuario</span>
+                <!-- App Mockup -->
+                <div class="app-mockup">
+                    <div class="app-screen">
+                        <div class="app-content">
+                            <div class="app-icon-large">◆</div>
+                            <div class="app-title">VoxMotion AI</div>
+                            <div class="app-subtitle">Capture. Analise. Evolua.</div>
+                            
+                            <div class="app-features-preview">
+                                <div class="app-feature-item">Análise biomecânica em tempo real</div>
+                                <div class="app-feature-item">Feedback por voz com Gemini</div>
+                                <div class="app-feature-item">Privacidade total — dados no dispositivo</div>
+                                <div class="app-feature-item">Para dança, esporte e reabilitação</div>
+                            </div>
+                            
+                            <div class="app-coming-soon">Em breve</div>
+                        </div>
                     </div>
                     
-                    <div class="repo-content">
-                        <div class="tree-line">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">voxmotion-ai-website/</span>
-                            <span class="tree-comment"># Raiz do projeto</span>
+                    <div class="repo-structure" style="margin-top: 1.5rem;">
+                        <div class="repo-header">
+                            <div class="repo-icon">📱</div>
+                            <span class="repo-title">Repositório do App</span>
                         </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-file">index.html</span>
-                            <span class="tree-comment"># Página principal</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-file">README.md</span>
-                            <span class="tree-comment"># Documentação</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-folder">assets/</span>
-                            <span class="tree-comment"># Recursos estáticos</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   ├──</span>
-                            <span class="tree-folder">css/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">│   │   └──</span>
-                            <span class="tree-file">styles.css</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   ├──</span>
-                            <span class="tree-folder">js/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">│   │   └──</span>
-                            <span class="tree-file">main.js</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   └──</span>
-                            <span class="tree-folder">images/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">.github/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">workflows/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-file">static.yml</span>
-                            <span class="tree-comment"># Deploy automático</span>
-                        </div>
-
-                        <div class="clone-command">
-                            <span class="clone-label">Clone</span>
-                            <code class="clone-code">git clone https://github.com/seu-usuario/voxmotion-ai-website.git</code>
-                            <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/seu-usuario/voxmotion-ai-website.git')">Copiar</button>
-                        </div>
-
-                        <div class="clone-command" style="margin-top: 0.75rem;">
-                            <span class="clone-label">Acesse</span>
-                            <code class="clone-code">cd voxmotion-ai-website</code>
-                            <button class="copy-btn" onclick="copyToClipboard('cd voxmotion-ai-website')">Copiar</button>
+                        <div class="repo-content" style="padding: 1rem;">
+                            <div class="clone-command" style="margin: 0;">
+                                <span class="clone-label">Clone</span>
+                                <code class="clone-code" style="font-size: 0.75rem;">git clone https://github.com/seu-usuario/voxmotion-ai-website.git</code>
+                                <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/seu-usuario/voxmotion-ai-website.git')">Copiar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2000,8 +2052,8 @@
             ease: 'power3.out'
         });
 
-        // Product access animation
-        gsap.from('.product-info-card, .repo-structure', {
+        // Product animation
+        gsap.from('.product-info-card, .app-mockup', {
             scrollTrigger: {
                 trigger: '#product',
                 start: 'top 80%',
