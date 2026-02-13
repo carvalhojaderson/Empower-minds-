@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empower Minds | VoxMotion AI - Ecossistema de Aplicação Social</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -24,6 +24,8 @@
             --text-muted: #94a3b8;
             --warning: #C9A24A;
             --warning-bg: rgba(201, 162, 74, 0.1);
+            --code-bg: #0d1117;
+            --code-border: rgba(201, 162, 74, 0.2);
         }
 
         * {
@@ -622,7 +624,263 @@
             margin: 0 auto;
         }
 
-        /* Ecosystem Section - New */
+        /* Product Access Section - NEW */
+        .product-access-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.9), rgba(4, 15, 26, 0.95));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-access-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(26, 166, 166, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(201, 162, 74, 0.05) 0%, transparent 40%);
+        }
+
+        .product-access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .product-info-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--gold));
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 2px solid rgba(201, 162, 74, 0.3);
+        }
+
+        .product-title-group h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .product-title-group span {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        .product-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .product-features li::before {
+            content: '◆';
+            color: var(--teal);
+            font-size: 0.7rem;
+        }
+
+        .product-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .product-stat {
+            text-align: center;
+        }
+
+        .product-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--teal), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Cinzel', serif;
+        }
+
+        .product-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Repository Structure - NEW */
+        .repo-structure {
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .repo-header {
+            background: rgba(201, 162, 74, 0.1);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--code-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .repo-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--deep-blue);
+        }
+
+        .repo-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .repo-url {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--teal);
+            margin-left: auto;
+        }
+
+        .repo-content {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .tree-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            padding: 0.25rem 0;
+        }
+
+        .tree-line:hover {
+            background: rgba(255,255,255,0.03);
+            border-radius: 4px;
+        }
+
+        .tree-branch {
+            color: var(--text-muted);
+        }
+
+        .tree-file {
+            color: var(--gold);
+        }
+
+        .tree-folder {
+            color: var(--teal);
+            font-weight: 500;
+        }
+
+        .tree-comment {
+            color: #6b7280;
+            margin-left: 1rem;
+            font-style: italic;
+        }
+
+        .clone-command {
+            background: rgba(26, 166, 166, 0.1);
+            border: 1px solid rgba(26, 166, 166, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .clone-label {
+            color: var(--teal);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .clone-code {
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+        }
+
+        .copy-btn {
+            margin-left: auto;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(201, 162, 74, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* Ecosystem Section */
         .ecosystem-section {
             background: linear-gradient(135deg, rgba(6, 26, 43, 0.8), rgba(4, 15, 26, 0.9));
         }
@@ -694,7 +952,7 @@
             line-height: 1.8;
         }
 
-        /* Method Section - New */
+        /* Method Section */
         .method-section {
             position: relative;
         }
@@ -747,6 +1005,50 @@
         .method-content p {
             color: var(--text-muted);
             font-size: 0.9rem;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(201, 162, 74, 0.05), rgba(26, 166, 166, 0.05));
+            text-align: center;
+            padding: 80px 5%;
+        }
+
+        .quote-large {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--gold);
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .quote-large::before,
+        .quote-large::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--teal);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-large::before {
+            top: -20px;
+            left: -40px;
+        }
+
+        .quote-large::after {
+            bottom: -40px;
+            right: -40px;
+        }
+
+        .quote-author {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         /* Technology Section */
@@ -979,50 +1281,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Quote Section - New */
-        .quote-section {
-            background: linear-gradient(135deg, rgba(201, 162, 74, 0.05), rgba(26, 166, 166, 0.05));
-            text-align: center;
-            padding: 80px 5%;
-        }
-
-        .quote-large {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            color: var(--gold);
-            font-style: italic;
-            max-width: 900px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        .quote-large::before,
-        .quote-large::after {
-            content: '"';
-            font-size: 4rem;
-            color: var(--teal);
-            opacity: 0.3;
-            position: absolute;
-        }
-
-        .quote-large::before {
-            top: -20px;
-            left: -40px;
-        }
-
-        .quote-large::after {
-            bottom: -40px;
-            right: -40px;
-        }
-
-        .quote-author {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
         /* Brazil Section */
         .brazil-section {
             position: relative;
@@ -1234,6 +1492,10 @@
                 order: -1;
             }
 
+            .product-access-grid {
+                grid-template-columns: 1fr;
+            }
+
             .ecosystem-grid,
             .google-grid {
                 grid-template-columns: 1fr;
@@ -1255,6 +1517,11 @@
             .quote-large::before,
             .quote-large::after {
                 display: none;
+            }
+
+            .product-stats {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
         }
 
@@ -1303,6 +1570,7 @@
                 </div>
             </div>
             <ul class="nav-links">
+                <li><a href="#product">Produto</a></li>
                 <li><a href="#ecosystem">Ecossistema</a></li>
                 <li><a href="#method">Método</a></li>
                 <li><a href="#tech">Tecnologia</a></li>
@@ -1334,8 +1602,8 @@
                     potencializar o movimento humano.
                 </p>
                 <div class="hero-cta">
-                    <button class="btn-primary" onclick="document.getElementById('ecosystem').scrollIntoView({behavior: 'smooth'})">
-                        Conhecer o Ecossistema →
+                    <button class="btn-primary" onclick="document.getElementById('product').scrollIntoView({behavior: 'smooth'})">
+                        Acessar Produto →
                     </button>
                     <button class="btn-secondary" onclick="scrollToContact()">
                         Traçar sua Rota
@@ -1362,6 +1630,145 @@
                     <div class="card-text">
                         <strong>Navegação</strong>
                         Traçar rota com precisão
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Access Section - NEW -->
+    <section id="product" class="product-access-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Acesso ao Produto</span>
+                <h2 class="section-title">VoxMotion AI no Ecossistema</h2>
+                <p class="section-subtitle">
+                    Acesse o repositório, explore a estrutura e integre a tecnologia 
+                    de captura de movimento aos seus projetos territoriais.
+                </p>
+            </div>
+            
+            <div class="product-access-grid">
+                <!-- Product Info Card -->
+                <div class="product-info-card">
+                    <div class="product-header">
+                        <div class="product-logo">◆</div>
+                        <div class="product-title-group">
+                            <h3>VoxMotion AI</h3>
+                            <span>Produto Empower Minds</span>
+                        </div>
+                    </div>
+                    
+                    <p class="product-description">
+                        Plataforma multimodal de inteligência do movimento humano que integra 
+                        visão computacional, processamento Edge AI e análise biomecânica 
+                        validada pela UNICAMP. Desenvolvida para aplicação territorial em 
+                        educação, saúde, cultura e esporte.
+                    </p>
+                    
+                    <ul class="product-features">
+                        <li>Captura markerless via smartphone</li>
+                        <li>Integração Google Gemini Live</li>
+                        <li>Processamento local (Edge AI)</li>
+                        <li>Métricas biomecânicas validadas</li>
+                        <li>API para integração com sistemas</li>
+                        <li>Documentação técnica completa</li>
+                    </ul>
+                    
+                    <div class="product-stats">
+                        <div class="product-stat">
+                            <div class="product-stat-number">v1.0</div>
+                            <div class="product-stat-label">Versão</div>
+                        </div>
+                        <div class="product-stat">
+                            <div class="product-stat-number">99.2%</div>
+                            <div class="product-stat-label">Precisão</div>
+                        </div>
+                        <div class="product-stat">
+                            <div class="product-stat-number">&lt;50ms</div>
+                            <div class="product-stat-label">Latência</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repository Structure -->
+                <div class="repo-structure">
+                    <div class="repo-header">
+                        <div class="repo-icon">📁</div>
+                        <span class="repo-title">voxmotion-ai-website</span>
+                        <span class="repo-url">github.com/seu-usuario</span>
+                    </div>
+                    
+                    <div class="repo-content">
+                        <div class="tree-line">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">voxmotion-ai-website/</span>
+                            <span class="tree-comment"># Raiz do projeto</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-file">index.html</span>
+                            <span class="tree-comment"># Página principal (este arquivo)</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-file">README.md</span>
+                            <span class="tree-comment"># Documentação do projeto</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-folder">assets/</span>
+                            <span class="tree-comment"># Recursos estáticos</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   ├──</span>
+                            <span class="tree-folder">css/</span>
+                            <span class="tree-comment"># Estilos</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">│   │   └──</span>
+                            <span class="tree-file">styles.css</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   ├──</span>
+                            <span class="tree-folder">js/</span>
+                            <span class="tree-comment"># Scripts</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">│   │   └──</span>
+                            <span class="tree-file">main.js</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   └──</span>
+                            <span class="tree-folder">images/</span>
+                            <span class="tree-comment"># Imagens</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">.github/</span>
+                            <span class="tree-comment"># GitHub Actions</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">workflows/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-file">static.yml</span>
+                            <span class="tree-comment"># Deploy automático</span>
+                        </div>
+
+                        <div class="clone-command">
+                            <span class="clone-label">Clone</span>
+                            <code class="clone-code">git clone https://github.com/seu-usuario/voxmotion-ai-website.git</code>
+                            <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/seu-usuario/voxmotion-ai-website.git')">Copiar</button>
+                        </div>
+
+                        <div class="clone-command" style="margin-top: 0.75rem;">
+                            <span class="clone-label">Acesse</span>
+                            <code class="clone-code">cd voxmotion-ai-website</code>
+                            <button class="copy-btn" onclick="copyToClipboard('cd voxmotion-ai-website')">Copiar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1802,6 +2209,19 @@
             ease: 'power3.out'
         });
 
+        // Product access animation
+        gsap.from('.product-info-card, .repo-structure', {
+            scrollTrigger: {
+                trigger: '#product',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
         // Ecosystem cards animation
         gsap.from('.ecosystem-card', {
             scrollTrigger: {
@@ -1868,19 +2288,25 @@
         });
 
         // Stats counter animation
-        const stats = document.querySelectorAll('.stat-number');
+        const stats = document.querySelectorAll('.stat-number, .product-stat-number');
         stats.forEach(stat => {
-            const target = parseInt(stat.innerText);
-            gsap.to(stat, {
-                scrollTrigger: {
-                    trigger: stat,
-                    start: 'top 85%',
-                },
-                innerText: target,
-                duration: 2,
-                snap: { innerText: 1 },
-                ease: 'power2.out'
-            });
+            const text = stat.innerText;
+            const isVersion = text.includes('v');
+            const isLatency = text.includes('ms');
+            
+            if (!isVersion && !isLatency && !isNaN(parseInt(text))) {
+                const target = parseInt(text);
+                gsap.to(stat, {
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 85%',
+                    },
+                    innerText: target,
+                    duration: 2,
+                    snap: { innerText: 1 },
+                    ease: 'power2.out'
+                });
+            }
         });
 
         // Smooth scroll functions
@@ -1894,6 +2320,15 @@
 
         function toggleMenu() {
             alert('Menu mobile - implementação completa disponível');
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Comando copiado: ' + text);
+            }).catch(err => {
+                console.error('Erro ao copiar:', err);
+            });
         }
 
         // Parallax effect for floating cards
