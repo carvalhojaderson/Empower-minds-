@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empower Minds | VoxMotion AI - Ecossistema de Aplicação Social</title>
+    <title>Empower Minds | Ecossistema de Aplicação Social</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -52,24 +52,18 @@
             letter-spacing: 0.5px;
         }
 
-        /* Development Banner */
+        /* Development Banner - Ecossistema em Aplicação */
         .dev-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(90deg, var(--warning-bg), rgba(201, 162, 74, 0.15), var(--warning-bg));
-            border-bottom: 1px solid var(--gold);
+            background: linear-gradient(90deg, rgba(26, 166, 166, 0.1), rgba(26, 166, 166, 0.2), rgba(26, 166, 166, 0.1));
+            border-bottom: 1px solid var(--teal);
             padding: 0.75rem;
             text-align: center;
             z-index: 10000;
             backdrop-filter: blur(10px);
-            animation: bannerPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes bannerPulse {
-            0%, 100% { background: linear-gradient(90deg, var(--warning-bg), rgba(201, 162, 74, 0.15), var(--warning-bg)); }
-            50% { background: linear-gradient(90deg, rgba(201, 162, 74, 0.15), var(--warning-bg), rgba(201, 162, 74, 0.15)); }
         }
 
         .dev-banner-content {
@@ -81,7 +75,7 @@
         }
 
         .dev-badge {
-            background: var(--gold);
+            background: var(--teal);
             color: var(--deep-blue);
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
@@ -89,16 +83,10 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: blink 3s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
         }
 
         .dev-text {
-            color: var(--gold);
+            color: var(--teal);
             font-weight: 500;
             font-size: 0.9rem;
         }
@@ -107,13 +95,42 @@
             color: var(--text);
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px dashed var(--gold);
+            border-bottom: 1px dashed var(--teal);
             transition: all 0.3s ease;
         }
 
         .dev-contact:hover {
-            color: var(--gold);
+            color: var(--teal);
             border-bottom-style: solid;
+        }
+
+        /* Product Development Banner - Separado */
+        .product-dev-banner {
+            background: linear-gradient(90deg, var(--warning-bg), rgba(245, 158, 11, 0.15), var(--warning-bg));
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .product-dev-badge {
+            background: var(--gold);
+            color: var(--deep-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-dev-text {
+            color: var(--gold);
+            font-size: 0.9rem;
         }
 
         /* Background Animation - Constelações */
@@ -227,11 +244,10 @@
 
         .company-name {
             font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: -5px;
         }
 
         .product-name {
@@ -373,12 +389,6 @@
         .hero-badge::before {
             content: '◆';
             color: var(--teal);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
 
         .hero h1 {
@@ -624,43 +634,30 @@
             margin: 0 auto;
         }
 
-        /* Product Access Section - NEW */
-        .product-access-section {
+        /* Services Section - NOVO */
+        .services-section {
             background: linear-gradient(135deg, rgba(6, 26, 43, 0.9), rgba(4, 15, 26, 0.95));
-            position: relative;
-            overflow: hidden;
         }
 
-        .product-access-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(26, 166, 166, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(201, 162, 74, 0.05) 0%, transparent 40%);
-        }
-
-        .product-access-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .product-info-card {
+        .service-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .product-info-card::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -668,219 +665,57 @@
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, var(--teal), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
-        .product-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(201, 162, 74, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            display: block;
         }
 
-        .product-logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--teal), var(--gold));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            border: 2px solid rgba(201, 162, 74, 0.3);
-        }
-
-        .product-title-group h3 {
-            font-size: 1.5rem;
-            color: var(--text);
-            margin-bottom: 0.25rem;
-        }
-
-        .product-title-group span {
-            font-size: 0.85rem;
+        .service-card h3 {
+            font-size: 1.3rem;
             color: var(--gold);
+            margin-bottom: 1rem;
             font-family: 'Cinzel', serif;
-            letter-spacing: 1px;
         }
 
-        .product-description {
+        .service-card p {
             color: var(--text-muted);
+            font-size: 0.95rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
-        .product-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .product-features li {
+        .service-audience {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .product-features li::before {
-            content: '◆';
-            color: var(--teal);
-            font-size: 0.7rem;
-        }
-
-        .product-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .product-stat {
-            text-align: center;
-        }
-
-        .product-stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--teal), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Cinzel', serif;
-        }
-
-        .product-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Repository Structure - NEW */
-        .repo-structure {
-            background: var(--code-bg);
-            border: 1px solid var(--code-border);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .repo-header {
-            background: rgba(201, 162, 74, 0.1);
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--code-border);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .repo-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: var(--deep-blue);
-        }
-
-        .repo-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        .repo-url {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.8rem;
-            color: var(--teal);
-            margin-left: auto;
-        }
-
-        .repo-content {
-            padding: 1.5rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
-        }
-
-        .tree-line {
-            display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            color: var(--text-muted);
-            padding: 0.25rem 0;
         }
 
-        .tree-line:hover {
-            background: rgba(255,255,255,0.03);
-            border-radius: 4px;
-        }
-
-        .tree-branch {
-            color: var(--text-muted);
-        }
-
-        .tree-file {
-            color: var(--gold);
-        }
-
-        .tree-folder {
+        .audience-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(26, 166, 166, 0.1);
+            border: 1px solid rgba(26, 166, 166, 0.2);
+            border-radius: 50px;
+            font-size: 0.75rem;
             color: var(--teal);
             font-weight: 500;
         }
 
-        .tree-comment {
-            color: #6b7280;
-            margin-left: 1rem;
-            font-style: italic;
-        }
-
-        .clone-command {
-            background: rgba(26, 166, 166, 0.1);
-            border: 1px solid rgba(26, 166, 166, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .clone-label {
-            color: var(--teal);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .clone-code {
-            color: var(--text);
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-        }
-
-        .copy-btn {
-            margin-left: auto;
-            padding: 0.5rem 1rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            color: var(--gold);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: rgba(201, 162, 74, 0.1);
-            border-color: var(--gold);
-        }
-
-        /* Ecosystem Section */
+        /* Ecosystem Section - Três Movimentos */
         .ecosystem-section {
             background: linear-gradient(135deg, rgba(6, 26, 43, 0.8), rgba(4, 15, 26, 0.9));
         }
@@ -1051,321 +886,336 @@
             text-transform: uppercase;
         }
 
-        /* Technology Section */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        /* Product Section - EM DESENVOLVIMENTO */
+        .product-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.95), rgba(4, 15, 26, 0.98));
+            position: relative;
+            overflow: hidden;
         }
 
-        .tech-card {
+        .product-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(201, 162, 74, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(201, 162, 74, 0.03) 0%, transparent 40%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .product-info-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .tech-card::before {
+        .product-info-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26, 166, 166, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--teal));
         }
 
-        .tech-card:hover::before {
-            opacity: 1;
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .tech-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--teal);
-            box-shadow: 0 20px 60px rgba(26, 166, 166, 0.15);
-        }
-
-        .tech-icon {
-            width: 70px;
-            height: 70px;
+        .product-logo {
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--teal), var(--gold));
-            border-radius: 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
+            font-size: 1.8rem;
+            border: 2px solid rgba(201, 162, 74, 0.3);
         }
 
-        .tech-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
+        .product-title-group h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .product-title-group span {
+            font-size: 0.85rem;
+            color: var(--gold);
             font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
         }
 
-        .tech-card p {
+        .product-description {
             color: var(--text-muted);
             line-height: 1.8;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 1.5rem;
         }
 
-        /* UNICAMP Section */
-        .unicamp-section {
-            background: linear-gradient(135deg, rgba(6, 26, 43, 0.6), rgba(201, 162, 74, 0.05));
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
         }
 
-        .unicamp-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+        .product-features li {
+            display: flex;
             align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .unicamp-visual {
-            position: relative;
+        .product-features li::before {
+            content: '◆';
+            color: var(--teal);
+            font-size: 0.7rem;
         }
 
-        .unicamp-image {
-            width: 100%;
-            border-radius: 30px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
-            border: 1px solid var(--glass-border);
-        }
-
-        .stats-grid {
+        .product-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
         }
 
-        .stat-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1.5rem;
+        .product-stat {
             text-align: center;
-            transition: all 0.3s ease;
         }
 
-        .stat-card:hover {
-            transform: scale(1.05);
-            border-color: var(--gold);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
+        .product-stat-number {
+            font-size: 1.8rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--teal), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: block;
             font-family: 'Cinzel', serif;
         }
 
-        .stat-label {
+        .product-stat-label {
+            font-size: 0.75rem;
             color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .feature-list {
-            list-style: none;
-            margin-top: 2rem;
+        /* Repository Structure */
+        .repo-structure {
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 16px;
+            overflow: hidden;
         }
 
-        .feature-list li {
+        .repo-header {
+            background: rgba(201, 162, 74, 0.1);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--code-border);
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .feature-list li::before {
-            content: '◆';
+        .repo-icon {
             width: 24px;
             height: 24px;
-            background: linear-gradient(135deg, var(--teal), var(--gold));
+            background: var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 0.7rem;
-            flex-shrink: 0;
+            font-size: 0.8rem;
+            color: var(--deep-blue);
         }
 
-        /* Applications Section */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+        .repo-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
         }
 
-        .app-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            padding: 3rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .repo-url {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--teal);
+            margin-left: auto;
         }
 
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(26, 166, 166, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .app-card:hover::before {
-            opacity: 1;
-        }
-
-        .app-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--teal);
-        }
-
-        .app-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .app-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-family: 'Cinzel', serif;
-        }
-
-        .app-card p {
-            color: var(--text-muted);
+        .repo-content {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
             line-height: 1.8;
         }
 
-        .app-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(201, 162, 74, 0.15);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: var(--gold);
-            margin-top: 1rem;
-            font-weight: 600;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 0.5px;
-        }
-
-        /* Brazil Section */
-        .brazil-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .brazil-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .brazil-map {
-            position: relative;
-            height: 500px;
-            background: var(--glass);
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
+        .tree-line {
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            padding: 0.25rem 0;
         }
 
-        .brazil-map::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(26, 166, 166, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 70% 30%, rgba(201, 162, 74, 0.1) 0%, transparent 40%);
-            animation: rotate 30s linear infinite;
+        .tree-line:hover {
+            background: rgba(255,255,255,0.03);
+            border-radius: 4px;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .tree-branch {
+            color: var(--text-muted);
         }
 
-        .brazil-text h3 {
-            font-size: 1.8rem;
-            margin: 1.5rem 0;
+        .tree-file {
             color: var(--gold);
-            font-family: 'Cinzel', serif;
         }
 
-        /* Google Partnership */
-        .google-section {
-            background: linear-gradient(135deg, rgba(26, 166, 166, 0.03), rgba(201, 162, 74, 0.03));
-            text-align: center;
+        .tree-folder {
+            color: var(--teal);
+            font-weight: 500;
         }
 
-        .google-grid {
+        .tree-comment {
+            color: #6b7280;
+            margin-left: 1rem;
+            font-style: italic;
+        }
+
+        .clone-command {
+            background: rgba(26, 166, 166, 0.1);
+            border: 1px solid rgba(26, 166, 166, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .clone-label {
+            color: var(--teal);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .clone-code {
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+        }
+
+        .copy-btn {
+            margin-left: auto;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(201, 162, 74, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: linear-gradient(135deg, rgba(6, 26, 43, 0.6), rgba(201, 162, 74, 0.05));
+        }
+
+        .partners-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
             margin-top: 3rem;
         }
 
-        .google-card {
+        .partner-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
-        .google-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(26, 166, 166, 0.15);
+        .partner-card:hover {
+            transform: translateY(-5px);
             border-color: var(--teal);
         }
 
-        .google-logo {
-            font-size: 2rem;
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .partner-logo.unicamp {
+            color: var(--teal);
+        }
+
+        .partner-logo.google {
             background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .partner-card h3 {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .partner-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .partner-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .partner-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .partner-features li::before {
+            content: '◆';
+            color: var(--teal);
+            font-size: 0.6rem;
         }
 
         /* Contact Section */
@@ -1492,22 +1342,21 @@
                 order: -1;
             }
 
-            .product-access-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .services-grid,
             .ecosystem-grid,
-            .google-grid {
+            .partners-grid,
+            .product-grid {
                 grid-template-columns: 1fr;
             }
 
-            .unicamp-content,
-            .brazil-content {
-                grid-template-columns: 1fr;
+            .method-timeline {
+                gap: 1rem;
             }
 
-            .apps-grid {
-                grid-template-columns: 1fr;
+            .method-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
 
             .floating-card {
@@ -1522,6 +1371,15 @@
             .product-stats {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
+            }
+
+            .clone-command {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .copy-btn {
+                margin-left: 0;
             }
         }
 
@@ -1547,11 +1405,11 @@
     </style>
 </head>
 <body>
-    <!-- Development Banner -->
+    <!-- Development Banner - Ecossistema em Aplicação -->
     <div class="dev-banner">
         <div class="dev-banner-content">
-            <span class="dev-badge">🚧 Em Desenvolvimento</span>
-            <span class="dev-text">Ecossistema Empower Minds em fase de aplicação territorial.</span>
+            <span class="dev-badge">🌊 Em Aplicação Territorial</span>
+            <span class="dev-text">Ecossistema Empower Minds ativo. Transformando intenção em entrega.</span>
             <a href="mailto:carvalhojaderson@gmail.com" class="dev-contact">carvalhojaderson@gmail.com</a>
         </div>
     </div>
@@ -1564,18 +1422,15 @@
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <div style="display: flex; flex-direction: column;">
-                    <span class="company-name">Empower Minds</span>
-                    <span class="product-name">VoxMotion AI</span>
-                </div>
+                <div class="company-name">Empower Minds</div>
             </div>
             <ul class="nav-links">
-                <li><a href="#product">Produto</a></li>
+                <li><a href="#services">Serviços</a></li>
                 <li><a href="#ecosystem">Ecossistema</a></li>
                 <li><a href="#method">Método</a></li>
-                <li><a href="#tech">Tecnologia</a></li>
-                <li><a href="#apps">Aplicações</a></li>
-                <li><a href="#contact">Rota</a></li>
+                <li><a href="#partners">Parcerias</a></li>
+                <li><a href="#product">Produto</a></li>
+                <li><a href="#contact">Contato</a></li>
             </ul>
             <button class="cta-button" onclick="scrollToContact()">Iniciar Rota</button>
             <div class="mobile-menu" onclick="toggleMenu()">
@@ -1596,14 +1451,13 @@
                     "O que o mercado chama de burocracia, nós lemos como estação. Leis não são muros: são correntes. E correntes têm direção."
                 </p>
                 <p class="hero-subtitle">
-                    A <strong>Empower Minds</strong> é um ecossistema que não para na complexidade do sistema — 
-                    aplica no território. O <strong>VoxMotion AI</strong> é nossa tecnologia de ponta 
-                    que une Google Gemini, UNICAMP e visão computacional para capturar, analisar e 
-                    potencializar o movimento humano.
+                    O <strong>Empower Minds</strong> é um ecossistema que não para na complexidade do sistema — 
+                    <strong>aplica no território</strong>. Trabalhamos com ONGs, governo e incentivadores 
+                    para estruturar projetos, navegar regulamentações e sustentar resultados reais.
                 </p>
                 <div class="hero-cta">
-                    <button class="btn-primary" onclick="document.getElementById('product').scrollIntoView({behavior: 'smooth'})">
-                        Acessar Produto →
+                    <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                        Nossos Serviços →
                     </button>
                     <button class="btn-secondary" onclick="scrollToContact()">
                         Traçar sua Rota
@@ -1612,8 +1466,8 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-image-container">
-                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=600&fit=crop" 
-                         alt="Bailarino com análise biomecânica em tempo real" 
+                    <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=800&h=600&fit=crop" 
+                         alt="Comunidade em ação - aplicação territorial" 
                          class="hero-image">
                     <div class="skeleton-overlay"></div>
                     <div class="skeleton-lines"></div>
@@ -1636,139 +1490,58 @@
         </div>
     </section>
 
-    <!-- Product Access Section - NEW -->
-    <section id="product" class="product-access-section">
+    <!-- Services Section - NOVO -->
+    <section id="services" class="services-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Acesso ao Produto</span>
-                <h2 class="section-title">VoxMotion AI no Ecossistema</h2>
+                <span class="section-tag">Nossos Serviços</span>
+                <h2 class="section-title">Como Aplicamos no Território</h2>
                 <p class="section-subtitle">
-                    Acesse o repositório, explore a estrutura e integre a tecnologia 
-                    de captura de movimento aos seus projetos territoriais.
+                    Três pilares de atuação que transformam intenção em resultados sustentados 
+                    para diferentes públicos.
                 </p>
             </div>
-            
-            <div class="product-access-grid">
-                <!-- Product Info Card -->
-                <div class="product-info-card">
-                    <div class="product-header">
-                        <div class="product-logo">◆</div>
-                        <div class="product-title-group">
-                            <h3>VoxMotion AI</h3>
-                            <span>Produto Empower Minds</span>
-                        </div>
-                    </div>
-                    
-                    <p class="product-description">
-                        Plataforma multimodal de inteligência do movimento humano que integra 
-                        visão computacional, processamento Edge AI e análise biomecânica 
-                        validada pela UNICAMP. Desenvolvida para aplicação territorial em 
-                        educação, saúde, cultura e esporte.
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🏛️</span>
+                    <h3>Estruturação de Projetos</h3>
+                    <p>
+                        Transformamos intenções em projetos viáveis, com metodologia própria, 
+                        cronograma realista e indicadores de impacto claros. Do conceito ao 
+                        plano executivo.
                     </p>
-                    
-                    <ul class="product-features">
-                        <li>Captura markerless via smartphone</li>
-                        <li>Integração Google Gemini Live</li>
-                        <li>Processamento local (Edge AI)</li>
-                        <li>Métricas biomecânicas validadas</li>
-                        <li>API para integração com sistemas</li>
-                        <li>Documentação técnica completa</li>
-                    </ul>
-                    
-                    <div class="product-stats">
-                        <div class="product-stat">
-                            <div class="product-stat-number">v1.0</div>
-                            <div class="product-stat-label">Versão</div>
-                        </div>
-                        <div class="product-stat">
-                            <div class="product-stat-number">99.2%</div>
-                            <div class="product-stat-label">Precisão</div>
-                        </div>
-                        <div class="product-stat">
-                            <div class="product-stat-number">&lt;50ms</div>
-                            <div class="product-stat-label">Latência</div>
-                        </div>
+                    <div class="service-audience">
+                        <span class="audience-tag">ONGs</span>
+                        <span class="audience-tag">Governo</span>
+                        <span class="audience-tag">Empresas</span>
                     </div>
                 </div>
-
-                <!-- Repository Structure -->
-                <div class="repo-structure">
-                    <div class="repo-header">
-                        <div class="repo-icon">📁</div>
-                        <span class="repo-title">voxmotion-ai-website</span>
-                        <span class="repo-url">github.com/seu-usuario</span>
+                <div class="service-card">
+                    <span class="service-icon">🧭</span>
+                    <h3>Navegação Regulatória</h3>
+                    <p>
+                        Leis de incentivo não são muros — são correntes com direção. Navegamos 
+                        a complexidade burocrática para liberar recursos e viabilizar projetos 
+                        sociais, culturais e esportivos.
+                    </p>
+                    <div class="service-audience">
+                        <span class="audience-tag">Lei Rouanet</span>
+                        <span class="audience-tag">Lei do Esporte</span>
+                        <span class="audience-tag">Mecenato</span>
                     </div>
-                    
-                    <div class="repo-content">
-                        <div class="tree-line">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">voxmotion-ai-website/</span>
-                            <span class="tree-comment"># Raiz do projeto</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-file">index.html</span>
-                            <span class="tree-comment"># Página principal (este arquivo)</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-file">README.md</span>
-                            <span class="tree-comment"># Documentação do projeto</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">├──</span>
-                            <span class="tree-folder">assets/</span>
-                            <span class="tree-comment"># Recursos estáticos</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   ├──</span>
-                            <span class="tree-folder">css/</span>
-                            <span class="tree-comment"># Estilos</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">│   │   └──</span>
-                            <span class="tree-file">styles.css</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   ├──</span>
-                            <span class="tree-folder">js/</span>
-                            <span class="tree-comment"># Scripts</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">│   │   └──</span>
-                            <span class="tree-file">main.js</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">│   └──</span>
-                            <span class="tree-folder">images/</span>
-                            <span class="tree-comment"># Imagens</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 1.5rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">.github/</span>
-                            <span class="tree-comment"># GitHub Actions</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 3rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-folder">workflows/</span>
-                        </div>
-                        <div class="tree-line" style="padding-left: 4.5rem;">
-                            <span class="tree-branch">└──</span>
-                            <span class="tree-file">static.yml</span>
-                            <span class="tree-comment"># Deploy automático</span>
-                        </div>
-
-                        <div class="clone-command">
-                            <span class="clone-label">Clone</span>
-                            <code class="clone-code">git clone https://github.com/seu-usuario/voxmotion-ai-website.git</code>
-                            <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/seu-usuario/voxmotion-ai-website.git')">Copiar</button>
-                        </div>
-
-                        <div class="clone-command" style="margin-top: 0.75rem;">
-                            <span class="clone-label">Acesse</span>
-                            <code class="clone-code">cd voxmotion-ai-website</code>
-                            <button class="copy-btn" onclick="copyToClipboard('cd voxmotion-ai-website')">Copiar</button>
-                        </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🌾</span>
+                    <h3>Sustentação de Resultados</h3>
+                    <p>
+                        Não entregamos promessas — entregamos vida sustentada. Acompanhamos a 
+                        implementação, medimos impacto e garantimos que o projeto gere frutos 
+                        duradouros no território.
+                    </p>
+                    <div class="service-audience">
+                        <span class="audience-tag">Gestão</span>
+                        <span class="audience-tag">Métricas</span>
+                        <span class="audience-tag">Relatórios</span>
                     </div>
                 </div>
             </div>
@@ -1849,7 +1622,7 @@
                     <div class="method-number">4</div>
                     <div class="method-content">
                         <h4>Areia / Deserto</h4>
-                        <p>Areia e deserto não são ausência de valor. São ausência de visão, rota e nutrição.</p>
+                        <p><em>"Areia e deserto não são ausência de valor. São ausência de visão, rota e nutrição."</em></p>
                     </div>
                 </div>
                 <div class="method-step">
@@ -1908,225 +1681,191 @@
         </div>
     </section>
 
-    <!-- Technology Section -->
-    <section id="tech">
+    <!-- Partners Section - NOVO -->
+    <section id="partners" class="partners-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Tecnologia de Ponta</span>
+                <span class="section-tag">Parcerias Estratégicas</span>
+                <h2 class="section-title">Quem Nos Acompanha na Rota</h2>
+                <p class="section-subtitle">
+                    Alianças que fortalecem nossa capacidade de aplicar no território 
+                    com excelência técnica e científica.
+                </p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo unicamp">UNICAMP</div>
+                    <h3>Excelência Científica</h3>
+                    <p>
+                        Parceria com o Grupo de Pesquisa em Biomecânica e Respiração, 
+                        liderado pela Profa. Dra. Karine Sarro. Validação científica 
+                        para todas as nossas aplicações.
+                    </p>
+                    <ul class="partner-features">
+                        <li>Pesquisa de ponta em biomecânica</li>
+                        <li>Validação ética e humana</li>
+                        <li>15+ anos de expertise</li>
+                        <li>50+ publicações científicas</li>
+                    </ul>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo google">Google</div>
+                    <h3>Tecnologia de Fronteira</h3>
+                    <p>
+                        Caso de uso avançado para tecnologias Google. Integração de 
+                        IA multimodal, visão computacional e diálogo natural em 
+                        projetos sociais.
+                    </p>
+                    <ul class="partner-features">
+                        <li>Gemini Live — diálogos naturais</li>
+                        <li>Vertex AI — modelos customizados</li>
+                        <li>Android Ecosystem — escala global</li>
+                        <li>Processamento em tempo real</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section - EM DESENVOLVIMENTO -->
+    <section id="product" class="product-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Tecnologia em Desenvolvimento</span>
                 <h2 class="section-title">VoxMotion AI</h2>
                 <p class="section-subtitle">
-                    O braço tecnológico do ecossistema Empower Minds. 
-                    IA multimodal que captura, analisa e dialoga com o movimento humano.
+                    O braço tecnológico do ecossistema Empower Minds. Em fase de 
+                    desenvolvimento ativo, com previsão de lançamento em breve.
                 </p>
             </div>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="tech-icon">👁️</div>
-                    <h3>Visão Computacional</h3>
-                    <p>Captura markerless de alta precisão utilizando apenas a câmera do smartphone. 
-                       Nenhum sensor adicional necessário.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon">🎙️</div>
-                    <h3>Interação por Voz</h3>
-                    <p>Feedback conversacional instantâneo via Gemini Live. Diálogos naturais 
-                       sobre performance e técnica em tempo real.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon">⚡</div>
-                    <h3>Edge AI</h3>
-                    <p>Processamento local no smartphone para latência zero e privacidade máxima. 
-                       Seus dados nunca saem do dispositivo.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon">📊</div>
-                    <h3>Análise Biomecânica</h3>
-                    <p>Transformação de pixels em métricas cinemáticas validadas cientificamente 
-                       pela UNICAMP.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- UNICAMP Section -->
-    <section id="science" class="unicamp-section">
-        <div class="container">
-            <div class="unicamp-content">
-                <div class="unicamp-visual">
-                    <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&h=600&fit=crop" 
-                         alt="Estúdio de captura de movimento com bailarino" 
-                         class="unicamp-image">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <span class="stat-number">15+</span>
-                            <div class="stat-label">Anos de Pesquisa</div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">50+</span>
-                            <div class="stat-label">Publicações</div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">3</span>
-                            <div class="stat-label">Patentes</div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">100%</span>
-                            <div class="stat-label">Validação Ética</div>
+            <!-- Banner de Desenvolvimento do Produto -->
+            <div class="product-dev-banner">
+                <span class="product-dev-badge">🚧 Em Desenvolvimento</span>
+                <span class="product-dev-text">
+                    Esta tecnologia está sendo construída. Acompanhe o progresso no repositório 
+                    ou entre em contato para mais informações.
+                </span>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product Info Card -->
+                <div class="product-info-card">
+                    <div class="product-header">
+                        <div class="product-logo">◆</div>
+                        <div class="product-title-group">
+                            <h3>VoxMotion AI</h3>
+                            <span>Produto Empower Minds</span>
                         </div>
                     </div>
-                </div>
-                <div class="unicamp-text">
-                    <span class="section-tag">Parceria Estratégica</span>
-                    <h2 class="section-title">Ciência de Elite para o Território</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        A VoxMotion AI integra o ecossistema Empower Minds através da parceria 
-                        com a UNICAMP, conectando décadas de pesquisa de ponta à aplicação real 
-                        em comunidades.
+                    
+                    <p class="product-description">
+                        Plataforma multimodal de inteligência do movimento humano que integra 
+                        visão computacional, processamento Edge AI e análise biomecânica 
+                        validada pela UNICAMP. Desenvolvida para democratizar o acesso à 
+                        análise de movimento em educação, saúde, cultura e esporte.
                     </p>
-                    <ul class="feature-list">
-                        <li>
-                            <strong>Grupo de Pesquisa em Biomecânica</strong><br>
-                            Liderado pela Profa. Dra. Karine Sarro, garantindo precisão métrica 
-                            e segurança técnica nas aplicações territoriais.
-                        </li>
-                        <li>
-                            <strong>Validação Humana e Ética</strong><br>
-                            Sob supervisão da Dra. Paula, assegurando que a interação IA-Humano 
-                            seja ética, inclusiva e otimizada para o estado de Flow.
-                        </li>
-                        <li>
-                            <strong>Google Gemini Partnership</strong><br>
-                            Caso de uso avançado para tecnologias de fronteira, integrando 
-                            visão computacional e diálogo natural.
-                        </li>
+                    
+                    <ul class="product-features">
+                        <li>Captura markerless via smartphone</li>
+                        <li>Integração Google Gemini Live</li>
+                        <li>Processamento local (Edge AI)</li>
+                        <li>Métricas biomecânicas validadas</li>
+                        <li>API para integração com sistemas</li>
+                        <li>Documentação técnica completa</li>
                     </ul>
+                    
+                    <div class="product-stats">
+                        <div class="product-stat">
+                            <div class="product-stat-number">v0.8</div>
+                            <div class="product-stat-label">Versão Alpha</div>
+                        </div>
+                        <div class="product-stat">
+                            <div class="product-stat-number">2024</div>
+                            <div class="product-stat-label">Lançamento Previsto</div>
+                        </div>
+                        <div class="product-stat">
+                            <div class="product-stat-number">Beta</div>
+                            <div class="product-stat-label">Status</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Applications Section -->
-    <section id="apps">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Aplicações Territoriais</span>
-                <h2 class="section-title">Onde o Ecossistema Atua</h2>
-                <p class="section-subtitle">
-                    O VoxMotion AI aplica o método Empower Minds em diferentes vertentes 
-                    do movimento humano.
-                </p>
-            </div>
-            <div class="apps-grid">
-                <div class="app-card">
-                    <div>
-                        <div class="app-icon">🏆</div>
-                        <h3>SportTech & Performance</h3>
-                        <p>Análise técnica de alto rendimento, prevenção de lesões e otimização 
-                           biomecânica. Democratizando acesso a tecnologia de elite.</p>
+                <!-- Repository Structure -->
+                <div class="repo-structure">
+                    <div class="repo-header">
+                        <div class="repo-icon">📁</div>
+                        <span class="repo-title">voxmotion-ai-website</span>
+                        <span class="repo-url">github.com/seu-usuario</span>
                     </div>
-                    <span class="app-tag">Alto Rendimento</span>
-                </div>
-                <div class="app-card">
-                    <div>
-                        <div class="app-icon">🎭</div>
-                        <h3>CreativeTech & Cultura</h3>
-                        <p>IA como co-criadora em processos coreográficos e documentação artística. 
-                           Transformando a subjetividade da dança em dados acionáveis.</p>
-                    </div>
-                    <span class="app-tag">Arte & Tecnologia</span>
-                </div>
-                <div class="app-card">
-                    <div>
-                        <div class="app-icon">📚</div>
-                        <h3>Educação & Inclusão</h3>
-                        <p>Democratização do acesso à saúde e cultura. Ferramentas de acessibilidade 
-                           para deficientes visuais e suporte pedagógico.</p>
-                    </div>
-                    <span class="app-tag">Impacto Social</span>
-                </div>
-                <div class="app-card">
-                    <div>
-                        <div class="app-icon">🎬</div>
-                        <h3>Produção de Espetáculos</h3>
-                        <p>Gestão técnica de elencos, análise de sincronia e integração de movimento 
-                           com cenografia digital.</p>
-                    </div>
-                    <span class="app-tag">Entretenimento</span>
-                </div>
-            </div>
-        </div>
-    </section>
+                    
+                    <div class="repo-content">
+                        <div class="tree-line">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">voxmotion-ai-website/</span>
+                            <span class="tree-comment"># Raiz do projeto</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-file">index.html</span>
+                            <span class="tree-comment"># Página principal</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-file">README.md</span>
+                            <span class="tree-comment"># Documentação</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">├──</span>
+                            <span class="tree-folder">assets/</span>
+                            <span class="tree-comment"># Recursos estáticos</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   ├──</span>
+                            <span class="tree-folder">css/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">│   │   └──</span>
+                            <span class="tree-file">styles.css</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   ├──</span>
+                            <span class="tree-folder">js/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">│   │   └──</span>
+                            <span class="tree-file">main.js</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">│   └──</span>
+                            <span class="tree-folder">images/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 1.5rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">.github/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 3rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-folder">workflows/</span>
+                        </div>
+                        <div class="tree-line" style="padding-left: 4.5rem;">
+                            <span class="tree-branch">└──</span>
+                            <span class="tree-file">static.yml</span>
+                            <span class="tree-comment"># Deploy automático</span>
+                        </div>
 
-    <!-- Brazil Section -->
-    <section id="about" class="brazil-section">
-        <div class="container">
-            <div class="brazil-content">
-                <div class="brazil-text">
-                    <span class="section-tag">Base Territorial</span>
-                    <h2 class="section-title">Por que o Brasil?</h2>
-                    <h3>O Maior Laboratório de Movimento do Mundo</h3>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        A Empower Minds escolheu o Brasil como base estratégica — um território 
-                        de diversidade incomparável, onde cada comunidade é uma estação de aprendizado.
-                    </p>
-                    <ul class="feature-list">
-                        <li>
-                            <strong>Leis de Incentivo como Correntes</strong><br>
-                            Utilizamos mecanismos de fomento à cultura e esporte como rotas de 
-                            navegação, não como muros burocráticos.
-                        </li>
-                        <li>
-                            <strong>Diversidade de Dados</strong><br>
-                            Treinamos nossa IA com a riqueza do movimento brasileiro, criando 
-                            modelos universais a partir da especificidade local.
-                        </li>
-                        <li>
-                            <strong>Aplicação Real</strong><br>
-                            Projetos que nascem no território, vivem no território e retornam 
-                            ao território multiplicados.
-                        </li>
-                    </ul>
-                </div>
-                <div class="brazil-map">
-                    <div style="font-size: 8rem; opacity: 0.3;">🇧🇷</div>
-                    <div style="position: absolute; bottom: 2rem; left: 2rem; right: 2rem; text-align: center;">
-                        <p style="color: var(--gold); font-weight: 600; font-family: 'Cinzel', serif;">
-                            Empower Minds<br>
-                            <small style="color: var(--teal);">Made in Brazil, For the World</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="clone-command">
+                            <span class="clone-label">Clone</span>
+                            <code class="clone-code">git clone https://github.com/seu-usuario/voxmotion-ai-website.git</code>
+                            <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/seu-usuario/voxmotion-ai-website.git')">Copiar</button>
+                        </div>
 
-    <!-- Google Partnership -->
-    <section class="google-section">
-        <div class="container">
-            <span class="section-tag">Tecnologia de Fronteira</span>
-            <h2 class="section-title">Powered by Google</h2>
-            <p class="section-subtitle">
-                O ecossistema Empower Minds é caso de uso avançado para as tecnologias 
-                mais sofisticadas do Google.
-            </p>
-            <div class="google-grid">
-                <div class="google-card">
-                    <div class="google-logo">Gemini Live</div>
-                    <h3>Diálogos Naturais</h3>
-                    <p>Feedback em tempo real durante prática esportiva e artística, 
-                       com compreensão contextual avançada.</p>
-                </div>
-                <div class="google-card">
-                    <div class="google-logo">Vertex AI</div>
-                    <h3>Modelos Multimodais</h3>
-                    <p>Fine-tuning especializado em biomecânica humana, integrando 
-                       visão, linguagem e análise preditiva.</p>
-                </div>
-                <div class="google-card">
-                    <div class="google-logo">Android</div>
-                    <h3>Ecosystem Mobile</h3>
-                    <p>Biomecânica de laboratório em bilhões de dispositivos, 
-                       democratizando acesso à análise de movimento.</p>
+                        <div class="clone-command" style="margin-top: 0.75rem;">
+                            <span class="clone-label">Acesse</span>
+                            <code class="clone-code">cd voxmotion-ai-website</code>
+                            <button class="copy-btn" onclick="copyToClipboard('cd voxmotion-ai-website')">Copiar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2163,7 +1902,7 @@
             <div class="logo" style="font-size: 1.2rem;">
                 <div class="logo-icon" style="width: 35px; height: 35px;"></div>
                 <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                    <span class="company-name" style="font-size: 0.6rem;">Empower Minds</span>
+                    <span class="company-name" style="font-size: 0.7rem;">Empower Minds</span>
                     <span style="font-size: 1rem; color: var(--text);">Ecossistema de Aplicação Social</span>
                 </div>
             </div>
@@ -2209,10 +1948,10 @@
             ease: 'power3.out'
         });
 
-        // Product access animation
-        gsap.from('.product-info-card, .repo-structure', {
+        // Services animation
+        gsap.from('.service-card', {
             scrollTrigger: {
-                trigger: '#product',
+                trigger: '#services',
                 start: 'top 80%',
             },
             opacity: 0,
@@ -2248,65 +1987,30 @@
             ease: 'power3.out'
         });
 
-        // Tech cards animation
-        gsap.from('.tech-card', {
+        // Partners animation
+        gsap.from('.partner-card', {
             scrollTrigger: {
-                trigger: '#tech',
+                trigger: '#partners',
                 start: 'top 80%',
             },
             opacity: 0,
             y: 50,
             duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
-        });
-
-        // App cards animation
-        gsap.from('.app-card', {
-            scrollTrigger: {
-                trigger: '#apps',
-                start: 'top 80%',
-            },
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'back.out(1.7)'
-        });
-
-        // Google cards animation
-        gsap.from('.google-card', {
-            scrollTrigger: {
-                trigger: '.google-section',
-                start: 'top 80%',
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
             stagger: 0.2,
             ease: 'power3.out'
         });
 
-        // Stats counter animation
-        const stats = document.querySelectorAll('.stat-number, .product-stat-number');
-        stats.forEach(stat => {
-            const text = stat.innerText;
-            const isVersion = text.includes('v');
-            const isLatency = text.includes('ms');
-            
-            if (!isVersion && !isLatency && !isNaN(parseInt(text))) {
-                const target = parseInt(text);
-                gsap.to(stat, {
-                    scrollTrigger: {
-                        trigger: stat,
-                        start: 'top 85%',
-                    },
-                    innerText: target,
-                    duration: 2,
-                    snap: { innerText: 1 },
-                    ease: 'power2.out'
-                });
-            }
+        // Product access animation
+        gsap.from('.product-info-card, .repo-structure', {
+            scrollTrigger: {
+                trigger: '#product',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
         });
 
         // Smooth scroll functions
